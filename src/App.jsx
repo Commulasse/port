@@ -757,6 +757,24 @@ export default function PortApp() {
   const importRef = useRef(null);
   const poptavkaRef = useRef(null);                        /* rozpracovaná poptávka dodavatelům */
   const [pozOtevreno, setPozOtevreno] = useState(true);    /* seznam nevyřízených požadavků */
+  /* Na úzkém displeji se tabulky vykreslují jako karty a ke každé buňce patří název
+     sloupce. Kopírujeme ho z hlavičky do atributu data-l, aby to nemuselo být ručně
+     v každé z ~20 tabulek. Na desktopu se efekt hned ukončí. */
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") return;
+    if (window.innerWidth > 720) return;
+    document.querySelectorAll(".card table").forEach((tb) => {
+      const hlavicky = [...tb.querySelectorAll("thead th")].map((th) => (th.textContent || "").trim());
+      if (!hlavicky.length) return;
+      tb.querySelectorAll("tbody tr").forEach((tr) => {
+        [...tr.children].forEach((td, i) => {
+          const l = hlavicky[i] || "";
+          if (l && td.getAttribute("data-l") !== l) td.setAttribute("data-l", l);
+        });
+      });
+    });
+  });
+
   const naPoptavku = () => setTimeout(() => {
     if (poptavkaRef.current && poptavkaRef.current.scrollIntoView) poptavkaRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 60);
@@ -1499,6 +1517,44 @@ export default function PortApp() {
     .warn{background:var(--amber-bg);color:var(--amber);border:1px solid #F3D9B4;border-radius:10px;padding:9px 12px;font-size:13.5px}
     .danger-box{background:var(--red-bg);color:var(--red);border:1px solid #F0C9C9;border-radius:10px;padding:9px 12px;font-size:13.5px}
     @media(max-width:640px){ .doc{padding:24px 18px} .doc .grid2,.sig{grid-template-columns:1fr} .who{display:none} }
+
+    /* ---------- telefon a úzký tablet ----------
+       Tabulky se překlápějí do karet: hlavička se skryje a název sloupce se vypisuje
+       ke každé buňce z atributu data-l (doplňuje ho useEffect níže). */
+    @media(max-width:720px){
+      .wrap{padding:0 12px}
+      main{padding:18px 0 72px}
+      h1{font-size:19px}
+      .sub{font-size:13.5px}
+      .nav .wrap{-webkit-overflow-scrolling:touch;scrollbar-width:none}
+      .nav .wrap::-webkit-scrollbar{display:none}
+      .nav button{padding:13px 14px}
+      .card{border-radius:12px}
+      .card .pad{padding:14px}
+      .toolbar{padding:12px}
+      .btn,.btn.mini{min-height:44px;padding:11px 16px;font-size:14px}
+      .search{min-width:100%}
+      input[type=text],input[type=password],input[type=number],input[type=date],select{
+        font-size:16px;padding:10px 12px}                    /* 16 px = iPhone stránku nepřiblíží */
+      .form{padding:14px;gap:14px}
+      .form label{width:100%}
+      .form label input,.form label select{width:100% !important;max-width:none}
+      .form-akce{margin:14px -14px -14px;padding:12px 14px}
+      .form-akce .btn{width:100%;justify-content:center}
+      .table-wrap,.table-wrap.scroll{max-height:none;overflow:visible}
+      .card table{display:block;width:100%}
+      .card thead{display:none}
+      .card tbody{display:block}
+      .card tbody tr{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;margin:12px;padding:4px 12px}
+      .card tbody td{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        text-align:right;padding:9px 0;border:0;border-bottom:1px dashed var(--line)}
+      .card tbody tr td:last-child{border-bottom:0}
+      .card tbody td::before{content:attr(data-l);flex:0 0 40%;text-align:left;color:var(--muted);
+        font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+      .card tbody td input,.card tbody td select{width:100% !important;max-width:210px}
+      .card tbody td .btn{width:auto}
+      .card tbody td.num{text-align:right}
+    }
     @media print{
       .no-print{display:none !important}
       .overlay{position:static;background:none;padding:0}
