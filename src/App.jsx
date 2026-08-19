@@ -755,6 +755,11 @@ export default function PortApp() {
   const [novyPozadavek, setNovyPozadavek] = useState(null);
   const [importNahled, setImportNahled] = useState(null);   /* náhled nahraného Excelu */
   const importRef = useRef(null);
+  const poptavkaRef = useRef(null);                        /* rozpracovaná poptávka dodavatelům */
+  const [pozOtevreno, setPozOtevreno] = useState(true);    /* seznam nevyřízených požadavků */
+  const naPoptavku = () => setTimeout(() => {
+    if (poptavkaRef.current && poptavkaRef.current.scrollIntoView) poptavkaRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 60);
   const [akceptForm, setAkceptForm] = useState({});
   const [protiForm, setProtiForm] = useState({});
   const [vybrane, setVybrane] = useState({});
@@ -987,6 +992,8 @@ export default function PortApp() {
     const zdrojovaCisla = d.polozky.flatMap((p) => (p.zdroje || []).map((z) => z.pozCislo)).filter(Boolean);
     if (zdrojovaCisla.length) setPozadavky((ps) => ps.map((p) => (zdrojovaCisla.includes(p.cislo) ? { ...p, stav: "vreseni" } : p)));
     setNovaPoptavka(null);
+    setPozOtevreno(true);
+    if (typeof window !== "undefined" && window.scrollTo) window.scrollTo({ top: 0, behavior: "smooth" });
     flash(t(`Poptávka ${cislo} (${d.polozky.length} položek) byla odeslána ${(d.prijemci || []).length ? `${d.prijemci.length} vybraným dodavatelům` : "všem dodavatelům"} — anonymně.`,
             `RFQ ${cislo} (${d.polozky.length} items) has been sent ${(d.prijemci || []).length ? `to ${d.prijemci.length} selected suppliers` : "to all suppliers"} — anonymously.`));
   };
@@ -1420,6 +1427,11 @@ export default function PortApp() {
     input:focus,select:focus,button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
     .search{flex:1;min-width:200px}
     .table-wrap{overflow-x:auto}
+    .table-wrap.scroll{max-height:430px;overflow:auto}
+    .table-wrap.scroll thead th{position:sticky;top:0;z-index:1}
+    .form-akce{position:sticky;bottom:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+      margin:14px -20px -16px;padding:12px 20px;background:#FAF9FE;border-top:1px solid var(--line)}
+    .karta-draft{border:2px solid var(--brand)}
     table{width:100%;border-collapse:collapse;font-size:14px}
     th{background:#F6F4FC;color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.06em;
       text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -2186,7 +2198,8 @@ export default function PortApp() {
               });
               setNovaPoptavka({ provize, minExpMesice: mesice || 6, minExp: mesice ? "" : (datumy[datumy.length - 1] || ""), prijemci: [], polozky });
               setVybrane({});
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              setPozOtevreno(false);      /* dlouhý seznam požadavků se sbalí, ať je vidět formulář */
+              naPoptavku();
             };
 
             const setPol = (idx, nova) => setNovaPoptavka({ ...novaPoptavka, polozky: novaPoptavka.polozky.map((p, i) => (i === idx ? nova : p)) });
@@ -2197,52 +2210,15 @@ export default function PortApp() {
                 <p className="sub">{t("Jedna poptávka může obsahovat více položek. Jde dodavatelům anonymně, požadovaná cena = limit odběratele ÷ (1 + provize). Každou položku lze pokrýt postupně od více dodavatelů — každá akceptace vytvoří samostatný skladový řádek se svou nákupní cenou, šarží a expirací.",
                                       "A single RFQ may contain several items. It is sent to suppliers anonymously; target price = buyer's limit ÷ (1 + commission). Each item can be covered from several suppliers — every acceptance creates a separate stock row with its own purchase price, batch and expiry.")}</p>
 
-                {/* --- nevyřízené požadavky odběratelů --- */}
-                {nevyrizene.length > 0 && (
-                  <div className="card" style={{ marginBottom: 16 }}>
-                    <div className="toolbar"><b style={{ fontSize: 14 }}>{t("Nevyřízené požadavky odběratelů", "Pending buyer requests")}</b>
+                {novaPoptavka && (
+                  <div className="card karta-draft" ref={poptavkaRef} style={{ marginBottom: 16 }}>
+                    <div className="toolbar">
+                      <b style={{ fontSize: 14 }}>{t("Rozpracovaná poptávka dodavatelům", "RFQ draft for suppliers")}</b>
+                      <span className="pill kod">{novaPoptavka.polozky.length} {t("položek", "items")}</span>
                       <div className="spacer" />
-                      {vybranePoz.length > 0 && (
-                        <button className="btn mini" onClick={() => poptavkaZPozadavku(vybranePoz)}>
-                          {t(`Vytvořit poptávku z vybraných (${vybranePoz.length})`, `Create RFQ from selected (${vybranePoz.length})`)}</button>
-                      )}
+                      <button className="btn mini" onClick={vytvorPoptavku}>{t("Odeslat dodavatelům", "Send to suppliers")}</button>
                     </div>
-                    <div className="table-wrap"><table>
-                      <thead><tr><th></th><th>{t("Číslo", "Number")}</th><th>{t("Odběratel", "Buyer")}</th><th>{t("Položka", "Item")}</th><th className="num">{t("Ks", "Qty")}</th>
-                        <th className="num">{t("Max. cena odběratele", "Buyer's max. price")}</th><th>{t("Min. expirace", "Min. shelf life")}</th><th>{t("Poznámka", "Note")}</th><th></th></tr></thead>
-                      <tbody>{nevyrizene.map((p) => (
-                        <tr key={p.cislo} className={jeBlacklist(p.sukl) ? "bl" : undefined}>
-                          <td><input type="checkbox" checked={!!vybrane[p.cislo]} onChange={(e) => setVybrane({ ...vybrane, [p.cislo]: e.target.checked })} title={t("Vybrat do poptávky", "Select for an RFQ")} /></td>
-                          <td className="mono"><b>{p.cislo}</b>{p.davka && <><br />
-                            <button className="link" title={t("Vybrat celou dávku z Excelu", "Select the whole uploaded batch")}
-                              onClick={() => { const v = { ...vybrane }; nevyrizene.filter((x) => x.davka === p.davka).forEach((x) => { v[x.cislo] = true; }); setVybrane(v); }}>
-                              <span className="pill kod">{p.davka}</span></button></>}</td>
-                          <td>{(odberatele[p.odbKod] || {}).nazev} <span className="pill kod">{p.odbKod}</span></td>
-                          <td><b>{jeBlacklist(p.sukl) && "⚑ "}{p.nazev}</b>{p.doplnek && <span style={{ color: "var(--muted)", fontSize: 13 }}> {p.doplnek}</span>}
-                            {p.sukl && <span className="mono" style={{ color: "var(--muted)" }}> · {p.sukl}</span>}
-                            {jeBlacklist(p.sukl) && <><br /><span style={{ color: "var(--red)", fontSize: 12.5 }}>{blacklistDuvod(p.sukl, lang)}</span></>}</td>
-                          <td className="num">{p.mnozstvi}</td>
-                          <td className="num">{p.maxCena ? fmtCZK(p.maxCena) : "—"}</td>
-                          <td style={{ fontSize: 13 }}>{minExpText(p) || "—"}</td>
-                          <td>{p.pozn || "—"}</td>
-                          <td><button className="btn mini" onClick={() => poptavkaZPozadavku([p])}>{t("Vytvořit poptávku", "Create RFQ")}</button></td>
-                        </tr>))}</tbody>
-                    </table></div>
-                  </div>
-                )}
-
-                <div className="card">
-                  <div className="toolbar">
-                    <input className="search" type="text" placeholder={t("Hledat v poptávkách…", "Search RFQs…")} value={hledatPop}
-                      onChange={(e) => { setHledatPop(e.target.value); setStrana(1); }} />
-                    <span style={{ fontSize: 13, color: "var(--muted)" }}>{filtr.length} {t("poptávek", "RFQs")}</span>
-                    <div className="spacer" />
-                    <button className="btn sec mini" onClick={() => exportPoptavkyAdmin(filtr)}>{t("Export XLS", "Export XLS")}</button>
-                    <button className="btn mini" onClick={() => setNovaPoptavka({ provize: 5, minExpMesice: 6, minExp: "", prijemci: [], polozky: [prazdnaPolozka(1)] })}>{t("+ Nová poptávka", "+ New RFQ")}</button>
-                  </div>
-
-                  {novaPoptavka && (
-                    <div className="form" style={{ display: "block" }}>
+<div className="form" style={{ display: "block" }}>
                       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "end" }}>
                         <label style={lbl}>{t("Provize %", "Commission %")}<br />
                           <input type="number" style={{ width: 90 }} value={novaPoptavka.provize}
@@ -2320,12 +2296,78 @@ export default function PortApp() {
                           </label>
                         ))}
                       </div>
-                      <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
-                        <button className="btn mini" onClick={vytvorPoptavku}>{t("Odeslat dodavatelům", "Send to suppliers")}</button>
-                        <button className="btn sec mini" onClick={() => setNovaPoptavka(null)}>{t("Zrušit", "Cancel")}</button>
+                      <div className="form-akce">
+                        <button className="btn" onClick={vytvorPoptavku}>
+                          {t(`Odeslat dodavatelům (${novaPoptavka.polozky.length} položek)`, `Send to suppliers (${novaPoptavka.polozky.length} items)`)}</button>
+                        <button className="btn sec mini" onClick={() => { setNovaPoptavka(null); setPozOtevreno(true); }}>{t("Zrušit", "Cancel")}</button>
+                        <span style={{ fontSize: 13, color: "var(--muted)" }}>
+                          {t("Odešle se anonymně. Položky bez názvu, množství nebo požadované ceny se vynechají.",
+                             "Sent anonymously. Items without a name, quantity or target price are skipped.")}</span>
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
+
+                {/* --- nevyřízené požadavky odběratelů --- */}
+                {nevyrizene.length > 0 && (
+                  <div className="card" style={{ marginBottom: 16 }}>
+                    <div className="toolbar"><b style={{ fontSize: 14 }}>{t("Nevyřízené požadavky odběratelů", "Pending buyer requests")}</b>
+                      <span className="pill kod">{nevyrizene.length}</span>
+                      {pozOtevreno && (
+                        <button className="btn sec mini" onClick={() => {
+                          const vse = nevyrizene.every((x) => vybrane[x.cislo]);
+                          const v = {}; if (!vse) nevyrizene.forEach((x) => { v[x.cislo] = true; }); setVybrane(v);
+                        }}>{nevyrizene.every((x) => vybrane[x.cislo]) ? t("Zrušit výběr", "Clear selection") : t("Vybrat vše", "Select all")}</button>
+                      )}
+                      <div className="spacer" />
+                      {vybranePoz.length > 0 && (
+                        <button className="btn mini" onClick={() => poptavkaZPozadavku(vybranePoz)}>
+                          {t(`Vytvořit poptávku z vybraných (${vybranePoz.length})`, `Create RFQ from selected (${vybranePoz.length})`)}</button>
+                      )}
+                      <button className="btn sec mini" onClick={() => setPozOtevreno(!pozOtevreno)}>
+                        {pozOtevreno ? t("Sbalit", "Collapse") : t("Rozbalit", "Expand")}</button>
+                    </div>
+                    {!pozOtevreno && (
+                      <div className="pad" style={{ fontSize: 13.5, color: "var(--muted)" }}>
+                        {t(`Seznam je sbalený — ${nevyrizene.length} nevyřízených požadavků. Rozbalte jej, chcete-li do poptávky přidat další položky.`,
+                           `The list is collapsed — ${nevyrizene.length} pending requests. Expand it to add more items to the RFQ.`)}
+                      </div>
+                    )}
+                    {pozOtevreno && (
+                    <div className="table-wrap scroll"><table>
+                      <thead><tr><th></th><th>{t("Číslo", "Number")}</th><th>{t("Odběratel", "Buyer")}</th><th>{t("Položka", "Item")}</th><th className="num">{t("Ks", "Qty")}</th>
+                        <th className="num">{t("Max. cena odběratele", "Buyer's max. price")}</th><th>{t("Min. expirace", "Min. shelf life")}</th><th>{t("Poznámka", "Note")}</th><th></th></tr></thead>
+                      <tbody>{nevyrizene.map((p) => (
+                        <tr key={p.cislo} className={jeBlacklist(p.sukl) ? "bl" : undefined}>
+                          <td><input type="checkbox" checked={!!vybrane[p.cislo]} onChange={(e) => setVybrane({ ...vybrane, [p.cislo]: e.target.checked })} title={t("Vybrat do poptávky", "Select for an RFQ")} /></td>
+                          <td className="mono"><b>{p.cislo}</b>{p.davka && <><br />
+                            <button className="link" title={t("Vybrat celou dávku z Excelu", "Select the whole uploaded batch")}
+                              onClick={() => { const v = { ...vybrane }; nevyrizene.filter((x) => x.davka === p.davka).forEach((x) => { v[x.cislo] = true; }); setVybrane(v); }}>
+                              <span className="pill kod">{p.davka}</span></button></>}</td>
+                          <td>{(odberatele[p.odbKod] || {}).nazev} <span className="pill kod">{p.odbKod}</span></td>
+                          <td><b>{jeBlacklist(p.sukl) && "⚑ "}{p.nazev}</b>{p.doplnek && <span style={{ color: "var(--muted)", fontSize: 13 }}> {p.doplnek}</span>}
+                            {p.sukl && <span className="mono" style={{ color: "var(--muted)" }}> · {p.sukl}</span>}
+                            {jeBlacklist(p.sukl) && <><br /><span style={{ color: "var(--red)", fontSize: 12.5 }}>{blacklistDuvod(p.sukl, lang)}</span></>}</td>
+                          <td className="num">{p.mnozstvi}</td>
+                          <td className="num">{p.maxCena ? fmtCZK(p.maxCena) : "—"}</td>
+                          <td style={{ fontSize: 13 }}>{minExpText(p) || "—"}</td>
+                          <td>{p.pozn || "—"}</td>
+                          <td><button className="btn mini" onClick={() => poptavkaZPozadavku([p])}>{t("Vytvořit poptávku", "Create RFQ")}</button></td>
+                        </tr>))}</tbody>
+                    </table></div>
+                    )}
+                  </div>
+                )}
+
+                <div className="card">
+                  <div className="toolbar">
+                    <input className="search" type="text" placeholder={t("Hledat v poptávkách…", "Search RFQs…")} value={hledatPop}
+                      onChange={(e) => { setHledatPop(e.target.value); setStrana(1); }} />
+                    <span style={{ fontSize: 13, color: "var(--muted)" }}>{filtr.length} {t("poptávek", "RFQs")}</span>
+                    <div className="spacer" />
+                    <button className="btn sec mini" onClick={() => exportPoptavkyAdmin(filtr)}>{t("Export XLS", "Export XLS")}</button>
+                    <button className="btn mini" onClick={() => { setNovaPoptavka({ provize: 5, minExpMesice: 6, minExp: "", prijemci: [], polozky: [prazdnaPolozka(1)] }); setPozOtevreno(false); naPoptavku(); }}>{t("+ Nová poptávka", "+ New RFQ")}</button>
+                  </div>
 
                   {!zobrazene.length && <div className="empty">{t("Žádné poptávky. Vytvořte první tlačítkem výše, nebo z požadavku odběratele.", "No RFQs. Create the first one with the button above, or from a buyer request.")}</div>}
 
