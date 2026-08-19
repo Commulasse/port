@@ -465,17 +465,17 @@ const genKod6 = () => String(Math.floor(100000 + Math.random() * 900000));
    POZOR: blacklist SÚKL se v náhledu importu odběrateli NIKDY nezobrazuje.
    ========================================================================== */
 const XLS_HLAVICKA = {
-  cs: ["SÚKL", "PRODUKT", "SÍLA / FORMA / BALENÍ", "MAX. CENA/KS BEZ DPH", "MNOŽSTVÍ (KS)", "MIN. KS/ŠARŽE", "MIN. EXSPIRACE", "POZNÁMKA"],
-  en: ["SUKL", "PRODUCT", "STRENGTH / FORM / PACK", "MAX. PRICE/PC EXCL. VAT", "QUANTITY (PCS)", "MIN. PCS/BATCH", "MIN. SHELF LIFE", "NOTE"],
+  cs: ["SÚKL", "PRODUKT", "MAX. CENA/KS BEZ DPH", "MNOŽSTVÍ (KS)", "MIN. KS/ŠARŽE", "MIN. EXSPIRACE", "POZNÁMKA"],
+  en: ["SUKL", "PRODUCT", "MAX. PRICE/PC EXCL. VAT", "QUANTITY (PCS)", "MIN. PCS/BATCH", "MIN. SHELF LIFE", "NOTE"],
 };
 const XLS_PRIKLAD = {
   cs: [
-    ["0193745", "ELIQUIS", "5MG TBL FLM 60", 1480, 500, 100, "6", "PŘÍKLAD — tento řádek smažte"],
-    ["0028217", "LYRICA", "75MG CPS DUR 56", 340, 300, "", "31.12.2027", "PŘÍKLAD — tento řádek smažte"],
+    ["0193745", "ELIQUIS 5MG TBL FLM 60", 1480, 500, 100, "6", "PŘÍKLAD — tento řádek smažte"],
+    ["0028217", "LYRICA 75MG CPS DUR 56", 340, 300, "", "31.12.2027", "PŘÍKLAD — tento řádek smažte"],
   ],
   en: [
-    ["0193745", "ELIQUIS", "5MG TBL FLM 60", 1480, 500, 100, "6", "EXAMPLE — delete this row"],
-    ["0028217", "LYRICA", "75MG CPS DUR 56", 340, 300, "", "31.12.2027", "EXAMPLE — delete this row"],
+    ["0193745", "ELIQUIS 5MG TBL FLM 60", 1480, 500, 100, "6", "EXAMPLE — delete this row"],
+    ["0028217", "LYRICA 75MG CPS DUR 56", 340, 300, "", "31.12.2027", "EXAMPLE — delete this row"],
   ],
 };
 const XLS_NAVOD = {
@@ -485,8 +485,7 @@ const XLS_NAVOD = {
     [],
     ["Sloupec", "Popis"],
     ["SÚKL", "Sedmimístný kód SÚKL. Nepovinný, ale výrazně urychlí zpracování. Úvodní nuly doplníme automaticky."],
-    ["PRODUKT", "POVINNÉ, pokud není vyplněn kód SÚKL. Obchodní název přípravku."],
-    ["SÍLA / FORMA / BALENÍ", "Např. 5MG TBL FLM 60. Podle kódu SÚKL doplníme sami."],
+    ["PRODUKT", "POVINNÉ, pokud není vyplněn kód SÚKL. Obchodní název včetně síly, formy a velikosti balení v jedné buňce — např. ELIQUIS 5MG TBL FLM 60. Bez balení nelze položku jednoznačně určit."],
     ["MAX. CENA/KS BEZ DPH", "POVINNÉ. Nejvyšší cena za kus bez DPH, kterou jste ochotni zaplatit. Desetinná čárka i tečka."],
     ["MNOŽSTVÍ (KS)", "POVINNÉ. Celé číslo, počet kusů."],
     ["MIN. KS/ŠARŽE", "Nepovinné. Nejmenší přijatelný počet kusů z jedné šarže."],
@@ -505,8 +504,7 @@ const XLS_NAVOD = {
     [],
     ["Column", "Description"],
     ["SUKL", "Seven-digit Czech SÚKL code. Optional but speeds up processing. Leading zeros are restored automatically."],
-    ["PRODUCT", "REQUIRED unless the SÚKL code is filled in. Brand name of the medicine."],
-    ["STRENGTH / FORM / PACK", "E.g. 5MG TBL FLM 60. Filled in automatically from the SÚKL code."],
+    ["PRODUCT", "REQUIRED unless the SÚKL code is filled in. Brand name including strength, form and pack size in one cell — e.g. ELIQUIS 5MG TBL FLM 60. Without the pack size the item cannot be identified unambiguously."],
     ["MAX. PRICE/PC EXCL. VAT", "REQUIRED. The highest price per piece excl. VAT you are willing to pay."],
     ["QUANTITY (PCS)", "REQUIRED. Whole number of pieces."],
     ["MIN. PCS/BATCH", "Optional. Smallest acceptable number of pieces from a single batch."],
@@ -520,6 +518,34 @@ const XLS_NAVOD = {
     ["", "Prices excl. VAT in CZK."],
   ],
 };
+
+/* „ELIQUIS 5MG TBL FLM 60“ → { kod, nazev, doplnek } podle číselníku SÚKL.
+   Porovnává se bez diakritiky, mezer a interpunkce, takže projde i „Eliquis 5 mg tbl.flm. 60x“. */
+const normProdukt = (s) => String(s == null ? "" : s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+const rozdelProdukt = (text) => {
+  const cely = normProdukt(text);
+  if (!cely) return null;
+  let nej = null;
+  for (const x of SUKL_CISELNIK) {
+    const n = normProdukt(x.nazev);
+    if (!n || !cely.startsWith(n)) continue;
+    const d = normProdukt(x.doplnek);
+    if (d && cely.indexOf(d, n.length) >= 0) {
+      const skore = cely === n + d ? 3 : 2;
+      if (!nej || skore > nej.skore || (skore === nej.skore && d.length > nej.dl)) nej = { x, skore, dl: d.length };
+    } else if (!nej) nej = { x, skore: 1, dl: 0 };
+  }
+  if (!nej) return null;
+  if (nej.skore === 1) {
+    /* poznali jsme jen obchodní název — kód doplníme, jen když existuje jediné balení */
+    const stejne = SUKL_CISELNIK.filter((x) => normProdukt(x.nazev) === normProdukt(nej.x.nazev));
+    return stejne.length === 1
+      ? { kod: stejne[0].kod, nazev: stejne[0].nazev, doplnek: stejne[0].doplnek }
+      : { kod: "", nazev: nej.x.nazev, doplnek: "" };
+  }
+  return { kod: nej.x.kod, nazev: nej.x.nazev, doplnek: nej.x.doplnek };
+};
+const celyNazev = (r) => [r.nazev, r.doplnek].filter(Boolean).join(" ").trim();
 
 /* název sloupce → interní pole; tolerantní k diakritice, mezerám a interpunkci */
 const normHlav = (s) => String(s == null ? "" : s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -615,16 +641,19 @@ const radkyZTabulky = (aoa) => {
 /* doplnění z číselníku SÚKL — jen jednou, při načtení souboru */
 const obohatRadek = (o) => {
   const r = Object.assign({}, o, { varovani: [] });
+  const zeSouboru = celyNazev(r);                 /* co uživatel napsal do sloupce PRODUKT */
   const c = r.sukl ? suklInfo(r.sukl) : null;
   if (c) {
-    if (r.nazev && r.nazev.toUpperCase() !== c.nazev.toUpperCase()) r.varovani.push(["nazev", r.nazev, c.nazev]);
+    if (zeSouboru && normProdukt(zeSouboru) !== normProdukt(c.nazev + c.doplnek)) r.varovani.push(["nazev", zeSouboru, c.nazev + " " + c.doplnek]);
     r.nazev = c.nazev; r.doplnek = c.doplnek;
   } else {
     if (r.sukl) r.varovani.push(["suklNeznamy", r.sukl]);
-    const p = suklPodleNazvu(r.nazev, r.doplnek);
-    if (p) { r.sukl = p.kod; r.nazev = p.nazev; r.doplnek = p.doplnek; }
-    else if (r.nazev) r.varovani.push(["mimoCiselnik"]);
+    const p = rozdelProdukt(zeSouboru) || suklPodleNazvu(r.nazev, r.doplnek);
+    if (p && p.kod) { r.sukl = p.kod; r.nazev = p.nazev; r.doplnek = p.doplnek; }
+    else if (p) { r.nazev = p.nazev; r.doplnek = ""; r.varovani.push(["bezBaleni"]); }
+    else if (zeSouboru) { r.nazev = zeSouboru; r.doplnek = ""; r.varovani.push(["mimoCiselnik"]); }
   }
+  r.produkt = celyNazev(r);
   return r;
 };
 /* kontrola — běží po každé ruční úpravě v náhledu */
@@ -663,7 +692,7 @@ const stahniVzorPoptavky = (jazyk) => {
   if (!X) { stahniCSV("PORT-poptavka-vzor.csv", [hlav].concat(priklad)); return "csv"; }
   const wb = X.utils.book_new();
   const ws = X.utils.aoa_to_sheet([hlav].concat(priklad));
-  ws["!cols"] = [{ wch: 12 }, { wch: 24 }, { wch: 30 }, { wch: 22 }, { wch: 15 }, { wch: 15 }, { wch: 17 }, { wch: 34 }];
+  ws["!cols"] = [{ wch: 12 }, { wch: 40 }, { wch: 22 }, { wch: 15 }, { wch: 15 }, { wch: 17 }, { wch: 34 }];
   for (let r = 1; r <= priklad.length; r++) {
     const a = X.utils.encode_cell({ c: 0, r });
     if (ws[a]) { ws[a].t = "s"; ws[a].z = "@"; }
@@ -1173,8 +1202,23 @@ export default function PortApp() {
 
   const upravImport = (idx, pole, hodnota) => setImportNahled((s) => ({
     ...s,
-    radky: s.radky.map((r, i) => (i !== idx ? r
-      : zkontrolujRadek(["sukl", "nazev", "doplnek"].includes(pole) ? doplnZCiselniku(r, pole, hodnota) : { ...r, [pole]: hodnota }))),
+    radky: s.radky.map((r, i) => {
+      if (i !== idx) return r;
+      if (pole === "produkt") {
+        /* jedno pole „Produkt“ = název i balení; rozdělíme podle číselníku */
+        const p = rozdelProdukt(hodnota);
+        const zaklad = p && p.kod ? { sukl: p.kod, nazev: p.nazev, doplnek: p.doplnek }
+                                  : { sukl: "", nazev: String(hodnota || "").trim(), doplnek: "" };
+        return zkontrolujRadek({ ...r, ...zaklad, produkt: hodnota, varovani: [] });
+      }
+      if (pole === "sukl") {
+        const c = suklInfo(suklZBunky(hodnota));
+        const r2 = c ? { ...r, sukl: c.kod, nazev: c.nazev, doplnek: c.doplnek, produkt: c.nazev + " " + c.doplnek, varovani: [] }
+                     : { ...r, sukl: hodnota };
+        return zkontrolujRadek(r2);
+      }
+      return zkontrolujRadek({ ...r, [pole]: hodnota });
+    }),
   }));
   const odeberImport = (idx) => setImportNahled((s) => ({ ...s, radky: s.radky.filter((_, i) => i !== idx) }));
 
@@ -1215,6 +1259,7 @@ export default function PortApp() {
     maxCena: t("chybí max. cena", "max. price missing"),
     suklNeznamy: t("kód SÚKL není v číselníku", "SÚKL code not in the codebook"),
     mimoCiselnik: t("položka není v číselníku SÚKL", "item is not in the SÚKL codebook"),
+    bezBaleni: t("doplňte sílu a velikost balení — název má v číselníku více variant", "add strength and pack size — the name has several variants in the codebook"),
     expMinulost: t("min. expirace je v minulosti", "min. shelf life is in the past"),
   };
 
@@ -1934,7 +1979,7 @@ export default function PortApp() {
                         <p className="sub" style={{ marginTop: 0 }}>{t("Řádky lze před odesláním upravit. Neúplné řádky (červeně) se neodešlou — buď je doplňte, nebo odeberte.",
                                                                        "Rows can be edited before submitting. Incomplete rows (red) will not be sent — complete or remove them.")}</p>
                         <div className="table-wrap"><table>
-                          <thead><tr><th>#</th><th>SÚKL</th><th>{t("Produkt", "Product")}</th><th>{t("Síla / forma / balení", "Strength / form / pack")}</th>
+                          <thead><tr><th>#</th><th>SÚKL</th><th>{t("Produkt (název, síla, forma, balení)", "Product (name, strength, form, pack)")}</th>
                             <th className="num">{t("Max. cena/ks", "Max. price/pc")}</th><th className="num">{t("Ks", "Qty")}</th><th className="num">{t("Min. ks/šarže", "Min. pcs/batch")}</th>
                             <th>{t("Min. expirace", "Min. shelf life")}</th><th>{t("Poznámka", "Note")}</th><th></th></tr></thead>
                           <tbody>
@@ -1943,16 +1988,16 @@ export default function PortApp() {
                                 <td className="mono" style={{ color: "var(--muted)" }}>{i + 1}</td>
                                 <td><input type="text" list="sukl-list" className="mono" style={{ width: 100 }} value={r.sukl}
                                   onChange={(e) => upravImport(i, "sukl", e.target.value)} /></td>
-                                <td><input type="text" list="sukl-nazvy" style={{ width: 160 }} value={r.nazev}
-                                  onChange={(e) => upravImport(i, "nazev", e.target.value)} />
+                                <td><input type="text" list="sukl-nazvy" style={{ width: 280 }} value={r.produkt !== undefined ? r.produkt : celyNazev(r)}
+                                  onChange={(e) => upravImport(i, "produkt", e.target.value)} />
+                                  {r.sukl && suklInfo(r.sukl) && (
+                                    <div style={{ fontSize: 12, color: "var(--ok)" }}>→ {r.nazev} {r.doplnek}</div>)}
                                   {r.varovani.map((v, k) => (
                                     <div key={k} style={{ fontSize: 12, color: "var(--amber)" }}>
                                       {IMPORT_HLASKA[v[0]]}{v[0] === "nazev" ? ` (${v[1]} → ${v[2]})` : ""}
                                     </div>))}
                                   {r.chyby.map((c) => <div key={c} style={{ fontSize: 12, color: "var(--red)" }}>{IMPORT_HLASKA[c]}</div>)}
                                 </td>
-                                <td><input type="text" list="sukl-doplnky" style={{ width: 190 }} value={r.doplnek}
-                                  onChange={(e) => upravImport(i, "doplnek", e.target.value)} /></td>
                                 <td className="num"><input type="number" style={{ width: 100 }} value={r.maxCena}
                                   onChange={(e) => upravImport(i, "maxCena", e.target.value)} /></td>
                                 <td className="num"><input type="number" style={{ width: 80 }} value={r.mnozstvi}
