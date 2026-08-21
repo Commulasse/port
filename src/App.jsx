@@ -15,7 +15,27 @@ const LOGO_DARK = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAAB
 const LOGO = "data:image/png;base64,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";
 
 /* verze datového schématu — při změně se sdílený stav na serveru zahodí a nasype znovu */
-const SCHEMA = 5;
+const SCHEMA = 6;
+const SESSION_KEY = "port-session";
+const SESSION_HODIN = 12;   /* po 12 hodinách je nutné se přihlásit znovu */
+
+/* Uložení přihlášení do prohlížeče. Vše v try/catch — v režimu bez úložiště
+   (soukromé okno, náhled v editoru) aplikace funguje dál, jen se po obnovení
+   stránky přihlásí znovu. */
+const ulozSession = (login) => {
+  try { window.localStorage.setItem(SESSION_KEY, JSON.stringify({ login, ts: Date.now() })); } catch (e) { /* bez úložiště */ }
+};
+const zapomenSession = () => {
+  try { window.localStorage.removeItem(SESSION_KEY); } catch (e) { /* bez úložiště */ }
+};
+const nactiSession = () => {
+  try {
+    const s = JSON.parse(window.localStorage.getItem(SESSION_KEY) || "null");
+    if (!s || !s.login) return null;
+    if (Date.now() - (s.ts || 0) > SESSION_HODIN * 3600 * 1000) { zapomenSession(); return null; }
+    return s.login;
+  } catch (e) { return null; }
+};
 
 const OPERATOR = {
   kod: "ADM-01", nazev: "Pharmodeco s.r.o.", ic: "17764017", dic: "CZ17764017",
@@ -51,6 +71,8 @@ const USERS_SEED = [
   { login: "milano", heslo: "demo", role: "odberatel", jmeno: "Farmacia Centrale S.r.l.", kod: "ODB-02", email: "acquisti@farmaciacentrale.it" },
   { login: "lekarna", heslo: "demo", role: "dodavatel", jmeno: "Lékárna U Anděla s.r.o.", kod: "DOD-01", email: "vydej@uandela.cz" },
   { login: "distributor", heslo: "demo", role: "dodavatel", jmeno: "PharmaDist s.r.o.", kod: "DOD-03", email: "expedice@pharmadist.cz" },
+  { login: "wien", heslo: "demo", role: "odberatel", jmeno: "MediPharm Handels GmbH", kod: "ODB-03", email: "office@medipharm.at" },
+  { login: "poliklinika", heslo: "demo", role: "dodavatel", jmeno: "Poliklinika Vinohrady a.s.", kod: "DOD-02", email: "sklad@poliklinikavinohrady.cz" },
 ].map((u) => ({ ...u, aktivni: true, potvrzen: true, aktivacniKod: null }));
 
 /* ---------- číselník SÚKL ----------
@@ -335,35 +357,38 @@ const ARES_MOCK = {
 };
 
 /* ---------- vzorová centrální tabulka (14 položek, ostrý seznam dorazí zvlášť) ---------- */
+/* ---------------------------------------------------------------------------
+   Demo data sledují skutečný tok obchodu:
+     odběratel podá závaznou objednávku (POZ) → zprostředkovatel z ní udělá
+     anonymní poptávku (POP) → konkrétní dodavatel nabídne → akceptací vzniká
+     řádek ve Zboží v pohybu, vždy pro toho jednoho odběratele.
+   Žádná položka nevzniká „na sklad“ a žádná nepatří „VŠEM“.
+   -------------------------------------------------------------------------- */
+
+/* zboží v pohybu — každý řádek je výsledek akceptované nabídky ke konkrétní objednávce.
+   nakupCena = cena dodavatele, cena = max. cena odběratele (tu platí vždy). */
 const PRODUCTS_SEED = [
-  /* jedna položka pokrytá dvěma dodavateli — různý nákup, SHODNÁ prodejní cena */
-  { id: 1, sukl: "0193745", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", atc: "B01AF02", vyrobce: "Bristol-Myers Squibb", sarze: "EQ4512A", expirace: "2028-03-31", ean: "", ks: 200, nakupCena: 1310, cena: 1480, dodKod: "DOD-01", odbKod: "ODB-01" },
-  { id: 2, sukl: "0193745", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", atc: "B01AF02", vyrobce: "Bristol-Myers Squibb", sarze: "EQ4602C", expirace: "2028-06-30", ean: "", ks: 300, nakupCena: 1385, cena: 1480, dodKod: "DOD-02", odbKod: "ODB-01" },
-  /* nákup na sklad pro všechny odběratele — marže rovných 25 % */
-  { id: 3, sukl: "0210023", nazev: "JARDIANCE", doplnek: "10MG TBL FLM 30X1", atc: "A10BK03", vyrobce: "Boehringer Ingelheim", sarze: "JD2291", expirace: "2028-09-30", ean: "", ks: 320, nakupCena: 372, cena: 465, dodKod: "DOD-03", odbKod: "VSICHNI" },
-  { id: 4, sukl: "0193660", nazev: "FORXIGA", doplnek: "10MG TBL FLM 30X1", atc: "A10BK01", vyrobce: "AstraZeneca", sarze: "FX8841", expirace: "2028-01-31", ean: "", ks: 260, nakupCena: 356, cena: 445, dodKod: "DOD-03", odbKod: "VSICHNI" },
-  { id: 5, sukl: "0254589", nazev: "SINGULAIR", doplnek: "10MG TBL FLM 28", atc: "R03DC03", vyrobce: "Merck Sharp & Dohme", sarze: "SG1140", expirace: "2027-11-30", ean: "", ks: 400, nakupCena: 148, cena: 185, dodKod: "DOD-01", odbKod: "VSICHNI" },
-  { id: 6, sukl: "0254654", nazev: "ZOLOFT", doplnek: "50MG TBL FLM 100", atc: "N06AB06", vyrobce: "Viatris", sarze: "ZL7723", expirace: "2028-04-30", ean: "", ks: 180, nakupCena: 268, cena: 335, dodKod: "DOD-01", odbKod: "VSICHNI" },
-  { id: 7, sukl: "0214526", nazev: "CONTROLOC", doplnek: "40MG TBL ENT 100 I", atc: "A02BC02", vyrobce: "Takeda", sarze: "CT3305", expirace: "2028-02-29", ean: "", ks: 240, nakupCena: 452, cena: 565, dodKod: "DOD-02", odbKod: "VSICHNI" },
-  /* položky s vývozním omezením — příznak vidí POUZE zprostředkovatel */
-  { id: 8, sukl: "0223055", nazev: "OZEMPIC", doplnek: "1MG INJ SOL 1X3ML+4J", atc: "A10BJ06", vyrobce: "Novo Nordisk", sarze: "OZ9921", expirace: "2027-08-31", ean: "", ks: 40, nakupCena: 2180, cena: 2600, dodKod: "DOD-03", odbKod: "ODB-01" },
-  { id: 9, sukl: "0271684", nazev: "WEGOVY FLEXTOUCH", doplnek: "1MG INJ SOL PEP 1X3ML+4J", atc: "A10BJ06", vyrobce: "Novo Nordisk", sarze: "", expirace: "", ean: "", ks: 24, nakupCena: 2760, cena: 3300, dodKod: "DOD-03", odbKod: "ODB-02" },
-  { id: 10, sukl: "0272607", nazev: "RYBELSUS", doplnek: "4MG TBL NOB 30", atc: "A10BJ06", vyrobce: "Novo Nordisk", sarze: "RB4471", expirace: "2027-10-31", ean: "", ks: 60, nakupCena: 1420, cena: 1740, dodKod: "DOD-02", odbKod: "ODB-03" },
-  /* krátká expirace < 6 měsíců */
-  { id: 11, sukl: "0025837", nazev: "KEPPRA", doplnek: "500MG TBL FLM 100", atc: "N03AX14", vyrobce: "UCB", sarze: "KP5518", expirace: "2026-11-30", ean: "", ks: 150, nakupCena: 720, cena: 900, dodKod: "DOD-01", odbKod: "ODB-02" },
-  /* běžné položky */
-  { id: 12, sukl: "0028217", nazev: "LYRICA", doplnek: "75MG CPS DUR 56", atc: "N03AX16", vyrobce: "Pfizer", sarze: "LY2214", expirace: "2028-05-31", ean: "", ks: 90, nakupCena: 248, cena: 310, dodKod: "DOD-03", odbKod: "ODB-02" },
-  { id: 13, sukl: "0168447", nazev: "TRAJENTA", doplnek: "5MG TBL FLM 30X1", atc: "A10BH05", vyrobce: "Boehringer Ingelheim", sarze: "TJ1180", expirace: "2029-01-31", ean: "", ks: 300, nakupCena: 296, cena: 370, dodKod: "DOD-01", odbKod: "VSICHNI" },
-  { id: 14, sukl: "0109810", nazev: "SPIRIVA RESPIMAT", doplnek: "2,5MCG INH SOL 1X60DÁV+1INH REUSABLE", atc: "R03BB04", vyrobce: "Boehringer Ingelheim", sarze: "SP6642", expirace: "2028-08-31", ean: "", ks: 210, nakupCena: 604, cena: 755, dodKod: "DOD-02", odbKod: "ODB-03" },
+  /* POZ-2026-010 · ODB-01 · pokryto dvěma dodavateli, oba pod limitem 1 480 Kč */
+  { id: 1, sukl: "0193745", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", atc: "B01AF02", vyrobce: "Bristol-Myers Squibb", sarze: "EQ4512A", expirace: "2028-03-31", ean: "", ks: 200, nakupCena: 1310, cena: 1480, dodKod: "DOD-01", odbKod: "ODB-01", pozCislo: "POZ-2026-010", stavPohyb: "expedovano", datumObjednano: "2026-07-20T09:00:00.000Z", datumPrijem: "2026-07-23T08:00:00.000Z", datumExpedice: "2026-07-23T14:00:00.000Z" },
+  { id: 2, sukl: "0193745", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", atc: "B01AF02", vyrobce: "Bristol-Myers Squibb", sarze: "EQ4602C", expirace: "2028-06-30", ean: "", ks: 300, nakupCena: 1385, cena: 1480, dodKod: "DOD-02", odbKod: "ODB-01", pozCislo: "POZ-2026-010", stavPohyb: "prijato", datumObjednano: "2026-07-28T09:00:00.000Z", datumPrijem: "2026-08-04T08:10:00.000Z", datumExpedice: "" },
+  /* POZ-2026-011 · ODB-02 · čeká na dodání od dodavatele */
+  { id: 3, sukl: "0210023", nazev: "JARDIANCE", doplnek: "10MG TBL FLM 30X1", atc: "A10BK03", vyrobce: "Boehringer Ingelheim", sarze: "JD2291", expirace: "2028-09-30", ean: "", ks: 320, nakupCena: 372, cena: 465, dodKod: "DOD-03", odbKod: "ODB-02", pozCislo: "POZ-2026-011", stavPohyb: "objednano", datumObjednano: "2026-08-17T10:00:00.000Z", datumPrijem: "", datumExpedice: "" },
+  /* POZ-2026-012 · ODB-03 */
+  { id: 4, sukl: "0193660", nazev: "FORXIGA", doplnek: "10MG TBL FLM 30X1", atc: "A10BK01", vyrobce: "AstraZeneca", sarze: "FX8841", expirace: "2028-01-31", ean: "", ks: 260, nakupCena: 356, cena: 445, dodKod: "DOD-03", odbKod: "ODB-03", pozCislo: "POZ-2026-012", stavPohyb: "prijato", datumObjednano: "2026-08-10T09:30:00.000Z", datumPrijem: "2026-08-18T07:50:00.000Z", datumExpedice: "" },
+  /* POZ-2026-013 · ODB-02 · krátká expirace, hlídá se barevně */
+  { id: 5, sukl: "0025837", nazev: "KEPPRA", doplnek: "500MG TBL FLM 100", atc: "N03AX14", vyrobce: "UCB", sarze: "KP5518", expirace: "2026-11-30", ean: "", ks: 150, nakupCena: 720, cena: 900, dodKod: "DOD-01", odbKod: "ODB-02", pozCislo: "POZ-2026-013", stavPohyb: "objednano", datumObjednano: "2026-08-18T11:00:00.000Z", datumPrijem: "", datumExpedice: "" },
+  /* POZ-2026-014 · ODB-03 · položka s vývozním omezením — příznak vidí jen zprostředkovatel */
+  { id: 6, sukl: "0223055", nazev: "OZEMPIC", doplnek: "1MG INJ SOL 1X3ML+4J", atc: "A10BJ06", vyrobce: "Novo Nordisk", sarze: "OZ9921", expirace: "2027-08-31", ean: "", ks: 40, nakupCena: 2180, cena: 2600, dodKod: "DOD-03", odbKod: "ODB-03", pozCislo: "POZ-2026-014", stavPohyb: "expedovano", datumObjednano: "2026-07-14T09:00:00.000Z", datumPrijem: "2026-07-16T08:00:00.000Z", datumExpedice: "2026-07-16T15:30:00.000Z" },
 ];
 
-/* ---------- demo poptávka: dvě položky, scénář částečné akceptace ---------- */
+/* otevřené poptávky dodavatelům — každá vznikla z konkrétní závazné objednávky */
 const DEMANDS_SEED = [
   {
     cislo: "POP-2026-001", datum: "2026-08-03T09:10:00.000Z", provize: 5,
     minExpMesice: 6, minExp: "", prijemci: [], stav: "otevrena",
     polozky: [
       {
+        /* ODB-01 chce 500 ks za max. 1 480 Kč → dodavatelům jdeme s 1 409,52 Kč */
         id: 1, sukl: "0193745", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60",
         mnozstvi: 500, cena: 1409.52, maxProdejni: 1480, pozadovanaSarze: "",
         zdroje: [{ odbKod: "ODB-01", pozCislo: "POZ-2026-001", mnozstvi: 500, maxCena: 1480 }],
@@ -374,6 +399,7 @@ const DEMANDS_SEED = [
         ],
       },
       {
+        /* ODB-03 chce 200 ks za max. 900 Kč — zatím reagoval jediný dodavatel */
         id: 2, sukl: "0168451", nazev: "TRAJENTA", doplnek: "5MG TBL FLM 90X1",
         mnozstvi: 200, cena: 857.14, maxProdejni: 900, pozadovanaSarze: "",
         zdroje: [{ odbKod: "ODB-03", pozCislo: "POZ-2026-005", mnozstvi: 200, maxCena: 900 }],
@@ -385,6 +411,7 @@ const DEMANDS_SEED = [
   },
 ];
 
+/* závazné objednávky odběratelů */
 const POZADAVKY_SEED = [
   { cislo: "POZ-2026-001", odbKod: "ODB-01", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", sukl: "0193745", mnozstvi: 500, maxCena: 1480, sarze: "", minExpMesice: 6, minExp: "", pozn: "Pravidelný odběr, dodání do Passau.", datum: "2026-08-03T08:40:00.000Z", stav: "vreseni" },
   { cislo: "POZ-2026-002", odbKod: "ODB-02", nazev: "LYRICA", doplnek: "75MG CPS DUR 56", sukl: "0028217", mnozstvi: 300, maxCena: 340, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-08-04T10:15:00.000Z", stav: "prijata" },
@@ -392,6 +419,12 @@ const POZADAVKY_SEED = [
   { cislo: "POZ-2026-004", odbKod: "ODB-01", nazev: "OZEMPIC", doplnek: "1MG INJ SOL 1X3ML+4J", sukl: "0223055", mnozstvi: 100, maxCena: 2600, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-08-05T07:30:00.000Z", stav: "prijata" },
   { cislo: "POZ-2026-005", odbKod: "ODB-03", nazev: "TRAJENTA", doplnek: "5MG TBL FLM 90X1", sukl: "0168451", mnozstvi: 200, maxCena: 900, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-08-03T09:00:00.000Z", stav: "vreseni" },
   { cislo: "POZ-2026-006", odbKod: "ODB-02", nazev: "KEPPRA", doplnek: "1000MG TBL FLM 50", sukl: "0025849", mnozstvi: 120, maxCena: 1650, sarze: "", minExpMesice: 9, minExp: "", pozn: "", datum: "2026-08-05T11:20:00.000Z", stav: "prijata" },
+  /* už vyřízené objednávky, ke kterým patří řádky ve Zboží v pohybu */
+  { cislo: "POZ-2026-010", odbKod: "ODB-01", nazev: "ELIQUIS", doplnek: "5MG TBL FLM 60", sukl: "0193745", mnozstvi: 500, maxCena: 1480, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-07-18T08:00:00.000Z", stav: "vyrizena" },
+  { cislo: "POZ-2026-011", odbKod: "ODB-02", nazev: "JARDIANCE", doplnek: "10MG TBL FLM 30X1", sukl: "0210023", mnozstvi: 320, maxCena: 465, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-08-14T09:20:00.000Z", stav: "vreseni" },
+  { cislo: "POZ-2026-012", odbKod: "ODB-03", nazev: "FORXIGA", doplnek: "10MG TBL FLM 30X1", sukl: "0193660", mnozstvi: 260, maxCena: 445, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-08-07T13:00:00.000Z", stav: "vreseni" },
+  { cislo: "POZ-2026-013", odbKod: "ODB-02", nazev: "KEPPRA", doplnek: "500MG TBL FLM 100", sukl: "0025837", mnozstvi: 150, maxCena: 900, sarze: "", minExpMesice: 3, minExp: "", pozn: "Krátká expirace akceptována.", datum: "2026-08-17T10:40:00.000Z", stav: "vreseni" },
+  { cislo: "POZ-2026-014", odbKod: "ODB-03", nazev: "OZEMPIC", doplnek: "1MG INJ SOL 1X3ML+4J", sukl: "0223055", mnozstvi: 40, maxCena: 2600, sarze: "", minExpMesice: 6, minExp: "", pozn: "", datum: "2026-07-12T07:10:00.000Z", stav: "vyrizena" },
 ];
 
 const PODMINKY = {
@@ -429,6 +462,31 @@ function expState(exp) {
   if (months < 6) return "brzy";
   return "ok";
 }
+/* ---------------------------------------------------------------------------
+   NÁVRH — jediný mechanismus pro obě strany. Nese až tři množstevní hladiny
+   (ks + cena/ks) a vlastní platnost. Směr „dod“ = zprostředkovatel → dodavatel,
+   směr „odb“ = zprostředkovatel → odběratel (nabídka většího množství).
+   Nový návrh vždy ruší předchozí, takže nikdy neplatí dva zároveň.
+   -------------------------------------------------------------------------- */
+const HLADIN_MAX = 3;
+const prazdneHladiny = () => [{ ks: "", cena: "" }, { ks: "", cena: "" }, { ks: "", cena: "" }];
+const platnostZa = (dni) => { const d = new Date(); d.setDate(d.getDate() + dni); return d.toISOString().slice(0, 10); };
+const platneHladiny = (h) => (h || []).filter((x) => Number(x.ks) > 0 && Number(x.cena) > 0)
+  .slice(0, HLADIN_MAX).map((x) => ({ ks: Math.round(Number(x.ks)), cena: r2(Number(x.cena)) }));
+const navrhPropadl = (nv) => !!(nv && nv.platnost && nv.platnost < today());
+
+/* ---------------------------------------------------------------------------
+   ZBOŽÍ V POHYBU — Pharmodeco nedrží zásobu. Každý řádek je konkrétní nákup
+   pro konkrétní objednávku a prochází třemi stavy. Nic se nenakupuje „na sklad“.
+   -------------------------------------------------------------------------- */
+const POHYB = ["objednano", "prijato", "expedovano"];
+const POHYB_LABEL = {
+  objednano: { cs: "objednáno u dodavatele", en: "ordered from supplier", pill: "nova" },
+  prijato: { cs: "převzato od dodavatele", en: "received from supplier", pill: "brzy" },
+  expedovano: { cs: "expedováno odběrateli", en: "dispatched to buyer", pill: "ok" },
+};
+const pohybStav = (p) => (POHYB.includes(p.stavPohyb) ? p.stavPohyb : "prijato");
+
 /* kolik kusů položky poptávky už je pokryto akceptovanými nabídkami */
 const pokryto = (it) => (it.nabidky || []).reduce((s, n) => s + (Number(n.akceptovano) || 0), 0);
 const polozkaPokryta = (it) => pokryto(it) >= it.mnozstvi;
@@ -450,6 +508,36 @@ const stahniCSV = (nazev, radky) => {
   setTimeout(() => { a.remove(); URL.revokeObjectURL(url); }, 2000);
 };
 const genKod6 = () => String(Math.floor(100000 + Math.random() * 900000));
+
+/* ============================================================================
+   Barevné motivy podle role. Přepisují se jen CSS proměnné na kořenovém prvku,
+   takže zbytek stylů zůstává jediný. Odběratel = světlá, zprostředkovatel =
+   černá se zlatým akcentem, dodavatel = tmavá inverze světlé s fialovým akcentem.
+   ========================================================================== */
+const TEMA = {
+  odberatel: {
+    "--bg": "#F7F6FC",
+    "--top-bg": "#FFFFFF", "--top-fg": "#211B4E", "--top-line": "rgba(33,27,78,.18)", "--badge-bg": "#3B2E8F",
+    "--nav-bg": "#EAE6FB", "--nav-fg": "#55507F", "--nav-on": "#211B4E", "--nav-line": "#7C6AE8",
+    "--bar-bg": "#211B4E",
+  },
+  admin: {
+    "--bg": "#F4F3F7", "--tint": "#F7F6FA", "--th-bg": "#F1F0F5", "--line": "#E2E0E9", "--td-line": "#EFEEF3",
+    "--brand": "#1A1A22", "--brand-dk": "#0D0D12", "--brand-lt": "#E8E6EF", "--peri": "#DCD9E6", "--peri-fg": "#3A3846",
+    "--top-bg": "#0D0D12", "--top-fg": "#FFFFFF", "--top-line": "rgba(255,255,255,.32)", "--badge-bg": "#8A6A0B",
+    "--nav-bg": "#1A1A22", "--nav-fg": "#A9A6BE", "--nav-on": "#FFFFFF", "--nav-line": "#C9A227",
+    "--amber": "#8A6A0B", "--amber-bg": "#FBF3DC", "--bar-bg": "#0D0D12",
+  },
+  /* Dodavatel: tmavé okolí, ale karty a formuláře zůstávají světlé — v tabulkách
+     s cenami a šaržemi se čte líp na světlém a tisk dokladů zůstává v pořádku. */
+  dodavatel: {
+    "--bg": "#14122B",
+    "--top-bg": "#0C0A1C", "--top-fg": "#FFFFFF", "--top-line": "rgba(255,255,255,.3)", "--badge-bg": "#3B2E8F",
+    "--nav-bg": "#241F4E", "--nav-fg": "#B6B0E4", "--nav-on": "#FFFFFF", "--nav-line": "#8B7BF0",
+    "--bar-bg": "#0C0A1C",
+  },
+};
+
 
 /* ============================================================================
    IMPORT / EXPORT EXCELU — vícepoložková poptávka odběratele
@@ -714,6 +802,8 @@ export default function PortApp() {
   const fmtCZK = (n) => (Number(n) || 0).toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + (lang === "cs" ? " Kč" : " CZK");
   const fmtPct = (n) => (Number(n) || 0).toFixed(1).replace(".", lang === "cs" ? "," : ".") + " %";
   const fmtDate = (d) => (d ? new Date(d).toLocaleDateString(locale) : "—");
+  /* výpis hladin návrhu — potřebuje formát měny, proto uvnitř komponenty */
+  const hladinyText = (h) => (h || []).map((x) => `${x.ks} ${t("ks", "pcs")} à ${fmtCZK(x.cena)}`).join(" / ");
   const STAV_LABEL = { nova: t("Nová", "New"), potvrzena: t("Potvrzená", "Confirmed"), expedovana: t("Expedovaná", "Dispatched") };
   const ROLE_LABEL = (r) => (r === "odberatel" ? t("Odběratel", "Buyer") : r === "dodavatel" ? t("Dodavatel", "Supplier") : t("Zprostředkovatel", "Intermediary"));
   const typLabel = (k) => { const x = TYP_SUBJEKTU.find((y) => y[0] === k); return x ? t(x[1], x[2]) : "—"; };
@@ -779,6 +869,9 @@ export default function PortApp() {
     if (poptavkaRef.current && poptavkaRef.current.scrollIntoView) poptavkaRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 60);
   const [akceptForm, setAkceptForm] = useState({});
+  const [navrhOdbForm, setNavrhOdbForm] = useState({});   /* návrh odběrateli — víc kusů za jeho cenu */
+  const [zavaznaPotvrz, setZavaznaPotvrz] = useState(false);
+  const [pohybFiltr, setPohybFiltr] = useState("vse");   /* fronta zboží podle stavu */
   const [protiForm, setProtiForm] = useState({});
   const [vybrane, setVybrane] = useState({});
   const [mnozstviForm, setMnozstviForm] = useState({});
@@ -871,8 +964,20 @@ export default function PortApp() {
     if (u.aktivni === false) { setLoginForm((f) => ({ ...f, err: t("Tento účet byl deaktivován. Kontaktujte zprostředkovatele.", "This account has been deactivated. Contact the intermediary.") })); return; }
     if (u.potvrzen === false) { setLoginForm((f) => ({ ...f, err: t("Účet zatím není potvrzen — použijte tlačítko „Mám potvrzovací kód“.", "The account is not confirmed yet — use the \u201cI have a confirmation code\u201d button.") })); return; }
     setUser(u); setView("prehled"); setLoginForm({ login: "", heslo: "", err: "" });
+    ulozSession(u.login);
   };
-  const logout = () => { setUser(null); setCart({}); setDetail(null); setView("prehled"); };
+  const logout = () => { zapomenSession(); setUser(null); setCart({}); setDetail(null); setView("prehled"); };
+
+  /* obnovení přihlášení po refreshi — čeká, až se načtou uživatelé ze sdíleného stavu */
+  const [sessionZkusena, setSessionZkusena] = useState(false);
+  useEffect(() => {
+    if (sessionZkusena || user || !users.length) return;
+    setSessionZkusena(true);
+    const login = nactiSession();
+    if (!login) return;
+    const u = users.find((x) => x.login === login && x.aktivni !== false && x.potvrzen !== false);
+    if (u) { setUser(u); ulozSession(u.login); } else zapomenSession();
+  }, [users, user, sessionZkusena]);
 
   /* heslo se NIKDY neposílá e-mailem — posílá se šestimístný potvrzovací kód */
   const posliKod = (u, duvod) => {
@@ -951,9 +1056,10 @@ export default function PortApp() {
     setOrders((os) => [o, ...os]);
     setProducts((ps) => ps.map((p) => { const i = cartItems.find((x) => x.id === p.id); return i ? { ...p, ks: p.ks - i.mnozstvi } : p; }));
     setCart({});
-    sendEmail(user.email || odberatele[user.kod].email, t(`Potvrzení objednávky ${cislo}`, `Order confirmation ${cislo}`),
-      t(`Přijali jsme vaši objednávku ${cislo} v hodnotě ${fmtCZK(cartTotal)} bez DPH. O potvrzení a expedici vás budeme informovat.`,
-        `We have received your order ${cislo} for ${fmtCZK(cartTotal)} excl. VAT. We will inform you about confirmation and dispatch.`));
+    setZavaznaPotvrz(false);
+    sendEmail(user.email || odberatele[user.kod].email, t(`Potvrzení závazné objednávky ${cislo}`, `Binding order confirmation ${cislo}`),
+      t(`Přijali jsme vaši závaznou objednávku ${cislo} v hodnotě ${fmtCZK(cartTotal)} bez DPH. O potvrzení a expedici vás budeme informovat. Objednávku lze zrušit pouze do jejího potvrzení.`,
+        `We have received your binding order ${cislo} for ${fmtCZK(cartTotal)} excl. VAT. We will inform you about confirmation and dispatch. The order can only be cancelled until it is confirmed.`));
     setView("historie");
     flash(t(`Objednávka ${cislo} byla odeslána.`, `Order ${cislo} has been submitted.`));
   };
@@ -969,10 +1075,13 @@ export default function PortApp() {
   };
 
   const objednatZnovu = (o) => {
-    const c = {};
-    o.items.forEach((i) => { const p = products.find((x) => x.id === i.id); if (p && p.ks > 0) c[p.id] = Math.min(i.mnozstvi, p.ks); });
-    setCart(c); setView("katalog");
-    flash(t("Položky z minulé objednávky byly předvyplněny podle aktuální dostupnosti.", "Items from the previous order have been pre-filled according to current availability."));
+    const i = o.items[0] || {};
+    setNovyPozadavek({ nazev: i.nazev || "", doplnek: i.doplnek || "", sukl: i.sukl || "", mnozstvi: i.mnozstvi || "",
+      maxCena: i.cena || "", sarze: "", minExpMesice: 6, minExp: "", pozn: "" });
+    setZavaznaPotvrz(false);
+    setView("pozadavky");
+    flash(t("Položka z minulé objednávky byla předvyplněna — zkontrolujte množství a cenu a objednávku odešlete.",
+            "The item from your previous order has been pre-filled — check the quantity and price, then submit the order."));
   };
 
   /* ---------- poptávky (RFQ) — jedna poptávka může obsahovat více položek ---------- */
@@ -1060,8 +1169,22 @@ export default function PortApp() {
     const af = akceptForm[key] || {};
     const zbyvaVNabidce = n.mnozstvi - (n.akceptovano || 0);
     const zbyvaPokryt = Math.max(0, it.mnozstvi - pokryto(it));
-    const ks = Math.min(Number(af.ks) || Math.min(zbyvaVNabidce, zbyvaPokryt) || zbyvaVNabidce, zbyvaVNabidce);
+    const strop = Math.min(zbyvaVNabidce, zbyvaPokryt);
+    const ks = Math.min(Number(af.ks) || strop, zbyvaVNabidce);
     if (ks <= 0) { flash(t("Zadejte počet kusů k akceptaci.", "Enter the number of pieces to accept.")); return; }
+
+    /* ZÁSADA: nikdy nekupovat víc, než kolik je závazně objednáno odběrateli.
+       Přebytek by zůstal na skladě za peníze zprostředkovatele. */
+    if (ks > zbyvaPokryt) {
+      flash(t(`Nelze akceptovat ${ks} ks — nepokrytý závazek odběratelů je ${zbyvaPokryt} ks. Chcete-li koupit víc, nabídněte nejdřív větší množství odběrateli.`,
+              `Cannot accept ${ks} pcs — the uncovered buyer commitment is ${zbyvaPokryt} pcs. To buy more, first offer the larger quantity to the buyer.`));
+      return;
+    }
+    if (n.moq && n.moq > zbyvaPokryt) {
+      flash(t(`Min. odběr dodavatele je ${n.moq} ks, ale závazně objednáno je jen ${zbyvaPokryt} ks. Nabídněte odběrateli větší množství, nebo pošlete dodavateli návrh na nižší minimum.`,
+              `The supplier's MOQ is ${n.moq} pcs but only ${zbyvaPokryt} pcs are firmly ordered. Offer the buyer a larger quantity, or send the supplier a proposal with a lower minimum.`));
+      return;
+    }
 
     /* CENOVÁ LOGIKA: odběrateli se nabízí jeho MAX cena, nikdy nižší.
        Ruční zásah zprostředkovatele má přednost; sklad bez limitu = nákup + provize. */
@@ -1078,8 +1201,7 @@ export default function PortApp() {
       if (doo > od) alokace.push({ ...z, ks: doo - od, hotovo: zEnd <= konec });
     });
     const rozdeleno = alokace.reduce((s, a) => s + a.ks, 0);
-    const zbytek = ks - rozdeleno;
-    if (zbytek > 0) alokace.push({ odbKod: af.odbKod || "VSICHNI", ks: zbytek, sklad: true });
+    if (rozdeleno < ks) { flash(t("Množství nelze rozdělit mezi objednávky odběratelů.", "The quantity cannot be allocated to buyer orders.")); return; }
 
     /* každá akceptace = samostatný skladový řádek (vlastní nákup, šarže, expirace) */
     let pid = Math.max(0, ...products.map((p) => p.id));
@@ -1089,6 +1211,7 @@ export default function PortApp() {
       atc: "", vyrobce: "", ean: "",
       sarze: n.sarze || "", expirace: n.expirace || "", ks: a.ks,
       nakupCena: n.cena, cena: r2(a.maxCena || prodej), dodKod: n.dodKod, odbKod: a.odbKod,
+      stavPohyb: "objednano", datumObjednano: new Date().toISOString(), datumPrijem: "", datumExpedice: "",
     }));
     setProducts((ps) => [...noveRadky, ...ps]);
 
@@ -1129,6 +1252,30 @@ export default function PortApp() {
             `Accepted ${ks} pcs from ${n.dodKod}, stocked at a selling price of ${fmtCZK(prodej)}${podMOQ ? " — below the supplier's MOQ" : ""}.`));
   };
 
+  /* posun zboží o krok dál — přijetí od dodavatele, expedice odběrateli */
+  const posunPohyb = (p, novy) => {
+    const ted = new Date().toISOString();
+    setProducts((ps) => ps.map((x) => (x.id !== p.id ? x : {
+      ...x, stavPohyb: novy,
+      datumPrijem: novy === "prijato" ? ted : x.datumPrijem,
+      datumExpedice: novy === "expedovano" ? ted : x.datumExpedice,
+    })));
+    if (novy === "expedovano" && p.odbKod && p.odbKod !== "VSICHNI") {
+      /* expedicí vzniká objednávka s dodacím listem — dřív ji zakládal odběratel z katalogu */
+      const cislo = "PORT-2026-" + String(orders.length + 1).padStart(3, "0");
+      const polozka = { ...p, mnozstvi: p.ks };
+      setOrders((os) => [{
+        cislo, datum: ted, odbKod: p.odbKod, odberatel: odberatele[p.odbKod] || {},
+        items: [polozka], celkem: r2(p.ks * p.cena), stav: "expedovana",
+      }, ...os]);
+      const em = emailKodu(p.odbKod);
+      if (em) sendEmail(em, t(`Expedujeme ${cislo} — ${p.nazev}`, `Dispatching ${cislo} — ${p.nazev}`),
+        t(`${p.ks} ks ${p.nazev}${p.doplnek ? " " + p.doplnek : ""} (šarže ${p.sarze || "—"}, exp. ${fmtDate(p.expirace)}) odchází k vám. Dodací list najdete v portálu.`,
+          `${p.ks} pcs of ${p.nazev}${p.doplnek ? " " + p.doplnek : ""} (batch ${p.sarze || "—"}, exp. ${fmtDate(p.expirace)}) is on its way to you. The delivery note is available in the portal.`));
+    }
+    flash(t(`${p.nazev}: ${POHYB_LABEL[novy].cs}.`, `${p.nazev}: ${POHYB_LABEL[novy].en}.`));
+  };
+
   const upravNabidku = (d, it, nId, zmena) =>
     setDemands((ds) => ds.map((x) => (x.cislo !== d.cislo ? x : {
       ...x, polozky: x.polozky.map((p) => (p.id !== it.id ? p : { ...p, nabidky: p.nabidky.map((y) => (y.id === nId ? { ...y, ...zmena } : y)) })),
@@ -1142,37 +1289,134 @@ export default function PortApp() {
     flash(t("Nabídka byla odmítnuta.", "The offer has been rejected."));
   };
 
+  /* ---------- návrh dodavateli (až 3 množstevní hladiny, vlastní platnost) ---------- */
   const poslatProtinavrh = (d, it, n) => {
     const key = d.cislo + "-" + it.id + "-" + n.id;
     const pf = protiForm[key] || {};
-    if (!Number(pf.cena) || !Number(pf.mnozstvi)) { flash(t("Vyplňte cenu a množství protinávrhu.", "Fill in the counter-offer price and quantity.")); return; }
-    upravNabidku(d, it, n.id, { stav: "protinavrh", proti: { cena: r2(pf.cena), mnozstvi: Number(pf.mnozstvi), pozn: pf.pozn || "" } });
+    const hladiny = platneHladiny(pf.h);
+    if (!hladiny.length) { flash(t("Vyplňte alespoň jednu hladinu — množství a cenu.", "Fill in at least one tier — quantity and price.")); return; }
+    if (!pf.platnost) { flash(t("Zadejte, do kdy návrh platí.", "Enter the proposal's validity date.")); return; }
+    const nv = { hladiny, platnost: pf.platnost, pozn: pf.pozn || "", datum: new Date().toISOString(), kolo: ((n.jednani || []).length + 1) };
+    upravNabidku(d, it, n.id, {
+      stav: "protinavrh", proti: nv,
+      jednani: [...(n.jednani || []), { kdo: "adm", hladiny, platnost: pf.platnost, pozn: pf.pozn || "", datum: nv.datum }],
+    });
     const em = emailKodu(n.dodKod);
-    if (em) sendEmail(em, t(`Protinávrh k poptávce ${d.cislo}`, `Counter-offer for RFQ ${d.cislo}`),
-      t(`K položce ${it.nazev}${it.doplnek ? " " + it.doplnek : ""} navrhujeme ${pf.mnozstvi} ks à ${fmtCZK(pf.cena)} bez DPH.${pf.pozn ? ` Poznámka: ${pf.pozn}` : ""} Přijetí či odmítnutí potvrďte v portálu.`,
-        `For ${it.nazev}${it.doplnek ? " " + it.doplnek : ""} we propose ${pf.mnozstvi} pcs at ${fmtCZK(pf.cena)} excl. VAT.${pf.pozn ? ` Note: ${pf.pozn}` : ""} Please accept or decline in the portal.`));
+    if (em) sendEmail(em, t(`Návrh k poptávce ${d.cislo}`, `Proposal for RFQ ${d.cislo}`),
+      t(`K položce ${it.nazev}${it.doplnek ? " " + it.doplnek : ""} navrhujeme: ${hladinyText(hladiny)} bez DPH. Vyberte prosím jednu z hladin v portálu, platnost do ${fmtDate(pf.platnost)}.${pf.pozn ? ` Poznámka: ${pf.pozn}` : ""}`,
+        `For ${it.nazev}${it.doplnek ? " " + it.doplnek : ""} we propose: ${hladinyText(hladiny)} excl. VAT. Please pick one tier in the portal, valid until ${fmtDate(pf.platnost)}.${pf.pozn ? ` Note: ${pf.pozn}` : ""}`));
     setProtiForm({ ...protiForm, [key]: { open: false } });
-    flash(t("Protinávrh byl odeslán dodavateli.", "The counter-offer has been sent to the supplier."));
+    flash(t(`Návrh byl odeslán dodavateli — ${hladiny.length} ${hladiny.length === 1 ? "hladina" : "hladiny"}.`,
+            `The proposal has been sent to the supplier — ${hladiny.length} tier(s).`));
   };
 
-  const prijmiProtinavrh = (d, it, n) => {
-    upravNabidku(d, it, n.id, { cena: n.proti.cena, mnozstvi: n.proti.mnozstvi, stav: "podana", upravena: true, proti: null });
-    sendEmail(OPERATOR.email, t(`Protinávrh k ${d.cislo} přijat`, `Counter-offer for ${d.cislo} accepted`),
-      t(`Dodavatel ${user.kod} přijal protinávrh — nabídka je připravena k akceptaci.`, `Supplier ${user.kod} accepted the counter-offer — the offer is ready to accept.`));
-    flash(t("Protinávrh jste přijali, nabídka byla upravena.", "You accepted the counter-offer; the offer has been updated."));
+  /* dodavatel si vybere jednu hladinu */
+  const prijmiProtinavrh = (d, it, n, idx) => {
+    const h = ((n.proti || {}).hladiny || [])[idx || 0];
+    if (!h) return;
+    if (navrhPropadl(n.proti)) { flash(t("Platnost návrhu už vypršela.", "The proposal has expired.")); return; }
+    upravNabidku(d, it, n.id, {
+      cena: h.cena, mnozstvi: h.ks, stav: "podana", upravena: true, proti: null,
+      jednani: [...(n.jednani || []), { kdo: "dod", prijato: h, datum: new Date().toISOString() }],
+    });
+    sendEmail(OPERATOR.email, t(`Návrh k ${d.cislo} přijat`, `Proposal for ${d.cislo} accepted`),
+      t(`Dodavatel ${user.kod} přijal hladinu ${h.ks} ks à ${fmtCZK(h.cena)} — nabídka je připravena k akceptaci.`,
+        `Supplier ${user.kod} accepted the tier ${h.ks} pcs at ${fmtCZK(h.cena)} — the offer is ready to accept.`));
+    flash(t(`Přijali jste ${h.ks} ks à ${fmtCZK(h.cena)}.`, `You accepted ${h.ks} pcs at ${fmtCZK(h.cena)}.`));
   };
 
   const odmitniProtinavrh = (d, it, n) => {
-    upravNabidku(d, it, n.id, { stav: "odmitnuta", proti: null });
-    sendEmail(OPERATOR.email, t(`Protinávrh k ${d.cislo} odmítnut`, `Counter-offer for ${d.cislo} declined`),
-      t(`Dodavatel ${user.kod} protinávrh odmítl a nabídku stáhl.`, `Supplier ${user.kod} declined the counter-offer and withdrew the offer.`));
-    flash(t("Protinávrh jste odmítli, nabídka byla stažena.", "You declined the counter-offer; the offer has been withdrawn."));
+    upravNabidku(d, it, n.id, {
+      stav: "odmitnuta", proti: null,
+      jednani: [...(n.jednani || []), { kdo: "dod", odmitnuto: true, datum: new Date().toISOString() }],
+    });
+    sendEmail(OPERATOR.email, t(`Návrh k ${d.cislo} odmítnut`, `Proposal for ${d.cislo} declined`),
+      t(`Dodavatel ${user.kod} návrh odmítl a nabídku stáhl.`, `Supplier ${user.kod} declined the proposal and withdrew the offer.`));
+    flash(t("Návrh jste odmítli, nabídka byla stažena.", "You declined the proposal; the offer has been withdrawn."));
+  };
+
+  /* ---------- návrh odběrateli (nabídka většího množství za jeho cenu) ---------- */
+  const poslatNavrhOdb = (d, it) => {
+    const mkey = d.cislo + "-" + it.id;
+    const f = navrhOdbForm[mkey] || {};
+    const zdroj = (it.zdroje || []).find((z) => z.odbKod === f.odbKod) || (it.zdroje || [])[0];
+    if (!zdroj) { flash(t("K položce není přiřazen žádný odběratel.", "No buyer is linked to this item.")); return; }
+    const navic = Math.round(Number(f.navic) || 0);
+    const cena = r2(Number(f.cena) || Number(zdroj.maxCena) || 0);
+    if (navic <= 0) { flash(t("Zadejte, o kolik kusů víc nabízíte.", "Enter how many extra pieces you are offering.")); return; }
+    if (cena <= 0) { flash(t("Zadejte cenu za kus.", "Enter the price per piece.")); return; }
+    if (!f.platnost) { flash(t("Zadejte, do kdy nabídka platí.", "Enter the offer's validity date.")); return; }
+    const hladiny = [{ ks: (Number(zdroj.mnozstvi) || 0) + navic, cena }];
+    const nv = { odbKod: zdroj.odbKod, pozCislo: zdroj.pozCislo || "", hladiny, platnost: f.platnost, pozn: f.pozn || "", stav: "odeslan", datum: new Date().toISOString() };
+    setDemands((ds) => ds.map((x) => (x.cislo !== d.cislo ? x : {
+      ...x, polozky: x.polozky.map((y) => (y.id !== it.id ? y : { ...y, navrhOdb: nv, jednaniOdb: [...(y.jednaniOdb || []), { kdo: "adm", hladiny, platnost: f.platnost, datum: nv.datum }] })),
+    })));
+    const em = emailKodu(zdroj.odbKod);
+    if (em) sendEmail(em, t(`Nabídka většího množství — ${it.nazev}`, `Offer of a larger quantity — ${it.nazev}`),
+      t(`K vaší objednávce ${zdroj.pozCislo || ""} (${it.nazev}${it.doplnek ? " " + it.doplnek : ""}) můžeme nabídnout: ${hladinyText(hladiny)} bez DPH. Platnost do ${fmtDate(f.platnost)}. Přijetím se objednané množství navýší.${f.pozn ? ` ${f.pozn}` : ""}`,
+        `For your order ${zdroj.pozCislo || ""} (${it.nazev}${it.doplnek ? " " + it.doplnek : ""}) we can offer: ${hladinyText(hladiny)} excl. VAT. Valid until ${fmtDate(f.platnost)}. Accepting increases the ordered quantity.${f.pozn ? ` ${f.pozn}` : ""}`));
+    setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { open: false } });
+    const uprava = it.navrhOdb && it.navrhOdb.stav === "odeslan";
+    flash(uprava
+      ? t(`Nabídka pro ${zdroj.odbKod} byla upravena a odeslána znovu.`, `The offer for ${zdroj.odbKod} has been amended and resent.`)
+      : t(`Nabídka byla odeslána odběrateli ${zdroj.odbKod}.`, `The offer has been sent to buyer ${zdroj.odbKod}.`));
+  };
+
+  /* odběratel přijme jednu hladinu → navýší se jeho objednávka i požadované množství v poptávce */
+  const prijmiNavrhOdb = (d, it, idx) => {
+    const nv = it.navrhOdb; const h = ((nv || {}).hladiny || [])[idx];
+    if (!nv || !h) return;
+    if (navrhPropadl(nv)) { flash(t("Platnost nabídky už vypršela.", "The offer has expired.")); return; }
+    const zdroj = (it.zdroje || []).find((z) => z.odbKod === nv.odbKod) || {};
+    const puvodni = Number(zdroj.mnozstvi) || 0;
+    const rozdil = h.ks - puvodni;
+    setDemands((ds) => ds.map((x) => (x.cislo !== d.cislo ? x : {
+      ...x, stav: "otevrena",
+      polozky: x.polozky.map((y) => (y.id !== it.id ? y : {
+        ...y, mnozstvi: Number(y.mnozstvi) + rozdil,
+        maxProdejni: Math.min(...[...(y.zdroje || []).filter((z) => z.odbKod !== nv.odbKod).map((z) => Number(z.maxCena) || Infinity), h.cena]),
+        zdroje: (y.zdroje || []).map((z) => (z.odbKod !== nv.odbKod ? z : { ...z, mnozstvi: h.ks, maxCena: h.cena })),
+        navrhOdb: { ...nv, stav: "prijat", prijata: h },
+        jednaniOdb: [...(y.jednaniOdb || []), { kdo: "odb", prijato: h, datum: new Date().toISOString() }],
+      })),
+    })));
+    if (nv.pozCislo) setPozadavky((ps) => ps.map((x) => (x.cislo !== nv.pozCislo ? x : { ...x, mnozstvi: h.ks, maxCena: h.cena })));
+    sendEmail(OPERATOR.email, t(`Navýšení objednávky ${nv.pozCislo || ""} přijato`, `Order increase ${nv.pozCislo || ""} accepted`),
+      t(`Odběratel ${nv.odbKod} přijal ${h.ks} ks à ${fmtCZK(h.cena)} u položky ${it.nazev}. Závazek je nyní ${h.ks} ks.`,
+        `Buyer ${nv.odbKod} accepted ${h.ks} pcs at ${fmtCZK(h.cena)} for ${it.nazev}. The commitment is now ${h.ks} pcs.`));
+    flash(t(`Objednávka navýšena na ${h.ks} ks à ${fmtCZK(h.cena)}. Je to závazné.`, `Order increased to ${h.ks} pcs at ${fmtCZK(h.cena)}. This is binding.`));
+  };
+
+  /* dokud odběratel nerozhodl, může zprostředkovatel nabídku upravit nebo stáhnout */
+  const stahniNavrhOdb = (d, it) => {
+    setDemands((ds) => ds.map((x) => (x.cislo !== d.cislo ? x : {
+      ...x, polozky: x.polozky.map((y) => (y.id !== it.id ? y : { ...y, navrhOdb: null })),
+    })));
+    const em = emailKodu((it.navrhOdb || {}).odbKod);
+    if (em) sendEmail(em, t(`Nabídka většího množství — staženo`, `Offer of a larger quantity — withdrawn`),
+      t(`Nabídku k položce ${it.nazev} jsme stáhli. Vaše objednávka zůstává v původním množství.`,
+        `We have withdrawn the offer for ${it.nazev}. Your order remains in its original quantity.`));
+    flash(t("Nabídka byla stažena.", "The offer has been withdrawn."));
+  };
+
+  const odmitniNavrhOdb = (d, it) => {
+    setDemands((ds) => ds.map((x) => (x.cislo !== d.cislo ? x : {
+      ...x, polozky: x.polozky.map((y) => (y.id !== it.id ? y : {
+        ...y, navrhOdb: { ...y.navrhOdb, stav: "odmitnut" },
+        jednaniOdb: [...(y.jednaniOdb || []), { kdo: "odb", odmitnuto: true, datum: new Date().toISOString() }],
+      })),
+    })));
+    sendEmail(OPERATOR.email, t("Nabídka většího množství odmítnuta", "Offer of a larger quantity declined"),
+      t(`Odběratel ${(it.navrhOdb || {}).odbKod} zůstává u původního množství.`, `Buyer ${(it.navrhOdb || {}).odbKod} keeps the original quantity.`));
+    flash(t("Zůstáváte u původního množství.", "You keep the original quantity."));
   };
 
   /* ---------- požadavky odběratele ---------- */
   const odesliPozadavek = () => {
     const f = novyPozadavek;
     if (!f.nazev || !Number(f.mnozstvi)) { flash(t("Vyplňte název položky a množství.", "Fill in the item name and quantity.")); return; }
+    if (!zavaznaPotvrz) { flash(t("Potvrďte prosím, že podáváte závaznou objednávku.", "Please confirm that you are placing a binding order.")); return; }
+    setZavaznaPotvrz(false);
     const cislo = "POZ-2026-" + String(pozadavky.length + 1).padStart(3, "0");
     const p = {
       cislo, odbKod: user.kod, nazev: f.nazev, doplnek: f.doplnek || "", sukl: f.sukl || "",
@@ -1252,6 +1496,8 @@ export default function PortApp() {
   const odesliImport = () => {
     const platne = (importNahled.radky || []).filter((r) => !zkontrolujRadek(r).chyby.length);
     if (!platne.length) { flash(t("Žádný řádek není kompletní — doplňte název, množství a max. cenu.", "No row is complete — fill in the name, quantity and max. price.")); return; }
+    if (!zavaznaPotvrz) { flash(t("Potvrďte prosím, že podáváte závaznou objednávku.", "Please confirm that you are placing a binding order.")); return; }
+    setZavaznaPotvrz(false);
     const davka = "DAV-2026-" + String(new Set(pozadavky.map((p) => p.davka).filter(Boolean)).size + 1).padStart(3, "0");
     const zaklad = pozadavky.length;
     const nove = platne.map((r, i) => ({
@@ -1405,74 +1651,109 @@ export default function PortApp() {
       --brand:#7C6AE8; --brand-dk:#4E3FC8; --brand-lt:#EAE6FB; --peri:#D9E0F8;
       --line:#E3E0F1; --amber:#B45309; --amber-bg:#FDF1E3; --red:#B91C1C; --red-bg:#FDECEE;
       --ok:#177A45; --ok-bg:#E6F5EC;
+      /* prvky, které se mění podle role přihlášeného uživatele */
+      --tint:#FAF9FE; --th-bg:#F6F4FC; --td-line:#F0EEF8; --input-bg:#FFFFFF; --peri-fg:#3D3F8F;
+      --top-bg:#211B4E; --top-fg:#FFFFFF; --top-line:rgba(255,255,255,.35); --badge-bg:#3B2E8F;
+      --nav-bg:#7C6AE8; --nav-fg:#EAE6FB; --nav-on:#FFFFFF; --nav-line:#D9E0F8; --bar-bg:#211B4E;
     }
     *{box-sizing:border-box}
     .port{min-height:100vh;background:var(--bg);color:var(--ink);
       font-family:'Manrope',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.45}
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;letter-spacing:.02em}
     .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-    .top{background:var(--ink);color:#fff}
+    .top{background:var(--top-bg);color:var(--top-fg)}
     .top .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
     .logo{display:flex;align-items:center;gap:10px}
-    .logo .badge{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center}
+    .logo .badge{width:46px;height:46px;border-radius:13px;background:var(--badge-bg);display:grid;place-items:center}
+    .logo .badge img{width:30px;height:30px;filter:brightness(0) invert(1)}   /* srdce vždy bílé, ať je kontrastní */
     .logo .badge img{width:30px;height:30px;display:block}
     .logo b{font-size:19px;letter-spacing:.14em}
     .logo small{display:block;font-size:11px;opacity:.75;letter-spacing:.03em;font-weight:400}
     .spacer{flex:1}
     .who{font-size:13px;opacity:.9;text-align:right}
     .who b{display:block;font-size:14px}
-    .langsw{display:flex;gap:2px;border:1px solid rgba(255,255,255,.35);border-radius:8px;overflow:hidden}
-    .langsw button{background:none;border:none;color:#fff;opacity:.6;font:inherit;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
-    .langsw button.on{opacity:1;background:rgba(255,255,255,.18)}
+    .langsw{display:flex;gap:2px;border:1px solid var(--top-line);border-radius:8px;overflow:hidden}
+    .langsw button{background:none;border:none;color:var(--top-fg);opacity:.6;font:inherit;font-size:12px;font-weight:700;padding:5px 9px;cursor:pointer}
+    .langsw button.on{opacity:1;background:var(--top-line)}
     .langsw.dark{border-color:var(--line)}
     .langsw.dark button{color:var(--ink)}
     .langsw.dark button.on{background:var(--brand-lt)}
-    .nav{background:var(--brand);color:#fff}
+    .nav{background:var(--nav-bg);color:var(--nav-fg)}
     .nav .wrap{display:flex;gap:2px;overflow-x:auto;padding-left:12px;padding-right:12px}
-    .nav button{background:none;border:none;color:#EAE6FB;padding:11px 15px;font:inherit;font-size:14px;
+    .nav button{background:none;border:none;color:var(--nav-fg);padding:11px 15px;font:inherit;font-size:14px;
       cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
-    .nav button.on{color:#fff;font-weight:700;border-bottom-color:var(--peri)}
-    .nav button:hover{color:#fff}
+    .nav button.on{color:var(--nav-on);font-weight:700;border-bottom-color:var(--nav-line)}
+    .nav button:hover{color:var(--nav-on)}
     main{padding:26px 0 90px}
     h1{font-size:21px;margin:0 0 4px;letter-spacing:-.01em;font-weight:800}
     .sub{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:900px}
     .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
     .card + .card{margin-top:16px}
     .card .pad{padding:18px 20px}
-    .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);background:#FAF9FE}
+    .toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--tint)}
     input[type=text],input[type=password],input[type=number],input[type=date],select{
-      border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff;color:var(--ink)}
+      border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:var(--input-bg);color:var(--ink)}
     input:focus,select:focus,button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
     .search{flex:1;min-width:200px}
     .table-wrap{overflow-x:auto}
     .table-wrap.scroll{max-height:430px;overflow:auto}
     .table-wrap.scroll thead th{position:sticky;top:0;z-index:1}
     .form-akce{position:sticky;bottom:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-      margin:14px -20px -16px;padding:12px 20px;background:#FAF9FE;border-top:1px solid var(--line)}
+      margin:14px -20px -16px;padding:12px 20px;background:var(--tint);border-top:1px solid var(--line)}
     .karta-draft{border:2px solid var(--brand)}
+    /* tmavé okolí u dodavatele — nadpisy a popisky mimo karty */
+    .port.tmave main > .wrap > h1{color:#EDEBFA}
+    .port.tmave main > .wrap > .sub{color:#A9A3D8}
+    .port.tmave .pager button{background:var(--surface)}
+    /* rozhodnutí, které na odběratele čeká — musí být vidět na první pohled */
+    .vyzva{border:2px solid var(--amber);border-radius:14px;background:var(--amber-bg);margin-bottom:18px;overflow:hidden}
+    .vyzva .hlava{display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--amber);color:#fff}
+    .vyzva .hlava b{font-size:15px;letter-spacing:.01em}
+    .vyzva .znak{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;
+      font-size:16px;font-weight:800;flex:0 0 auto;animation:tep 1.6s ease-in-out infinite}
+    @keyframes tep{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.14);opacity:.75}}
+    @media (prefers-reduced-motion: reduce){ .vyzva .znak{animation:none} }
+    .vyzva .radek{padding:14px 18px;border-top:1px solid rgba(0,0,0,.08)}
+    .vyzva .btn{background:var(--amber);border-color:var(--amber)}
+    /* jedna položka poptávky = jedna uzavřená karta, ať se dvě léčiva neslijí v jedno */
+    /* Poptávka = jeden blok oddělený mezerou a tenkou linkou, položka uvnitř = pruh
+       s barevným okrajem. Žádné rámy v rámech — odděluje mezera a linka, ne obrys. */
+    .poptavka{margin:0 0 26px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+    .poptavka:last-child{margin-bottom:6px}
+    .poptavka > .hlava{padding:12px 18px;background:var(--tint);border-bottom:1px solid var(--line);
+      box-shadow:inset 0 3px 0 var(--brand)}
+    .poptavka > .hlava .mono b{font-size:14px;letter-spacing:.04em}
+    .polozka{position:relative;padding:0 0 2px;background:var(--surface)}
+    .polozka + .polozka{border-top:3px solid var(--line)}
+    .polozka > .hlava{padding:14px 18px 12px;border-left:4px solid var(--brand)}
+    .polozka > .pad,.polozka > .table-wrap{border-left:4px solid var(--brand-lt)}
+    .polozka .cislo{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--brand-dk);
+      background:var(--brand-lt);border-radius:6px;padding:3px 8px}
+    .polozka table{border-top:1px solid var(--line)}
+    .polozka table th{background:transparent;border-bottom:1px solid var(--line)}
     table{width:100%;border-collapse:collapse;font-size:14px}
-    th{background:#F6F4FC;color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.06em;
+    th{background:var(--th-bg);color:var(--muted);text-transform:uppercase;font-size:11px;letter-spacing:.06em;
       text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
-    td{padding:10px 12px;border-bottom:1px solid #F0EEF8;vertical-align:middle}
+    td{padding:10px 12px;border-bottom:1px solid var(--td-line);vertical-align:middle}
     tr:last-child td{border-bottom:none}
     td.num,th.num{text-align:right}
     tr.bl td{background:var(--red-bg)}
     .pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
     .pill.ok{background:var(--ok-bg);color:var(--ok)} .pill.brzy{background:var(--amber-bg);color:var(--amber)}
     .pill.prosla{background:var(--red-bg);color:var(--red)}
-    .pill.nova{background:var(--peri);color:#3D3F8F} .pill.potvrzena{background:var(--amber-bg);color:var(--amber)}
+    .pill.nova{background:var(--peri);color:var(--peri-fg)} .pill.potvrzena{background:var(--amber-bg);color:var(--amber)}
     .pill.expedovana{background:var(--ok-bg);color:var(--ok)}
     .pill.kod{background:var(--brand-lt);color:var(--brand-dk)}
     .qty{width:74px;text-align:right}
     .btn{background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font:inherit;
       font-size:14px;font-weight:700;cursor:pointer}
     .btn:hover{background:var(--brand-dk)} .btn:disabled{opacity:.45;cursor:default}
-    .btn.sec{background:#fff;color:var(--brand-dk);border:1px solid var(--line);font-weight:600}
-    .btn.sec:hover{background:#F4F2FC}
+    .btn.sec{background:var(--input-bg);color:var(--brand-dk);border:1px solid var(--line);font-weight:600}
+    .btn.sec:hover{background:var(--brand-lt)}
     .btn.mini{padding:6px 11px;font-size:13px;border-radius:7px}
-    .btn.danger{background:#fff;color:var(--red);border:1px solid #F0C9C9}
+    .btn.danger{background:var(--input-bg);color:var(--red);border:1px solid var(--red-bg)}
     .link{background:none;border:none;color:var(--brand-dk);font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;padding:0}
-    .cartbar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;z-index:40}
+    .cartbar{position:fixed;left:0;right:0;bottom:0;background:var(--bar-bg);color:#fff;z-index:40}
     .cartbar .wrap{display:flex;align-items:center;gap:14px;padding:13px 20px;flex-wrap:wrap}
     .cartbar b{font-size:16px}
     .login{min-height:100vh;display:grid;place-items:center;padding:24px;
@@ -1484,7 +1765,9 @@ export default function PortApp() {
     .demo{margin-top:20px;border-top:1px dashed var(--line);padding-top:14px;font-size:12.5px;color:var(--muted);line-height:1.7}
     .demo code{background:#F1EFFA;border-radius:5px;padding:1px 6px}
     .overlay{position:fixed;inset:0;background:rgba(15,20,45,.55);z-index:50;display:grid;place-items:start center;overflow:auto;padding:30px 14px}
-    .doc{background:#fff;border-radius:12px;max-width:800px;width:100%;padding:34px 38px;position:relative}
+    /* dodací list a podmínky se tisknou — barvy zůstávají světlé bez ohledu na roli */
+    .doc{--surface:#FFFFFF; --ink:#211B4E; --muted:#6C6890; --line:#E3E0F1; --td-line:#F0EEF8; --th-bg:#F6F4FC; --input-bg:#FFFFFF;
+      background:#fff;color:#211B4E;border-radius:12px;max-width:800px;width:100%;padding:34px 38px;position:relative}
     .doc h2{margin:0;font-size:20px} .doc .dnum{color:var(--muted);font-size:14px}
     .doc .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}
     .doc .party{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
@@ -1503,13 +1786,16 @@ export default function PortApp() {
     .mail{padding:14px 20px;border-bottom:1px solid #F0EEF8;font-size:14px}
     .mail:last-child{border-bottom:none}
     .mail .to{color:var(--muted);font-size:12.5px}
-    .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+    .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--bar-bg);color:#fff;
       padding:11px 20px;border-radius:10px;font-size:14px;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.3);max-width:92vw}
     .empty{padding:40px 20px;text-align:center;color:var(--muted)}
     .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin-bottom:18px}
     .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer}
     .stat .n{font-size:26px;font-weight:800;line-height:1.2}
-    .stat .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+    .stat .c{font-size:13px;color:var(--muted);margin-top:4px}
+    .pohyb tbody td{border-bottom:3px solid var(--line)}
+    tbody tr.klik{cursor:pointer}
+    tbody tr.klik:hover td{background:var(--brand-lt)}
     .form{padding:16px 20px;border-bottom:1px solid var(--line);background:#FAF9FE;display:flex;gap:10px;flex-wrap:wrap;align-items:end}
     .pager{display:flex;gap:6px;align-items:center;justify-content:center;padding:12px}
     .pager button{background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 10px;font:inherit;font-size:13px;cursor:pointer;color:var(--brand-dk)}
@@ -1545,7 +1831,7 @@ export default function PortApp() {
       .card table{display:block;width:100%}
       .card thead{display:none}
       .card tbody{display:block}
-      .card tbody tr{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;margin:12px;padding:4px 12px}
+      .card tbody tr{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:12px;padding:4px 12px}
       .card tbody td{display:flex;justify-content:space-between;align-items:center;gap:14px;
         text-align:right;padding:9px 0;border:0;border-bottom:1px dashed var(--line)}
       .card tbody tr td:last-child{border-bottom:0}
@@ -1607,7 +1893,7 @@ export default function PortApp() {
           <div className="box">
             <div style={{ position: "absolute", top: 16, right: 16 }}><LangSwitch dark /></div>
             <div className="logo" style={{ color: "var(--ink)" }}>
-              <div className="badge" style={{ background: "var(--brand-lt)" }}><img src={LOGO_DARK} alt="ezdravotnici.cz" /></div>
+              <div className="badge" style={{ background: "#3B2E8F" }}><img src={LOGO_DARK} alt="ezdravotnici.cz" /></div>
               <div><b style={{ letterSpacing: ".14em" }}>PORT</b>
                 <small style={{ color: "var(--muted)" }}>marketplace · ezdravotnici<span style={{ color: "#A9B7EE", fontWeight: 700 }}>.cz</span></small></div>
             </div>
@@ -1662,10 +1948,21 @@ export default function PortApp() {
             </>)}
 
             <div className="demo">
-              <b>{t("Ukázkové účty:", "Demo accounts:")}</b><br />
-              {t("odběratel (zahraniční)", "buyer (foreign)")} — <code>passau / demo</code> · <code>milano / demo</code><br />
-              {t("dodavatel (český)", "supplier (Czech)")} — <code>lekarna / demo</code> · <code>distributor / demo</code><br />
-              {t("zprostředkovatel", "intermediary")} — <code>admin / admin</code>
+              <b>{t("Ukázkové účty:", "Demo accounts:")}</b>
+              {[[t("odběratel (zahraniční)", "buyer (foreign)"), [["passau", "demo"], ["milano", "demo"], ["wien", "demo"]]],
+                [t("dodavatel (český)", "supplier (Czech)"), [["lekarna", "demo"], ["poliklinika", "demo"], ["distributor", "demo"]]],
+                [t("zprostředkovatel", "intermediary"), [["admin", "admin"]]]].map(([popis, ucty]) => (
+                <div key={popis} style={{ marginTop: 4 }}>
+                  {popis} —{" "}
+                  {ucty.map(([l, h], i) => (
+                    <span key={l}>
+                      {i > 0 && " · "}
+                      {/* bez mezer uvnitř značky, ať se kopíruje jen samotné jméno */}
+                      <code>{l}</code>/<code>{h}</code>
+                    </span>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -1677,8 +1974,8 @@ export default function PortApp() {
   const tabs =
     user.role === "odberatel" ? [
       ["prehled", t("Přehled", "Dashboard")],
-      ["katalog", t("Moje objednávka", "My order")],
-      ["pozadavky", t("Moje poptávky", "My requests")],
+      ["stav", t("Stav objednávek", "Order status")],
+      ["pozadavky", t("Nová objednávka", "New order")],
       ["historie", t("Historie objednávek", "Order history")],
       ["podminky", t("Podmínky obchodování", "Terms of trade")],
     ] :
@@ -1688,7 +1985,7 @@ export default function PortApp() {
       ["podminky", t("Podmínky obchodování", "Terms of trade")],
     ] : [
       ["prehled", t("Přehled", "Dashboard")],
-      ["produkty", t("Centrální tabulka", "Central table")],
+      ["produkty", t("Zboží v pohybu", "Goods in transit")],
       ["poptavky", t("Poptávky", "RFQs")],
       ["objednavky", t("Objednávky", "Orders")],
       ["uzivatele", t("Uživatelé", "Users")],
@@ -1700,7 +1997,7 @@ export default function PortApp() {
     : user.role === "dodavatel" ? (dodavatele[user.kod] || {}).nazev : OPERATOR.nazev;
 
   return (
-    <div className="port">
+    <div className={"port" + (user.role === "dodavatel" ? " tmave" : "")} style={TEMA[user.role] || undefined}>
       <style>{css}</style>
       <SuklDatalist />
 
@@ -1728,6 +2025,52 @@ export default function PortApp() {
       <main className="no-print">
         <div className="wrap">
 
+          {/* ============ ODBĚRATEL: čeká rozhodnutí o navýšení ============ */}
+          {user.role === "odberatel" && (() => {
+            const cekaji = [];
+            demands.forEach((d) => d.polozky.forEach((it) => {
+              const nv = it.navrhOdb;
+              if (nv && nv.stav === "odeslan" && nv.odbKod === user.kod && !navrhPropadl(nv)) cekaji.push({ d, it, nv });
+            }));
+            if (!cekaji.length) return null;
+            return (
+              <div className="vyzva">
+                <div className="hlava">
+                  <span className="znak">!</span>
+                  <b>{t(`Čeká na vaše rozhodnutí: navýšení objednávky (${cekaji.length})`,
+                        `Awaiting your decision: order increase (${cekaji.length})`)}</b>
+                </div>
+                {cekaji.map(({ d, it, nv }) => {
+                  const ted = ((it.zdroje || []).find((z) => z.odbKod === user.kod) || {}).mnozstvi;
+                  return (
+                    <div key={d.cislo + it.id} className="radek">
+                      <div style={{ fontSize: 15 }}>
+                        <b>{it.nazev}</b>{it.doplnek && <span style={{ color: "var(--muted)" }}> {it.doplnek}</span>}
+                      </div>
+                      <div style={{ fontSize: 13.5, margin: "4px 0 12px" }}>
+                        {t("nyní objednáno", "currently ordered")} <b>{ted} {t("ks", "pcs")}</b>
+                        {" · "}{t("nabídka platí do", "offer valid until")} <b>{fmtDate(nv.platnost)}</b>
+                        {nv.pozn && <> · „{nv.pozn}“</>}
+                      </div>
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+                        {nv.hladiny.map((h, i) => (
+                          <button key={i} className="btn" onClick={() => prijmiNavrhOdb(d, it, i)}>
+                            {t(`Navýšit o ${h.ks - (ted || 0)} ks — celkem ${h.ks} ks à ${fmtCZK(h.cena)}`,
+                               `Add ${h.ks - (ted || 0)} pcs — ${h.ks} pcs in total at ${fmtCZK(h.cena)}`)}</button>
+                        ))}
+                        <button className="btn sec mini" onClick={() => odmitniNavrhOdb(d, it)}>{t("Nenavyšovat", "Do not increase")}</button>
+                      </div>
+                      <div style={{ fontSize: 12.5, color: "var(--muted)", marginTop: 8 }}>
+                        {t("Navýšení je závazné. Dokud nerozhodnete, objednávku vyřizujeme v původním množství.",
+                           "The increase is binding. Until you decide, we process the order in its original quantity.")}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
+
           {/* ============ ODBĚRATEL: nástěnka ============ */}
           {view === "prehled" && user.role === "odberatel" && (() => {
             const mojeObj = orders.filter((o) => o.odbKod === user.kod);
@@ -1746,7 +2089,7 @@ export default function PortApp() {
                   <div className="stat" onClick={() => setView("historie")}><div className="n">{fmtCZK(hodnota)}</div><div className="c">{t("Hodnota objednávek bez DPH", "Order value excl. VAT")}</div></div>
                   <div className="stat" onClick={() => setView("pozadavky")}><div className="n">{mojePoz.length}</div><div className="c">{t("Moje poptávky", "My requests")}</div></div>
                   <div className="stat" onClick={() => setView("pozadavky")}><div className="n" style={{ color: cekajici.length ? "var(--amber)" : "var(--ok)" }}>{cekajici.length}</div><div className="c">{t("Poptávky ve vyřizování", "Requests in progress")}</div></div>
-                  <div className="stat" onClick={() => setView("katalog")}><div className="n">{dostupne}</div><div className="c">{t("Položek dostupných k objednání", "Items available to order")}</div></div>
+                  <div className="stat" onClick={() => setView("stav")}><div className="n">{pozadavky.filter((p) => p.odbKod === user.kod && p.stav !== "vyrizena").length}</div><div className="c">{t("Objednávek ve zpracování", "Orders in progress")}</div></div>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(330px, 1fr))", gap: 16 }}>
                   <div className="card">
@@ -1773,7 +2116,7 @@ export default function PortApp() {
                       <div className="table-wrap"><table>
                         <thead><tr><th>{t("Číslo", "Number")}</th><th>{t("Položka", "Item")}</th><th className="num">{t("Ks", "Qty")}</th><th>{t("Stav", "Status")}</th></tr></thead>
                         <tbody>{mojePoz.slice(0, 5).map((p) => (
-                          <tr key={p.cislo}>
+                          <tr key={p.cislo} className="klik" onClick={() => setView("stav")} title={t("Otevřít stav objednávek", "Open order status")}>
                             <td className="mono"><b>{p.cislo}</b></td><td>{p.nazev}</td><td className="num">{p.mnozstvi}</td>
                             <td><span className={"pill " + (p.stav === "vyrizena" ? "ok" : "nova")}>{p.stav === "vyrizena" ? t("vyřízena", "fulfilled") : t("přijata", "received")}</span></td>
                           </tr>))}</tbody>
@@ -1816,7 +2159,9 @@ export default function PortApp() {
                       <tbody>{polozkyProMne.slice(0, 6).map((it) => {
                         const n = it.nabidky.find((x) => x.dodKod === user.kod);
                         return (
-                          <tr key={it.demand.cislo + "-" + it.id}>
+                          <tr key={it.demand.cislo + "-" + it.id} className="klik"
+                            onClick={() => { setHledatPop(it.demand.cislo); setStrana(1); setView("poptavky"); }}
+                            title={t("Otevřít poptávku", "Open the RFQ")}>
                             <td className="mono"><b>{it.demand.cislo}</b></td>
                             <td><b>{it.nazev}</b>{it.doplnek && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{it.doplnek}</span></>}</td>
                             <td className="num">{it.mnozstvi}</td><td className="num">{fmtCZK(it.cena)}</td>
@@ -1894,51 +2239,64 @@ export default function PortApp() {
           })()}
 
           {/* ============ ODBĚRATEL: objednávkový formulář ============ */}
-          {view === "katalog" && user.role === "odberatel" && (
-            <>
-              <h1>{t("Vaše objednávka", "Your order")}</h1>
-              <p className="sub">
-                {t("Položky dostupné pro váš kód i položky nabízené všem odběratelům. Zadejte množství a objednávku potvrďte tlačítkem dole. Pokud položku nenajdete, pošlete nám ji přes záložku ",
-                   "Items available for your code plus items offered to all buyers. Enter the quantities and confirm the order with the button below. If you can't find an item, send it to us via ")}
-                <button className="link" onClick={() => setView("pozadavky")}>{t("Moje poptávky", "My requests")}</button>.
-              </p>
-              <div className="card">
-                <div className="toolbar">
-                  <input className="search" type="text" placeholder={t("Hledat podle názvu, kódu SÚKL, ATC, šarže nebo výrobce…", "Search by name, SÚKL code, ATC, batch or manufacturer…")}
-                    value={hledat} onChange={(e) => setHledat(e.target.value)} />
-                  <span style={{ fontSize: 13, color: "var(--muted)" }}>{mojeProdukty.length} {t("položek", "items")}</span>
-                </div>
-                <div className="table-wrap">
-                  <table>
+          {/* ============ ODBĚRATEL: stav objednávek ============ */}
+          {view === "stav" && user.role === "odberatel" && (() => {
+            const moje = pozadavky.filter((p) => p.odbKod === user.kod);
+            /* zboží, které se pro odběratele fyzicky pohybuje */
+            const zbozi = products.filter((x) => x.odbKod === user.kod);
+            const stavPoz = (p) => {
+              const dodane = zbozi.filter((z) => z.sukl === p.sukl);
+              if (p.stav === "vyrizena" || dodane.some((z) => pohybStav(z) === "expedovano")) return "expedovano";
+              if (dodane.some((z) => pohybStav(z) === "prijato")) return "prijato";
+              if (dodane.length) return "zajisteno";
+              return "zpracovava";
+            };
+            const POPIS = {
+              zpracovava: { cs: "zpracováváme", en: "processing", pill: "nova" },
+              zajisteno: { cs: "zajištěno u dodavatele", en: "secured from supplier", pill: "brzy" },
+              prijato: { cs: "u nás — chystáme k odeslání", en: "with us — preparing dispatch", pill: "brzy" },
+              expedovano: { cs: "odesláno", en: "dispatched", pill: "ok" },
+            };
+            return (
+              <>
+                <h1>{t("Stav objednávek", "Order status")}</h1>
+                <p className="sub">{t("Přehled toho, co pro vás zajišťujeme. Novou položku objednáte v záložce Nová objednávka — objednávka je závazná od odeslání, katalog ani sklad k výběru nemáme.",
+                                      "An overview of what we are securing for you. Order a new item under New order — the order is binding from the moment you submit it; we keep no catalogue or stock to pick from.")}</p>
+                <div className="card">
+                  <div className="toolbar">
+                    <span style={{ fontSize: 13, color: "var(--muted)" }}>{moje.length} {t("položek", "items")}</span>
+                    <div className="spacer" />
+                    <button className="btn mini" onClick={() => setView("pozadavky")}>{t("+ Nová objednávka", "+ New order")}</button>
+                  </div>
+                  {!moje.length && <div className="empty">{t("Zatím nemáte žádnou objednávku.", "You have no orders yet.")}</div>}
+                  <div className="table-wrap"><table>
                     <thead><tr>
-                      <th>{t("Kód SÚKL", "SÚKL code")}</th><th>{t("Název produktu", "Product name")}</th><th>{t("Šarže", "Batch")}</th><th>{t("Expirace", "Expiry")}</th>
-                      <th className="num">{t("Skladem", "In stock")}</th><th className="num">{t("Cena/ks bez DPH", "Price/pc excl. VAT")}</th><th className="num">{t("Objednat ks", "Order qty")}</th>
+                      <th>{t("Číslo", "Number")}</th><th>{t("Položka", "Item")}</th><th className="num">{t("Ks", "Qty")}</th>
+                      <th className="num">{t("Max. cena/ks", "Max. price/pc")}</th><th>{t("Šarže / expirace", "Batch / expiry")}</th><th>{t("Stav", "Status")}</th>
                     </tr></thead>
                     <tbody>
-                      {mojeProdukty.map((p) => {
-                        const st = expState(p.expirace);
+                      {moje.map((p) => {
+                        const s = stavPoz(p);
+                        const dodane = zbozi.filter((z) => z.sukl === p.sukl);
                         return (
-                          <tr key={p.id}>
-                            <td><span className="mono">{p.sukl}</span>{p.odbKod === "VSICHNI" && <><br /><span className="pill kod">{t("volná nabídka", "open offer")}</span></>}</td>
+                          <tr key={p.cislo}>
+                            <td className="mono"><b>{p.cislo}</b>{p.davka && <><br /><span className="pill kod">{p.davka}</span></>}</td>
                             <td><b>{p.nazev}</b>{p.doplnek && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{p.doplnek}</span></>}</td>
-                            <td className="mono">{p.sarze || "—"}</td>
-                            <td>{fmtDate(p.expirace)}{st !== "neuvedena" && <><br />
-                              <span className={"pill " + (st === "ok" ? "ok" : st === "brzy" ? "brzy" : "prosla")}>
-                                {st === "ok" ? t("expirace v pořádku", "expiry OK") : st === "brzy" ? t("expirace < 6 měs.", "expiry < 6 mo.") : t("prošlá", "expired")}</span></>}</td>
-                            <td className="num">{p.ks}</td>
-                            <td className="num">{fmtCZK(p.cena)}</td>
-                            <td className="num"><input className="qty" type="number" min="0" max={p.ks} value={cart[p.id] || ""} placeholder="0"
-                              onChange={(e) => setQty(p, e.target.value)} disabled={p.ks === 0} /></td>
+                            <td className="num">{p.mnozstvi}</td>
+                            <td className="num">{p.maxCena ? fmtCZK(p.maxCena) : "—"}</td>
+                            <td style={{ fontSize: 13 }}>{dodane.length
+                              ? dodane.map((z) => <div key={z.id}><span className="mono">{z.sarze || "—"}</span> · {fmtDate(z.expirace)} · {z.ks} {t("ks", "pcs")}</div>)
+                              : <span style={{ color: "var(--muted)" }}>—</span>}</td>
+                            <td><span className={"pill " + POPIS[s].pill}>{POPIS[s][lang] || POPIS[s].cs}</span></td>
                           </tr>
                         );
                       })}
-                      {!mojeProdukty.length && <tr><td colSpan={7} className="empty">{t("Žádná položka neodpovídá hledání.", "No items match your search.")}</td></tr>}
                     </tbody>
-                  </table>
+                  </table></div>
                 </div>
-              </div>
-            </>
-          )}
+              </>
+            );
+          })()}
 
           {/* ============ HISTORIE / OBJEDNÁVKY ============ */}
           {(view === "historie" || view === "objednavky") && (
@@ -1988,9 +2346,46 @@ export default function PortApp() {
             const dopor = novyPozadavek ? doporucenaCena(novyPozadavek.sukl, products) : null;
             return (
               <>
-                <h1>{t("Moje poptávky", "My requests")}</h1>
-                <p className="sub">{t("Nenašli jste položku ve své objednávce? Pošlete nám poptávku s maximální cenou — jakmile zboží zajistíme, objeví se ve vaší objednávce a dáme vám vědět e-mailem.",
-                                      "Can't find an item in your order form? Send us a request with your maximum price — once we secure the goods, the item will appear in your order form and we will let you know by e-mail.")}</p>
+                <h1>{t("Nová objednávka", "New order")}</h1>
+
+                {(() => {
+                  /* nabídky většího množství, které na odběratele čekají */
+                  const nabidky = [];
+                  demands.forEach((d) => d.polozky.forEach((it) => {
+                    const nv = it.navrhOdb;
+                    if (nv && nv.stav === "odeslan" && nv.odbKod === user.kod && !navrhPropadl(nv)) nabidky.push({ d, it, nv });
+                  }));
+                  if (!nabidky.length) return null;
+                  return (
+                    <div className="card" style={{ marginBottom: 16, border: "2px solid var(--brand)" }}>
+                      <div className="toolbar">
+                        <b style={{ fontSize: 14 }}>{t("Nabídka většího množství", "Offer of a larger quantity")}</b>
+                        <span className="pill kod">{nabidky.length}</span>
+                      </div>
+                      {nabidky.map(({ d, it, nv }) => (
+                        <div key={d.cislo + it.id} className="pad" style={{ borderTop: "1px solid var(--line)" }}>
+                          <b>{it.nazev}</b> {it.doplnek && <span style={{ color: "var(--muted)", fontSize: 13 }}>{it.doplnek}</span>}
+                          <div style={{ fontSize: 13.5, color: "var(--muted)", margin: "4px 0 10px" }}>
+                            {t("objednáno", "ordered")} {(it.zdroje || []).find((z) => z.odbKod === user.kod)?.mnozstvi} {t("ks", "pcs")}
+                            {" · "}{t("nabídka platí do", "offer valid until")} {fmtDate(nv.platnost)}
+                            {nv.pozn && <> · „{nv.pozn}“</>}
+                          </div>
+                          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+                            {nv.hladiny.map((h, i) => (
+                              <button key={i} className="btn mini" onClick={() => prijmiNavrhOdb(d, it, i)}>
+                                {t(`Navýšit na ${h.ks} ks à ${fmtCZK(h.cena)}`, `Increase to ${h.ks} pcs at ${fmtCZK(h.cena)}`)}</button>
+                            ))}
+                            <button className="btn sec mini" onClick={() => odmitniNavrhOdb(d, it)}>{t("Zůstat u původního množství", "Keep the original quantity")}</button>
+                            <span style={{ fontSize: 12.5, color: "var(--muted)" }}>{t("přijetím se objednávka závazně navýší", "accepting increases the order bindingly")}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
+
+                <p className="sub">{t("Uveďte položku, počet kusů a nejvyšší cenu, kterou jste ochotni zaplatit. Odesláním vzniká závazná objednávka — zboží pro vás teprve sháníme, žádný katalog k výběru nemáme. Průběh sledujte v záložce Stav objednávek.",
+                                      "State the item, the quantity and the highest price you are willing to pay. Submitting creates a binding order — we source the goods for you; there is no catalogue to pick from. Track progress under Order status.")}</p>
                 <div className="card">
                   <div className="toolbar">
                     <span style={{ fontSize: 13, color: "var(--muted)" }}>{moje.length} {t("poptávek", "requests")}</span>
@@ -2027,7 +2422,11 @@ export default function PortApp() {
                         <input type="text" className="mono" style={{ width: 110 }} value={novyPozadavek.sarze} onChange={(e) => setNovyPozadavek({ ...novyPozadavek, sarze: e.target.value })} /></label>
                       <label style={lbl}>{t("Poznámka", "Note")}<br />
                         <input type="text" style={{ width: 220 }} value={novyPozadavek.pozn} onChange={(e) => setNovyPozadavek({ ...novyPozadavek, pozn: e.target.value })} /></label>
-                      <button className="btn mini" onClick={odesliPozadavek}>{t("Odeslat poptávku", "Send request")}</button>
+<label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, cursor: "pointer", width: "100%" }}>
+                        <input type="checkbox" checked={zavaznaPotvrz} onChange={(e) => setZavaznaPotvrz(e.target.checked)} />
+                        <b>{t("Podávám závaznou objednávku", "I am placing a binding order")}</b>
+                      </label>
+                      <button className="btn mini" disabled={!zavaznaPotvrz} onClick={odesliPozadavek}>{t("Odeslat závaznou objednávku", "Send binding order")}</button>
                       <button className="btn sec mini" onClick={() => setNovyPozadavek(null)}>{t("Zrušit", "Cancel")}</button>
                     </div>
                   )}
@@ -2036,7 +2435,7 @@ export default function PortApp() {
                     const okPocet = radky.filter((r) => !r.chyby.length).length;
                     const celkem = radky.reduce((s, r) => s + (Number(r.mnozstvi) || 0) * (Number(r.maxCena) || 0), 0);
                     return (
-                      <div className="pad" style={{ borderBottom: "1px solid var(--line)", background: "#FAF9FE" }}>
+                      <div className="pad" style={{ borderBottom: "1px solid var(--line)", background: "var(--tint)" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 8 }}>
                           <b style={{ fontSize: 14 }}>{t("Náhled importu", "Import preview")}</b>
                           <span className="pill kod mono">{importNahled.soubor}</span>
@@ -2052,7 +2451,7 @@ export default function PortApp() {
                             <th>{t("Min. expirace", "Min. shelf life")}</th><th>{t("Poznámka", "Note")}</th><th></th></tr></thead>
                           <tbody>
                             {radky.map((r, i) => (
-                              <tr key={i} style={r.chyby.length ? { background: "#FEF2F2" } : undefined}>
+                              <tr key={i} style={r.chyby.length ? { background: "var(--red-bg)" } : undefined}>
                                 <td className="mono" style={{ color: "var(--muted)" }}>{i + 1}</td>
                                 <td><input type="text" list="sukl-list" className="mono" style={{ width: 100 }} value={r.sukl}
                                   onChange={(e) => upravImport(i, "sukl", e.target.value)} /></td>
@@ -2080,7 +2479,11 @@ export default function PortApp() {
                           </tbody>
                         </table></div>
                         <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
-                          <button className="btn mini" onClick={odesliImport}>{t(`Odeslat poptávku (${okPocet} položek)`, `Send request (${okPocet} items)`)}</button>
+                          <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13.5, cursor: "pointer", width: "100%", marginBottom: 4 }}>
+                            <input type="checkbox" checked={zavaznaPotvrz} onChange={(e) => setZavaznaPotvrz(e.target.checked)} />
+                            <b>{t("Podávám závaznou objednávku", "I am placing a binding order")}</b>
+                          </label>
+                          <button className="btn mini" disabled={!zavaznaPotvrz} onClick={odesliImport}>{t(`Odeslat závazně (${okPocet} položek)`, `Submit bindingly (${okPocet} items)`)}</button>
                           <button className="btn sec mini" onClick={() => setImportNahled(null)}>{t("Zrušit import", "Cancel import")}</button>
                         </div>
                       </div>
@@ -2112,100 +2515,85 @@ export default function PortApp() {
 
           {/* ============ ZPROSTŘEDKOVATEL: centrální tabulka ============ */}
           {view === "produkty" && user.role === "admin" && (() => {
-            const doporNovy = novy ? doporucenaCena(novy.sukl, products) : null;
             return (
               <>
-                <h1>{t("Centrální tabulka (PRODUKTY)", "Central table (PRODUCTS)")}</h1>
-                <p className="sub">{t("Hlavní zdroj dat. Kód odběratele určuje, komu se položka zobrazí; „VŠICHNI“ = volná nabídka pro všechny odběratele (kdo dřív přijde). Odběratel vidí pouze prodejní cenu — nikdy nákup, marži ani příznak vývozního omezení.",
-                                      "The main data source. The buyer code determines who sees the item; \u201cALL\u201d = open offer for every buyer (first come, first served). Buyers only ever see the selling price — never the purchase price, margin or export-restriction flag.")}</p>
+                <h1>{t("Zboží v pohybu", "Goods in transit")}</h1>
+                <p className="sub">{t("Každý řádek je konkrétní nákup pro konkrétní objednávku — Pharmodeco nedrží zásobu. Zboží prochází třemi stavy: objednáno u dodavatele, převzato od dodavatele, expedováno odběrateli. Odběratel vidí pouze prodejní cenu — nikdy nákup, marži ani příznak vývozního omezení.",
+                                      "Every row is a specific purchase for a specific order — Pharmodeco holds no stock. Goods move through three states: ordered from the supplier, received from the supplier, dispatched to the buyer. Buyers only ever see the selling price — never the purchase price, margin or export-restriction flag.")}</p>
                 <div className="card">
                   <div className="toolbar">
                     <input className="search" type="text" placeholder={t("Hledat…", "Search…")} value={hledat} onChange={(e) => setHledat(e.target.value)} />
-                    <button className="btn mini" onClick={() => setNovy({ sukl: "", ean: "", nazev: "", doplnek: "", atc: "", vyrobce: "", sarze: "", expirace: "2028-12-31", ks: 0, nakupCena: 0, marze: 25, cena: 0, dodKod: Object.keys(dodavatele)[0], odbKod: "VSICHNI" })}>{t("+ Přidat položku", "+ Add item")}</button>
                     <button className="btn sec mini" onClick={exportProdukty}>{t("Export XLS", "Export XLS")}</button>
                     <button className="btn sec mini" onClick={resetDemo}>{t("Obnovit demo data", "Reset demo data")}</button>
                   </div>
-                  {novy && (
-                    <div className="form">
-                      <label style={lbl}>{t("Kód SÚKL (našeptávač)", "SÚKL code (autocomplete)")}<br />
-                        <input type="text" list="sukl-list" style={{ width: 140 }} value={novy.sukl}
-                          onChange={(e) => setNovy(doplnZCiselniku(novy, "sukl", e.target.value))} /></label>
-                      <label style={lbl}>{t("Název", "Name")}<br />
-                        <input type="text" list="sukl-nazvy" style={{ width: 180 }} value={novy.nazev}
-                          onChange={(e) => setNovy(doplnZCiselniku(novy, "nazev", e.target.value))} /></label>
-                      <label style={lbl}>{t("Síla / forma / balení", "Strength / form / pack")}<br />
-                        <input type="text" list="sukl-doplnky" style={{ width: 230 }} value={novy.doplnek}
-                          onChange={(e) => setNovy(doplnZCiselniku(novy, "doplnek", e.target.value))} /></label>
-                      <label style={lbl}>ATC<br />
-                        <input type="text" className="mono" style={{ width: 80 }} value={novy.atc} onChange={(e) => setNovy({ ...novy, atc: e.target.value })} /></label>
-                      <label style={lbl}>{t("Výrobce", "Manufacturer")}<br />
-                        <input type="text" style={{ width: 140 }} value={novy.vyrobce} onChange={(e) => setNovy({ ...novy, vyrobce: e.target.value })} /></label>
-                      <label style={lbl}>{t("Šarže", "Batch")}<br />
-                        <input type="text" className="mono" style={{ width: 100 }} value={novy.sarze} onChange={(e) => setNovy({ ...novy, sarze: e.target.value })} /></label>
-                      <label style={lbl}>{t("Expirace", "Expiry")}<br />
-                        <input type="date" value={novy.expirace} onChange={(e) => setNovy({ ...novy, expirace: e.target.value })} /></label>
-                      <label style={lbl}>{t("Ks", "Qty")}<br />
-                        <input type="number" style={{ width: 80 }} value={novy.ks} onChange={(e) => setNovy({ ...novy, ks: e.target.value })} /></label>
-                      <label style={lbl}>{t("Nákup/ks", "Buy/pc")}<br />
-                        <input type="number" style={{ width: 100 }} value={novy.nakupCena}
-                          onChange={(e) => { const nk = Number(e.target.value) || 0; setNovy({ ...novy, nakupCena: e.target.value, cena: r2(nk * (1 + (Number(novy.marze) || 0) / 100)) }); }} /></label>
-                      <label style={lbl}>{t("Marže %", "Margin %")}<br />
-                        <input type="number" style={{ width: 80 }} value={novy.marze}
-                          onChange={(e) => { const m = Number(e.target.value) || 0; setNovy({ ...novy, marze: e.target.value, cena: r2((Number(novy.nakupCena) || 0) * (1 + m / 100)) }); }} /></label>
-                      <label style={lbl}>{t("Prodej/ks", "Sell/pc")}<br />
-                        <input type="number" style={{ width: 100 }} value={novy.cena}
-                          onChange={(e) => { const c = Number(e.target.value) || 0; const nk = Number(novy.nakupCena) || 0; setNovy({ ...novy, cena: e.target.value, marze: nk > 0 ? r2((c / nk - 1) * 100) : novy.marze }); }} /></label>
-                      <label style={lbl}>{t("Dodavatel", "Supplier")}<br />
-                        <select value={novy.dodKod} onChange={(e) => setNovy({ ...novy, dodKod: e.target.value })}>
-                          {Object.keys(dodavatele).map((k) => <option key={k} value={k}>{k} — {dodavatele[k].nazev}</option>)}</select></label>
-                      <label style={lbl}>{t("Kód odběratele", "Buyer code")}<br />
-                        <select value={novy.odbKod} onChange={(e) => setNovy({ ...novy, odbKod: e.target.value })}>
-                          <option value="VSICHNI">{t("VŠICHNI — volná nabídka", "ALL — open offer")}</option>
-                          {Object.keys(odberatele).map((k) => <option key={k} value={k}>{k} — {odberatele[k].nazev}</option>)}</select></label>
-                      <button className="btn mini" onClick={ulozNovy}>{t("Uložit", "Save")}</button>
-                      <button className="btn sec mini" onClick={() => setNovy(null)}>{t("Zrušit", "Cancel")}</button>
-                      <div style={{ width: "100%", display: "flex", gap: 10, flexWrap: "wrap" }}>
-                        {doporNovy && <span className="pill kod">{t("doporučená cena", "recommended price")} {fmtCZK(doporNovy)}</span>}
-                        {jeBlacklist(novy.sukl) && <span className="pill prosla">⚑ {blacklistDuvod(novy.sukl, lang)}</span>}
-                      </div>
-                    </div>
-                  )}
+                  <div className="pad" style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center", borderBottom: "1px solid var(--line)" }}>
+                    {[["vse", t("Vše", "All")], ["objednano", t("Čeká na dodavatele", "Awaiting supplier")],
+                      ["prijato", t("U nás — k expedici", "With us — to dispatch")], ["expedovano", t("Expedováno", "Dispatched")]].map(([k, popis]) => {
+                      const pocet = k === "vse" ? products.length : products.filter((x) => pohybStav(x) === k).length;
+                      return (
+                        <button key={k} className={"btn " + (pohybFiltr === k ? "" : "sec ") + "mini"} onClick={() => setPohybFiltr(k)}>
+                          {popis} <span className="pill kod">{pocet}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
                   <div className="table-wrap">
-                    <table>
+                    <table className="pohyb">
                       <thead><tr>
-                        <th>{t("Kód SÚKL", "SÚKL code")}</th><th>{t("Název / síla / výrobce", "Name / strength / manufacturer")}</th><th>ATC</th><th>{t("Šarže", "Batch")}</th><th>{t("Expirace", "Expiry")}</th>
-                        <th className="num">{t("Ks", "Qty")}</th><th className="num">{t("Nákup bez DPH", "Buy excl. VAT")}</th><th className="num">{t("Marže %", "Margin %")}</th><th className="num">{t("Prodej bez DPH", "Sell excl. VAT")}</th>
-                        <th>{t("Dodavatel", "Supplier")}</th><th>{t("Odběratel", "Buyer")}</th><th></th>
+                        <th style={{ width: "30%" }}>{t("Položka", "Item")}</th>
+                        <th style={{ width: 150 }}>{t("Šarže / expirace", "Batch / expiry")}</th>
+                        <th style={{ width: 70 }}>{t("Ks", "Qty")}</th>
+                        <th style={{ width: 210 }}>{t("Nákup / marže / prodej", "Buy / margin / sell")}</th>
+                        <th style={{ width: 220 }}>{t("Stav a akce", "Status and action")}</th>
                       </tr></thead>
                       <tbody>
-                        {mojeProdukty.map((p) => {
+                        {mojeProdukty.filter((p) => pohybFiltr === "vse" || pohybStav(p) === pohybFiltr).map((p) => {
                           const bl = jeBlacklist(p.sukl);
                           const st = expState(p.expirace);
+                          const ps = pohybStav(p);
                           return (
                             <tr key={p.id} className={bl ? "bl" : undefined}>
-                              <td><span className="mono">{p.sukl}</span>{bl && <><br /><span className="pill prosla" title={blacklistDuvod(p.sukl, lang)}>⚑ {t("omezení", "restricted")}</span></>}</td>
-                              <td><b>{p.nazev}</b>{p.doplnek && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{p.doplnek}</span></>}
-                                {p.vyrobce && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{p.vyrobce}</span></>}
-                                {bl && <><br /><span style={{ color: "var(--red)", fontSize: 12.5 }}>{blacklistDuvod(p.sukl, lang)}</span></>}</td>
-                              <td className="mono">{p.atc || "—"}</td>
-                              <td><input type="text" className="mono" style={{ width: 92 }} value={p.sarze} placeholder={t("doplnit", "add")}
-                                onChange={(e) => upravPole(p.id, "sarze", e.target.value)} /></td>
-                              <td><input type="date" value={p.expirace || ""} onChange={(e) => upravPole(p.id, "expirace", e.target.value)} />
+                              <td>
+                                <b style={{ fontSize: 14.5 }}>{p.nazev}</b>{bl && <> <span className="pill prosla" title={blacklistDuvod(p.sukl, lang)}>⚑</span></>}
+                                {p.doplnek && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{p.doplnek}</span></>}
+                                <div style={{ marginTop: 6, paddingTop: 6, borderTop: "1px solid var(--line)", fontSize: 12, color: "var(--muted)" }}>
+                                  <span className="mono">{p.sukl}</span>{p.atc ? <> · <span className="mono">{p.atc}</span></> : null}
+                                  {p.vyrobce && <><br />{p.vyrobce}</>}
+                                </div>
+                                {bl && <div style={{ color: "var(--red)", fontSize: 12, marginTop: 4 }}>{blacklistDuvod(p.sukl, lang)}</div>}</td>
+                              <td style={{ textAlign: "left", paddingLeft: 6 }}>
+                                <input type="text" className="mono" style={{ width: 100 }} value={p.sarze} placeholder={t("šarže", "batch")}
+                                  onChange={(e) => upravPole(p.id, "sarze", e.target.value)} />
+                                <br /><input type="date" style={{ width: 132, marginTop: 4 }} value={p.expirace || ""} onChange={(e) => upravPole(p.id, "expirace", e.target.value)} />
                                 {st === "brzy" && <><br /><span className="pill brzy">{t("< 6 měs.", "< 6 mo.")}</span></>}
                                 {st === "prosla" && <><br /><span className="pill prosla">{t("prošlá", "expired")}</span></>}</td>
-                              <td className="num"><input className="qty" type="number" value={p.ks} onChange={(e) => upravPole(p.id, "ks", e.target.value)} /></td>
-                              <td className="num"><input className="qty" style={{ width: 96 }} type="number" value={p.nakupCena} onChange={(e) => upravPole(p.id, "nakupCena", e.target.value)} /></td>
-                              <td className="num"><input className="qty" style={{ width: 76 }} type="number" value={Number(marzePct(p).toFixed(1))} onChange={(e) => upravMarzi(p.id, e.target.value)} /></td>
-                              <td className="num"><input className="qty" style={{ width: 96 }} type="number" value={p.cena} onChange={(e) => upravPole(p.id, "cena", e.target.value)} /></td>
-                              <td><span className="pill kod">{p.dodKod}</span></td>
-                              <td><select value={p.odbKod} onChange={(e) => upravPole(p.id, "odbKod", e.target.value)}>
-                                <option value="VSICHNI">{t("VŠICHNI", "ALL")}</option>
-                                {Object.keys(odberatele).map((k) => <option key={k} value={k}>{k}</option>)}</select></td>
-                              <td><button className="btn danger mini" onClick={() => smazProdukt(p.id)}>{t("Smazat", "Delete")}</button></td>
+                              <td style={{ textAlign: "left", paddingLeft: 6, fontWeight: 700 }}>{p.ks}</td>
+                              <td style={{ background: "var(--tint)", whiteSpace: "nowrap" }}>
+                                {/* ceny jsou dané: nákup z akceptované nabídky, prodej = max. cena odběratele */}
+                                <div style={{ display: "grid", gridTemplateColumns: "auto auto", gap: "4px 12px", alignItems: "baseline", fontSize: 12.5, color: "var(--muted)" }}>
+                                  <span>{t("nákup", "buy")}</span><span style={{ textAlign: "right", color: "var(--ink)" }}>{fmtCZK(p.nakupCena)}</span>
+                                  <span>{t("marže", "margin")}</span><span style={{ textAlign: "right", color: "var(--ink)" }}>{fmtPct(marzePct(p))}</span>
+                                  <span style={{ color: "var(--ink)", fontWeight: 700 }}>{t("prodej", "sell")}</span>
+                                  <span style={{ textAlign: "right", fontWeight: 700, fontSize: 14, color: "var(--ink)" }}>{fmtCZK(p.cena)}</span>
+                                </div></td>
+                              <td>
+                                <span className={"pill " + POHYB_LABEL[ps].pill}>{POHYB_LABEL[ps][lang] || POHYB_LABEL[ps].cs}</span>
+                                {p.datumPrijem && <><br /><span style={{ fontSize: 12, color: "var(--muted)" }}>{t("převzato", "received")} {fmtDate(p.datumPrijem)}</span></>}
+                                {p.datumExpedice && <><br /><span style={{ fontSize: 12, color: "var(--muted)" }}>{t("expedováno", "dispatched")} {fmtDate(p.datumExpedice)}</span></>}
+                                <div style={{ marginTop: 6, whiteSpace: "nowrap" }}>
+                                  {ps === "objednano" && <><button className="btn mini" onClick={() => posunPohyb(p, "prijato")}>{t("Převzato", "Received")}</button>{" "}</>}
+                                  {ps === "prijato" && <><button className="btn mini" onClick={() => posunPohyb(p, "expedovano")}>{t("Expedovat", "Dispatch")}</button>{" "}</>}
+                                  <button className="btn danger mini" onClick={() => smazProdukt(p.id)}>{t("Smazat", "Delete")}</button>
+                                </div>
+                                <div style={{ marginTop: 8, paddingTop: 6, borderTop: "1px solid var(--line)", fontSize: 12.5, color: "var(--muted)", whiteSpace: "nowrap" }}>
+                                  {t("od", "from")} <span className="pill kod">{p.dodKod}</span>{" "}
+                                  {t("komu", "to")} <span className="pill kod">{p.odbKod}</span>
+                                  {p.pozCislo && <><br /><span className="mono" style={{ fontSize: 11.5 }}>{p.pozCislo}</span></>}
+                                </div></td>
                             </tr>
                           );
                         })}
-                        {!mojeProdukty.length && <tr><td colSpan={12} className="empty">{t("Žádná položka neodpovídá hledání.", "No items match your search.")}</td></tr>}
+                        {!mojeProdukty.length && <tr><td colSpan={5} className="empty">{t("Žádná položka neodpovídá hledání.", "No items match your search.")}</td></tr>}
                       </tbody>
                     </table>
                   </div>
@@ -2290,44 +2678,80 @@ export default function PortApp() {
                             onChange={(e) => setNovaPoptavka({ ...novaPoptavka, minExpMesice: e.target.value, minExp: "" })} /></label>
                         <label style={lbl}>{t("nebo konkrétní datum", "or a specific date")}<br />
                           <input type="date" value={novaPoptavka.minExp} onChange={(e) => setNovaPoptavka({ ...novaPoptavka, minExp: e.target.value, minExpMesice: "" })} /></label>
-                        {minExpText(novaPoptavka) && <span className="pill kod">{t("min. expirace", "min. shelf life")}: {minExpText(novaPoptavka)}</span>}
+                        {minExpText(novaPoptavka) && <span className="pill kod" style={{ alignSelf: "center" }}>{t("min. expirace", "min. shelf life")}: {minExpText(novaPoptavka)}</span>}
                       </div>
 
                       <div className="table-wrap" style={{ marginTop: 12 }}>
-                        <table>
+                        <table className="pohyb">
                           <thead><tr>
-                            <th>{t("Kód SÚKL", "SÚKL code")}</th><th>{t("Název", "Name")}</th><th>{t("Síla / forma / balení", "Strength / form / pack")}</th>
-                            <th className="num">{t("Množství", "Quantity")}</th><th className="num">{t("Limit odběratele", "Buyer's limit")}</th>
-                            <th className="num">{t("Požadovaná cena", "Target price")}</th><th>{t("Šarže", "Batch")}</th><th></th>
+                            <th style={{ width: "34%" }}>{t("Položka", "Item")}</th>
+                            <th style={{ width: 220 }}>{t("Z objednávky", "From order")}</th>
+                            <th style={{ width: 90 }}>{t("Množství", "Quantity")}</th>
+                            <th style={{ width: 210 }}>{t("Limit / požadovaná cena", "Limit / target price")}</th>
+                            <th style={{ width: 150 }}>{t("Šarže a akce", "Batch and action")}</th>
                           </tr></thead>
                           <tbody>
-                            {novaPoptavka.polozky.map((p, idx) => (
-                              <tr key={idx}>
-                                <td><input type="text" list="sukl-list" className="mono" style={{ width: 120 }} value={p.sukl}
-                                  onChange={(e) => setPol(idx, doplnZCiselniku(p, "sukl", e.target.value))} />
-                                  {jeBlacklist(p.sukl) && <><br /><span className="pill prosla" title={blacklistDuvod(p.sukl, lang)}>⚑ {t("omezení", "restricted")}</span></>}</td>
-                                <td><input type="text" list="sukl-nazvy" style={{ width: 180 }} value={p.nazev}
-                                  onChange={(e) => setPol(idx, doplnZCiselniku(p, "nazev", e.target.value))} /></td>
-                                <td><input type="text" list="sukl-doplnky" style={{ width: 230 }} value={p.doplnek}
-                                  onChange={(e) => setPol(idx, doplnZCiselniku(p, "doplnek", e.target.value))} /></td>
-                                <td className="num"><input type="number" className="qty" style={{ width: 90 }} value={p.mnozstvi}
-                                  onChange={(e) => setPol(idx, { ...p, mnozstvi: e.target.value })} /></td>
-                                <td className="num"><input type="number" className="qty" style={{ width: 110 }} value={p.maxProdejni}
-                                  onChange={(e) => { const lim = Number(e.target.value) || 0; setPol(idx, { ...p, maxProdejni: e.target.value, cena: lim ? r2(lim / (1 + (Number(novaPoptavka.provize) || 0) / 100)) : p.cena }); }} /></td>
-                                <td className="num"><input type="number" className="qty" style={{ width: 110 }} value={p.cena}
-                                  onChange={(e) => setPol(idx, { ...p, cena: e.target.value })} /></td>
-                                <td><input type="text" className="mono" style={{ width: 100 }} value={p.pozadovanaSarze}
-                                  onChange={(e) => setPol(idx, { ...p, pozadovanaSarze: e.target.value })} /></td>
-                                <td>{novaPoptavka.polozky.length > 1 && (
-                                  <button className="btn danger mini" onClick={() => setNovaPoptavka({ ...novaPoptavka, polozky: novaPoptavka.polozky.filter((_, i) => i !== idx) })}>{t("Odebrat", "Remove")}</button>
-                                )}
-                                  {(p.zdroje || []).map((z) => (
-                                    <div key={z.pozCislo} style={{ marginTop: 4 }}><span className="pill kod">{z.odbKod} · {z.mnozstvi} {t("ks", "pcs")}{z.maxCena ? ` · max ${fmtCZK(z.maxCena)}` : ""}</span></div>
-                                  ))}
-                                  {(p.zdroje || []).length > 1 && <div style={{ marginTop: 4 }}><span className="pill nova">{t("sloučená položka", "merged item")}</span></div>}
+                            {novaPoptavka.polozky.map((p, idx) => {
+                              const bl = jeBlacklist(p.sukl);
+                              const objednano = (p.zdroje || []).reduce((s, z) => s + (Number(z.mnozstvi) || 0), 0);
+                              /* nad závazek odběratelů nemá smysl poptávat — zbytek by zůstal nám */
+                              const nadZavazek = objednano > 0 && Number(p.mnozstvi) > objednano;
+                              return (
+                              <tr key={idx} style={bl ? { background: "var(--red-bg)" } : undefined}>
+                                <td>
+                                  <input type="text" list="sukl-nazvy" style={{ width: "100%", maxWidth: 260 }} value={p.nazev}
+                                    onChange={(e) => setPol(idx, doplnZCiselniku(p, "nazev", e.target.value))} />
+                                  <input type="text" list="sukl-doplnky" style={{ width: "100%", maxWidth: 260, marginTop: 4 }} value={p.doplnek}
+                                    placeholder={t("síla / forma / balení", "strength / form / pack")}
+                                    onChange={(e) => setPol(idx, doplnZCiselniku(p, "doplnek", e.target.value))} />
+                                  <div style={{ marginTop: 4, display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
+                                    <input type="text" list="sukl-list" className="mono" style={{ width: 110 }} value={p.sukl}
+                                      placeholder="SÚKL" onChange={(e) => setPol(idx, doplnZCiselniku(p, "sukl", e.target.value))} />
+                                    {bl && <span className="pill prosla" title={blacklistDuvod(p.sukl, lang)}>⚑ {t("vývozní omezení", "export restriction")}</span>}
+                                  </div>
+                                  {bl && <div style={{ color: "var(--red)", fontSize: 12, marginTop: 4 }}>{blacklistDuvod(p.sukl, lang)}</div>}
                                 </td>
-                              </tr>
-                            ))}
+                                <td style={{ fontSize: 12.5 }}>
+                                  {(p.zdroje || []).length ? (p.zdroje || []).map((z) => (
+                                    <div key={z.pozCislo || z.odbKod} style={{ marginBottom: 4 }}>
+                                      <span className="pill kod">{z.odbKod}</span> {z.mnozstvi} {t("ks", "pcs")}
+                                      {z.maxCena ? ` · max ${fmtCZK(z.maxCena)}` : ""}
+                                      {z.pozCislo && <><br /><span className="mono" style={{ fontSize: 11.5, color: "var(--muted)" }}>{z.pozCislo}</span></>}
+                                    </div>
+                                  )) : <span style={{ color: "var(--muted)" }}>{t("vlastní poptávka", "own RFQ")}</span>}
+                                  {(p.zdroje || []).length > 1 && <span className="pill nova">{t("sloučená", "merged")}</span>}
+                                </td>
+                                <td>
+                                  <input type="number" className="qty" style={{ width: 82 }} value={p.mnozstvi}
+                                    onChange={(e) => setPol(idx, { ...p, mnozstvi: e.target.value })} />
+                                  {nadZavazek && (
+                                    <div className="warn" style={{ marginTop: 6, padding: "6px 8px", fontSize: 12 }}>
+                                      {t(`Nad závazek odběratelů (${objednano} ks) — rozdíl byste kupovali na sebe.`,
+                                         `Above the buyer commitment (${objednano} pcs) — you would buy the difference for yourself.`)}
+                                    </div>
+                                  )}
+                                </td>
+                                <td style={{ background: "var(--tint)" }}>
+                                  <div style={{ display: "grid", gridTemplateColumns: "auto 110px", gap: "5px 8px", alignItems: "center", fontSize: 12.5, color: "var(--muted)" }}>
+                                    <span>{t("limit odběratele", "buyer's limit")}</span>
+                                    <input type="number" className="qty" style={{ width: 110 }} value={p.maxProdejni}
+                                      onChange={(e) => { const lim = Number(e.target.value) || 0; setPol(idx, { ...p, maxProdejni: e.target.value, cena: lim ? r2(lim / (1 + (Number(novaPoptavka.provize) || 0) / 100)) : p.cena }); }} />
+                                    <span style={{ color: "var(--ink)", fontWeight: 700 }}>{t("požadovaná cena", "target price")}</span>
+                                    <input type="number" className="qty" style={{ width: 110, fontWeight: 700 }} value={p.cena}
+                                      onChange={(e) => setPol(idx, { ...p, cena: e.target.value })} />
+                                  </div>
+                                </td>
+                                <td>
+                                  <input type="text" className="mono" style={{ width: 110 }} value={p.pozadovanaSarze}
+                                    placeholder={t("šarže", "batch")} onChange={(e) => setPol(idx, { ...p, pozadovanaSarze: e.target.value })} />
+                                  {novaPoptavka.polozky.length > 1 && (
+                                    <div style={{ marginTop: 6 }}>
+                                      <button className="btn danger mini" onClick={() => setNovaPoptavka({ ...novaPoptavka, polozky: novaPoptavka.polozky.filter((_, i) => i !== idx) })}>{t("Odebrat", "Remove")}</button>
+                                    </div>
+                                  )}
+                                </td>
+                              </tr>);
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -2426,12 +2850,13 @@ export default function PortApp() {
                   </div>
 
                   {!zobrazene.length && <div className="empty">{t("Žádné poptávky. Vytvořte první tlačítkem výše, nebo z požadavku odběratele.", "No RFQs. Create the first one with the button above, or from a buyer request.")}</div>}
+                  <div style={{ padding: zobrazene.length ? "16px 16px 0" : 0 }}>
 
                   {zobrazene.map((d) => {
                     const hotovych = d.polozky.filter(polozkaPokryta).length;
                     return (
-                      <div key={d.cislo} style={{ borderBottom: "1px solid var(--line)" }}>
-                        <div className="pad" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", background: "#FAF9FE" }}>
+                      <div key={d.cislo} className="poptavka">
+                        <div className="hlava" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                           <span className="mono"><b>{d.cislo}</b></span>
                           <span style={{ fontSize: 13.5 }}>{fmtDate(d.datum)} · {t("provize", "commission")} {d.provize} %{minExpText(d) ? ` · ${t("min. expirace", "min. shelf life")} ${minExpText(d)}` : ""}</span>
                           <span className="pill kod">{d.polozky.length} {t("položek · pokryto", "items · covered")} {hotovych}</span>
@@ -2441,14 +2866,15 @@ export default function PortApp() {
                           {d.stav === "otevrena" && <button className="btn sec mini" onClick={() => uzavriPoptavku(d.cislo)}>{t("Uzavřít", "Close")}</button>}
                         </div>
 
-                        {d.polozky.map((it) => {
+                        {d.polozky.map((it, ii) => {
                           const pkr = pokryto(it);
                           const zbyvaPokryt = Math.max(0, it.mnozstvi - pkr);
                           const mkey = d.cislo + "-" + it.id;
                           return (
-                            <div key={it.id} style={{ borderTop: "1px solid var(--line)" }}>
-                              <div className="pad" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-                                <b>{jeBlacklist(it.sukl) && "⚑ "}{it.nazev}</b>
+                            <div key={it.id} className="polozka">
+                              <div className="hlava" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+                                <span className="cislo">{t("položka", "item")} {ii + 1}/{d.polozky.length}</span>
+                                <b style={{ fontSize: 15 }}>{jeBlacklist(it.sukl) && "⚑ "}{it.nazev}</b>
                                 {it.doplnek && <span style={{ color: "var(--muted)", fontSize: 13 }}>{it.doplnek}</span>}
                                 <span className="mono" style={{ color: "var(--muted)" }}>{it.sukl}</span>
                                 <span style={{ fontSize: 13.5 }}>{t("požadovaná cena", "target price")} {fmtCZK(it.cena)}/{t("ks", "pc")}
@@ -2466,88 +2892,200 @@ export default function PortApp() {
                                       <button className="btn mini" onClick={() => zmenMnozstvi(d, it)}>{t("Uložit a upozornit", "Save and notify")}</button>
                                       <button className="btn sec mini" onClick={() => setMnozstviForm({ ...mnozstviForm, [mkey]: undefined })}>{t("Zrušit", "Cancel")}</button>
                                     </>
-                                  ) : (
-                                    <button className="btn sec mini" onClick={() => setMnozstviForm({ ...mnozstviForm, [mkey]: it.mnozstvi })}>{t("Změnit množství", "Change quantity")}</button>
-                                  )
+                                  ) : (<>
+                                    <button className="btn sec mini" onClick={() => setMnozstviForm({ ...mnozstviForm, [mkey]: it.mnozstvi })}>{t("Změnit množství", "Change quantity")}</button>{" "}
+                                    {(() => {
+                                      const nv = it.navrhOdb;
+                                      const ceka = nv && nv.stav === "odeslan" && !navrhPropadl(nv);
+                                      const zdroj0 = (it.zdroje || []).find((z) => z.odbKod === (ceka ? nv.odbKod : ((it.zdroje || [])[0] || {}).odbKod)) || {};
+                                      const otevri = () => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: (navrhOdbForm[mkey] || {}).open
+                                        ? { open: false }
+                                        : { open: true, odbKod: (ceka ? nv.odbKod : ((it.zdroje || [])[0] || {}).odbKod), platnost: ceka ? nv.platnost : platnostZa(3),
+                                            pozn: ceka ? nv.pozn : "",
+                                            navic: ceka ? String(Math.max(0, nv.hladiny[0].ks - (zdroj0.mnozstvi || 0))) : "",
+                                            cena: String(ceka ? nv.hladiny[0].cena : (zdroj0.maxCena || it.maxProdejni || "")) } });
+                                      return (<>
+                                        <button className="btn sec mini" onClick={otevri}>
+                                          {ceka ? t("Upravit nabídku odběrateli", "Amend offer to buyer")
+                                            : nv && nv.stav === "prijat" ? t("Nabídnout ještě víc", "Offer even more")
+                                            : t("Nabídnout odběrateli víc", "Offer buyer more")}</button>
+                                        {ceka && <>{" "}<button className="btn danger mini" onClick={() => stahniNavrhOdb(d, it)}>{t("Stáhnout nabídku", "Withdraw offer")}</button></>}
+                                      </>);
+                                    })()}
+                                  </>)
                                 )}
                               </div>
 
-                              {it.nabidky.length > 0 && (
+                              {(navrhOdbForm[mkey] || {}).open && (() => {
+                                const f = navrhOdbForm[mkey];
+                                const zdrojF = (it.zdroje || []).find((z) => z.odbKod === f.odbKod) || (it.zdroje || [])[0] || {};
+                                const celkem = (Number(zdrojF.mnozstvi) || 0) + (Number(f.navic) || 0);
+                                return (
+                                  <div className="pad" style={{ background: "var(--brand-lt)", borderTop: "1px solid var(--line)" }}>
+                                    <b style={{ fontSize: 13.5 }}>{t("Nabídka většího množství odběrateli", "Offer of a larger quantity to the buyer")}</b>
+                                    <p className="sub" style={{ margin: "4px 0 10px" }}>
+                                      {t("Kolik kusů navíc nabízíte. Přijetím se objednávka odběratele závazně navýší — teprve pak smíte odpovídající množství koupit od dodavatele.",
+                                         "How many extra pieces you are offering. Accepting increases the buyer's binding order — only then may you buy the matching quantity from the supplier.")}
+                                      {" "}{it.navrhOdb && it.navrhOdb.stav === "odeslan"
+                                        ? t("Odesláním nahradíte nabídku, která na odběratele čeká.", "Sending replaces the offer currently awaiting the buyer.")
+                                        : it.navrhOdb && it.navrhOdb.stav === "prijat"
+                                        ? t("Předchozí nabídku už odběratel přijal — tato jde nad rámec navýšeného množství.", "The buyer already accepted the previous offer — this one goes beyond the increased quantity.")
+                                        : ""}</p>
+                                    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end" }}>
+                                      <label style={lbl}>{t("Odběratel", "Buyer")}<br />
+                                        <select value={f.odbKod || ""} onChange={(e) => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { ...f, odbKod: e.target.value } })}>
+                                          {(it.zdroje || []).map((z) => <option key={z.odbKod} value={z.odbKod}>{z.odbKod} · {z.mnozstvi} {t("ks", "pcs")}</option>)}
+                                        </select></label>
+                                      <label style={lbl}>{t("O kolik kusů víc", "How many extra pieces")}<br />
+                                        <input type="number" className="qty" value={f.navic || ""}
+                                          onChange={(e) => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { ...f, navic: e.target.value } })} /></label>
+                                      <label style={lbl}>{t("Cena/ks bez DPH", "Price/pc excl. VAT")}<br />
+                                        <input type="number" style={{ width: 110 }} value={f.cena || ""}
+                                          onChange={(e) => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { ...f, cena: e.target.value } })} /></label>
+                                      <div style={{ fontSize: 13, color: "var(--muted)", alignSelf: "center" }}>
+                                        {t("celkem po navýšení", "total after increase")}<br /><b style={{ fontSize: 15, color: "var(--ink)" }}>{celkem} {t("ks", "pcs")}</b></div>
+                                      <label style={lbl}>{t("Platí do", "Valid until")}<br />
+                                        <input type="date" value={f.platnost} onChange={(e) => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { ...f, platnost: e.target.value } })} /></label>
+                                      <label style={lbl}>{t("Vzkaz (volitelné)", "Message (optional)")}<br />
+                                        <input type="text" style={{ width: 220 }} value={f.pozn} onChange={(e) => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { ...f, pozn: e.target.value } })} /></label>
+                                      <button className="btn mini" onClick={() => poslatNavrhOdb(d, it)}>{t("Odeslat nabídku", "Send offer")}</button>
+                                      <button className="btn sec mini" onClick={() => setNavrhOdbForm({ ...navrhOdbForm, [mkey]: { open: false } })}>{t("Zrušit", "Cancel")}</button>
+                                    </div>
+                                  </div>
+                                );
+                              })()}
+
+                              {it.navrhOdb && (
+                                <div className="pad" style={{ borderTop: "1px solid var(--line)", fontSize: 13.5 }}>
+                                  <span className={"pill " + (it.navrhOdb.stav === "prijat" ? "ok" : it.navrhOdb.stav === "odmitnut" ? "prosla" : "brzy")}>
+                                    {it.navrhOdb.stav === "prijat" ? t("odběratel navýšil objednávku", "buyer increased the order")
+                                      : it.navrhOdb.stav === "odmitnut" ? t("odběratel nabídku odmítl", "buyer declined the offer")
+                                      : navrhPropadl(it.navrhOdb) ? t("nabídka odběrateli propadla", "offer to buyer expired")
+                                      : t("čeká na odběratele", "awaiting the buyer")}</span>{" "}
+                                  {it.navrhOdb.odbKod} · {hladinyText(it.navrhOdb.hladiny)}
+                                  {it.navrhOdb.stav === "odeslan" && ` · ${t("platí do", "valid until")} ${fmtDate(it.navrhOdb.platnost)}`}
+                                </div>
+                              )}
+
+                              {it.nabidky.length > 0 && (() => {
+                                /* nejlevnější použitelná nabídka — pomáhá v rozhodnutí na první pohled */
+                                const pouzitelne = it.nabidky.filter((n) => ["podana", "castecne"].includes(n.stav) && n.mnozstvi - (n.akceptovano || 0) > 0);
+                                const nejlepsi = pouzitelne.length ? Math.min(...pouzitelne.map((n) => n.cena)) : null;
+                                return (
                                 <div className="table-wrap" style={{ paddingBottom: 8 }}><table>
                                   <thead><tr>
-                                    <th>{t("Dodavatel", "Supplier")}</th><th className="num">{t("Nabídnutá cena", "Offered price")}</th><th className="num">{t("Ks / zbývá", "Qty / remaining")}</th>
-                                    <th>{t("Šarže", "Batch")}</th><th>{t("Expirace", "Expiry")}</th>
-                                    <th className="num">{t("Akceptovat ks", "Accept qty")}</th><th className="num">{t("Prodejní cena", "Selling price")}</th><th>{t("Zbytek na sklad", "Surplus to")}</th><th></th>
+                                    <th>{t("Dodavatel", "Supplier")}</th>
+                                    <th className="num">{t("Cena/ks · marže", "Price/pc · margin")}</th>
+                                    <th className="num">{t("Nabízí ks", "Offered qty")}</th>
+                                    <th>{t("Expirace", "Expiry")}</th>
+                                    <th>{t("Stav", "Status")}</th>
                                   </tr></thead>
                                   <tbody>{it.nabidky.map((n) => {
                                     const key = d.cislo + "-" + it.id + "-" + n.id;
                                     const af = akceptForm[key] || {};
                                     const pf = protiForm[key] || {};
                                     const zbyvaVNabidce = n.mnozstvi - (n.akceptovano || 0);
-                                    const navrh = Math.min(zbyvaVNabidce, zbyvaPokryt || zbyvaVNabidce);
-                                    /* jakmile je položka pokrytá na 100 %, další nákup „na sklad navíc" se nenabízí */
+                                    const strop = Math.min(zbyvaVNabidce, zbyvaPokryt);
                                     const lzeAkceptovat = d.stav === "otevrena" && zbyvaPokryt > 0 && zbyvaVNabidce > 0 && ["podana", "castecne"].includes(n.stav);
-                                    const podMOQ = n.moq && (Number(af.ks) || navrh) < n.moq;
+                                    const nadLimit = it.maxProdejni && n.cena > it.maxProdejni;
+                                    const marze = ((it.maxProdejni || n.cena * (1 + (d.provize || 5) / 100)) / n.cena - 1) * 100;
+                                    const podProvizi = marze < (Number(d.provize) || 5) - 0.05;
                                     return (
                                       <React.Fragment key={n.id}>
-                                        <tr>
+                                        <tr style={nadLimit ? { opacity: .55 } : undefined}>
                                           <td><b>{(dodavatele[n.dodKod] || {}).nazev || n.dodKod}</b><br />
-                                            <span className="mono" style={{ color: "var(--muted)" }}>{n.dodKod} · {typLabel((dodavatele[n.dodKod] || {}).typ)}</span>
-                                            {n.upravena && <><br /><span className="pill nova">{t("upravená po protinávrhu", "revised after counter-offer")}</span></>}</td>
-                                          <td className="num">{fmtCZK(n.cena)}
-                                            {n.cena > it.cena && <><br /><span className="pill brzy">{t("nad požadavkem", "above target")}</span></>}
-                                            {it.maxProdejni && n.cena > it.maxProdejni && <><br /><span className="pill prosla">{t("nad limitem odběratele", "above buyer's limit")}</span></>}
-                                            <br /><span style={{ fontSize: 12, color: "var(--muted)" }}>{t("marže při prodeji", "margin at sale")} {fmtPct(((it.maxProdejni || n.cena * (1 + (d.provize || 5) / 100)) / n.cena - 1) * 100)}</span></td>
-                                          <td className="num">{n.mnozstvi}{n.akceptovano > 0 && <><br /><span className="pill ok">{t("akcept.", "accepted")} {n.akceptovano}</span></>}
-                                            {zbyvaVNabidce > 0 && n.akceptovano > 0 && <><br /><span style={{ fontSize: 12, color: "var(--muted)" }}>{t("zbývá", "remaining")} {zbyvaVNabidce}</span></>}
-                                            {n.moq && <><br /><span className="pill brzy">MOQ {n.moq}</span></>}</td>
-                                          <td className="mono">{n.sarze || "—"}</td><td>{fmtDate(n.expirace)}</td>
-                                          {lzeAkceptovat ? (<>
-                                            <td className="num"><input className="qty" style={{ width: 82 }} type="number" min="1" max={zbyvaVNabidce}
-                                              placeholder={String(navrh)} value={af.ks || ""}
-                                              onChange={(e) => setAkceptForm({ ...akceptForm, [key]: { ...af, ks: e.target.value } })} />
-                                              {podMOQ && <><br /><span className="pill brzy">{t("pod MOQ", "below MOQ")}</span></>}</td>
-                                            <td className="num"><input className="qty" style={{ width: 100 }} type="number"
-                                              placeholder={String(it.maxProdejni || r2(n.cena * (1 + (d.provize || 5) / 100)))}
-                                              value={af.prodej || ""} onChange={(e) => setAkceptForm({ ...akceptForm, [key]: { ...af, prodej: e.target.value } })} /></td>
-                                            <td><select value={af.odbKod || "VSICHNI"} onChange={(e) => setAkceptForm({ ...akceptForm, [key]: { ...af, odbKod: e.target.value } })}>
-                                              <option value="VSICHNI">{t("VŠICHNI", "ALL")}</option>
-                                              {Object.keys(odberatele).map((k) => <option key={k} value={k}>{k}</option>)}</select></td>
-                                            <td style={{ whiteSpace: "nowrap" }}>
-                                              <button className="btn mini" onClick={() => akceptujNabidku(d, it, n)}>{t("Akceptovat a naskladnit", "Accept & stock")}</button>{" "}
-                                              <button className="btn sec mini" onClick={() => setProtiForm({ ...protiForm, [key]: pf.open ? { open: false } : { open: true, cena: n.cena, mnozstvi: zbyvaVNabidce, pozn: "" } })}>{t("Protinávrh", "Counter-offer")}</button>{" "}
+                                            <span className="mono" style={{ color: "var(--muted)" }}>{n.dodKod}</span>
+                                            {n.upravena && <><br /><span className="pill nova">{t("po jednání", "after negotiation")}</span></>}</td>
+                                          <td className="num"><b>{fmtCZK(n.cena)}</b>
+                                            {nejlepsi !== null && n.cena === nejlepsi && !nadLimit && <><br /><span className="pill ok">{t("nejlevnější", "cheapest")}</span></>}
+                                            {nadLimit && <><br /><span className="pill prosla">{t("nad limitem odběratele", "above buyer's limit")}</span></>}
+                                            <br /><span style={{ fontSize: 12, color: podProvizi ? "var(--red)" : "var(--muted)", fontWeight: podProvizi ? 700 : 400 }}>
+                                              {fmtPct(marze)}{podProvizi ? ` · ${t("pod provizí", "below commission")} ${d.provize} %` : ""}</span></td>
+                                          <td className="num">{zbyvaVNabidce}
+                                            {n.akceptovano > 0 && <><br /><span className="pill ok">{t("akcept.", "accepted")} {n.akceptovano}</span></>}
+                                            {n.moq && <><br /><span className={"pill " + (n.moq > zbyvaPokryt ? "prosla" : "brzy")}>MOQ {n.moq}</span></>}</td>
+                                          <td>{fmtDate(n.expirace)}{n.sarze && <><br /><span className="mono" style={{ fontSize: 12, color: "var(--muted)" }}>{n.sarze}</span></>}</td>
+                                          <td style={{ whiteSpace: "nowrap" }}>
+                                            {lzeAkceptovat ? (<>
+                                              <button className="btn mini" onClick={() => setAkceptForm({ ...akceptForm, [key]: af.open ? {} : { open: true, ks: String(strop), prodej: String(it.maxProdejni || r2(n.cena * (1 + (d.provize || 5) / 100))) } })}>
+                                                {af.open ? t("Zavřít", "Close") : t("Vybrat", "Select")}</button>{" "}
+                                              <button className="btn sec mini" onClick={() => setProtiForm({ ...protiForm, [key]: pf.open ? { open: false } : { open: true, platnost: platnostZa(2), pozn: "", h: [{ ks: String(zbyvaVNabidce), cena: String(it.cena) }, { ks: "", cena: "" }, { ks: "", cena: "" }] } })}>
+                                                {t("Návrh", "Proposal")}</button>{" "}
                                               <button className="btn danger mini" onClick={() => odmitniNabidku(d, it, n)}>{t("Odmítnout", "Reject")}</button>
-                                            </td>
-                                          </>) : (<>
-                                            <td className="num">{n.akceptovano || "—"}</td><td className="num">—</td><td>—</td>
-                                            <td>{n.stav === "akceptovana" ? <span className="pill ok">{t("vyčerpaná", "fully accepted")}</span>
+                                            </>) : (
+                                              n.stav === "akceptovana" ? <span className="pill ok">{t("vyčerpaná", "fully accepted")}</span>
                                               : n.stav === "castecne" ? <span className="pill brzy">{t("částečně akceptovaná", "partially accepted")}</span>
                                               : n.stav === "odmitnuta" ? <span className="pill prosla">{t("odmítnuta", "rejected")}</span>
-                                              : n.stav === "protinavrh" ? <span className="pill brzy">{t("protinávrh — čeká na dodavatele", "counter-offer — awaiting supplier")}</span>
-                                              : zbyvaPokryt === 0 ? <span style={{ color: "var(--muted)" }}>{t("položka je pokrytá", "item fully covered")}</span>
-                                              : <span style={{ color: "var(--muted)" }}>{t("poptávka uzavřena", "RFQ closed")}</span>}</td>
-                                          </>)}
+                                              : n.stav === "protinavrh" ? <span className="pill brzy">{t("návrh — čeká na dodavatele", "proposal — awaiting supplier")}</span>
+                                              : zbyvaPokryt === 0 ? <span style={{ color: "var(--muted)" }}>{t("závazek pokrytý", "commitment covered")}</span>
+                                              : <span style={{ color: "var(--muted)" }}>{t("poptávka uzavřena", "RFQ closed")}</span>
+                                            )}
+                                          </td>
                                         </tr>
-                                        {pf.open && lzeAkceptovat && (
-                                          <tr><td colSpan={9} style={{ background: "#FAF9FE" }}>
+
+                                        {af.open && lzeAkceptovat && (
+                                          <tr><td colSpan={5} style={{ background: "var(--tint)" }}>
                                             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end", padding: "6px 0" }}>
-                                              <b style={{ fontSize: 13 }}>{t("Protinávrh dodavateli", "Counter-offer to supplier")}</b>
-                                              <label style={lbl}>{t("Cena/ks bez DPH", "Price/pc excl. VAT")}<br />
-                                                <input type="number" style={{ width: 110 }} value={pf.cena} onChange={(e) => setProtiForm({ ...protiForm, [key]: { ...pf, cena: e.target.value } })} /></label>
-                                              <label style={lbl}>{t("Množství (ks)", "Quantity (pcs)")}<br />
-                                                <input type="number" style={{ width: 90 }} value={pf.mnozstvi} onChange={(e) => setProtiForm({ ...protiForm, [key]: { ...pf, mnozstvi: e.target.value } })} /></label>
-                                              <label style={lbl}>{t("Vzkaz dodavateli (volitelné)", "Message to supplier (optional)")}<br />
-                                                <input type="text" style={{ width: 260 }} value={pf.pozn} onChange={(e) => setProtiForm({ ...protiForm, [key]: { ...pf, pozn: e.target.value } })} /></label>
-                                              <button className="btn mini" onClick={() => poslatProtinavrh(d, it, n)}>{t("Odeslat protinávrh", "Send counter-offer")}</button>
-                                              <button className="btn sec mini" onClick={() => setProtiForm({ ...protiForm, [key]: { open: false } })}>{t("Zrušit", "Cancel")}</button>
+                                              <b style={{ fontSize: 13 }}>{t("Akceptace a objednávka u dodavatele", "Acceptance and order from the supplier")}</b>
+                                              <label style={lbl}>{t("Kusů", "Pieces")}<br />
+                                                <input className="qty" type="number" min="1" max={strop} value={af.ks}
+                                                  onChange={(e) => setAkceptForm({ ...akceptForm, [key]: { ...af, ks: e.target.value } })} /></label>
+                                              <label style={lbl}>{t("Prodejní cena/ks", "Selling price/pc")}<br />
+                                                <input style={{ width: 110 }} type="number" value={af.prodej}
+                                                  onChange={(e) => setAkceptForm({ ...akceptForm, [key]: { ...af, prodej: e.target.value } })} /></label>
+                                              <div style={{ fontSize: 13, color: "var(--muted)" }}>
+                                                {t("šarže", "batch")} {n.sarze || "—"} · {t("exp.", "exp.")} {fmtDate(n.expirace)}<br />
+                                                {t(`nejvýš ${strop} ks — tolik je závazně objednáno`, `at most ${strop} pcs — that is the firm commitment`)}
+                                              </div>
+                                              <button className="btn mini" onClick={() => akceptujNabidku(d, it, n)}>{t("Akceptovat a naskladnit", "Accept & stock")}</button>
+                                              <button className="btn sec mini" onClick={() => setAkceptForm({ ...akceptForm, [key]: {} })}>{t("Zrušit", "Cancel")}</button>
                                             </div>
+                                            {n.moq && n.moq > strop && (
+                                              <div className="warn" style={{ marginBottom: 8 }}>
+                                                {t(`Min. odběr dodavatele je ${n.moq} ks, závazně objednáno je ${zbyvaPokryt} ks. Nabídněte nejdřív odběrateli větší množství.`,
+                                                   `The supplier's MOQ is ${n.moq} pcs but only ${zbyvaPokryt} pcs are firmly ordered. Offer the buyer a larger quantity first.`)}
+                                              </div>
+                                            )}
+                                          </td></tr>
+                                        )}
+
+                                        {pf.open && lzeAkceptovat && (() => {
+                                          const uprav = (i, pole, v) => setProtiForm({ ...protiForm, [key]: { ...pf, h: pf.h.map((x, j) => (j === i ? { ...x, [pole]: v } : x)) } });
+                                          return (
+                                          <tr><td colSpan={5} style={{ background: "var(--tint)" }}>
+                                            <div style={{ padding: "6px 0" }}>
+                                              <b style={{ fontSize: 13 }}>{t("Návrh dodavateli — až tři hladiny", "Proposal to the supplier — up to three tiers")}</b>
+                                              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end", marginTop: 8 }}>
+                                                {pf.h.map((x, i) => (
+                                                  <label key={i} style={lbl}>{t(`Hladina ${i + 1} — ks / cena`, `Tier ${i + 1} — pcs / price`)}<br />
+                                                    <input type="number" className="qty" value={x.ks} onChange={(e) => uprav(i, "ks", e.target.value)} />{" "}
+                                                    <input type="number" style={{ width: 100 }} value={x.cena} onChange={(e) => uprav(i, "cena", e.target.value)} /></label>
+                                                ))}
+                                                <label style={lbl}>{t("Platí do", "Valid until")}<br />
+                                                  <input type="date" value={pf.platnost} onChange={(e) => setProtiForm({ ...protiForm, [key]: { ...pf, platnost: e.target.value } })} /></label>
+                                                <label style={lbl}>{t("Vzkaz (volitelné)", "Message (optional)")}<br />
+                                                  <input type="text" style={{ width: 200 }} value={pf.pozn} onChange={(e) => setProtiForm({ ...protiForm, [key]: { ...pf, pozn: e.target.value } })} /></label>
+                                                <button className="btn mini" onClick={() => poslatProtinavrh(d, it, n)}>{t("Odeslat návrh", "Send proposal")}</button>
+                                                <button className="btn sec mini" onClick={() => setProtiForm({ ...protiForm, [key]: { open: false } })}>{t("Zrušit", "Cancel")}</button>
+                                              </div>
+                                            </div>
+                                          </td></tr>);
+                                        })()}
+
+                                        {(n.jednani || []).length > 0 && (
+                                          <tr><td colSpan={5} style={{ fontSize: 12.5, color: "var(--muted)", paddingTop: 0 }}>
+                                            {t("Jednání", "Negotiation")}: {n.jednani.map((j, i) => (
+                                              <span key={i}>{i > 0 && " → "}
+                                                {j.kdo === "adm" ? t("my", "we") : t("dodavatel", "supplier")}{" "}
+                                                {j.hladiny ? hladinyText(j.hladiny) : j.prijato ? `${t("přijal", "accepted")} ${j.prijato.ks} × ${fmtCZK(j.prijato.cena)}` : t("odmítl", "declined")}</span>
+                                            ))}
                                           </td></tr>
                                         )}
                                       </React.Fragment>);
                                   })}</tbody>
-                                </table></div>
-                              )}
-                              {!it.nabidky.length && <div style={{ padding: "0 20px 14px", color: "var(--muted)", fontSize: 13.5 }}>{t("Zatím žádná nabídka k této položce.", "No offers for this item yet.")}</div>}
+                                </table></div>);
+                              })()}
+                              {!it.nabidky.length && <div style={{ padding: "14px 16px", color: "var(--muted)", fontSize: 13.5 }}>{t("Zatím žádná nabídka k této položce.", "No offers for this item yet.")}</div>}
                             </div>
                           );
                         })}
@@ -2555,6 +3093,7 @@ export default function PortApp() {
                     );
                   })}
 
+                  </div>
                   {stran > 1 && (
                     <div className="pager">
                       <button onClick={() => setStrana(Math.max(1, strankaAkt - 1))} disabled={strankaAkt === 1}>‹</button>
@@ -2596,21 +3135,23 @@ export default function PortApp() {
                     <button className="btn sec mini" onClick={() => exportPoptavkyDodavatel(filtr)}>{t("Export XLS", "Export XLS")}</button>
                   </div>
                   {!zobrazene.length && <div className="empty">{t("Momentálně nejsou vypsány žádné poptávky.", "There are currently no open RFQs.")}</div>}
+                  <div style={{ padding: zobrazene.length ? "16px 16px 0" : 0 }}>
                   {zobrazene.map((d) => (
-                    <div key={d.cislo} style={{ borderBottom: "1px solid var(--line)" }}>
-                      <div className="pad" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", background: "#FAF9FE" }}>
+                    <div key={d.cislo} className="poptavka">
+                      <div className="hlava" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                         <span className="mono"><b>{d.cislo}</b></span>
                         <span style={{ fontSize: 13.5 }}>{fmtDate(d.datum)} · {d.polozky.length} {t("položek", "items")}
                           {minExpText(d) ? ` · ${t("min. expirace", "min. shelf life")} ${minExpText(d)}` : ""}</span>
                         <span className={"pill " + (d.stav === "otevrena" ? "nova" : "expedovana")}>{d.stav === "otevrena" ? t("otevřená", "open") : t("uzavřená", "closed")}</span>
                       </div>
-                      {d.polozky.map((it) => {
+                      {d.polozky.map((it, ii) => {
                         const moje = it.nabidky.filter((n) => n.dodKod === user.kod);
                         const formOtevren = nabidkaForm && nabidkaForm.demandCislo === d.cislo && nabidkaForm.polozkaId === it.id;
                         return (
-                          <div key={it.id} className="pad" style={{ borderTop: "1px solid var(--line)" }}>
-                            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-                              <b>{it.nazev}</b>
+                          <div key={it.id} className="polozka">
+                            <div className="hlava" style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+                              <span className="cislo">{t("položka", "item")} {ii + 1}/{d.polozky.length}</span>
+                              <b style={{ fontSize: 15 }}>{it.nazev}</b>
                               {it.doplnek && <span style={{ color: "var(--muted)", fontSize: 13 }}>{it.doplnek}</span>}
                               <span className="mono" style={{ color: "var(--muted)" }}>{it.sukl}</span>
                               <span style={{ fontSize: 13.5 }}>{it.mnozstvi} {t("ks", "pcs")} · {t("požadovaná cena", "target price")} <b>{fmtCZK(it.cena)}</b>/{t("ks", "pc")}
@@ -2620,8 +3161,9 @@ export default function PortApp() {
                                 <button className="btn mini" onClick={() => setNabidkaForm({ demandCislo: d.cislo, polozkaId: it.id, cena: it.cena, mnozstvi: it.mnozstvi, moq: "", sarze: "", expirace: "" })}>{t("Podat nabídku", "Submit offer")}</button>
                               )}
                             </div>
+                            <div className="pad">
                             {moje.map((n) => (
-                              <div key={n.id} style={{ marginTop: 8, fontSize: 14 }}>
+                              <div key={n.id} style={{ marginTop: 0, fontSize: 14 }}>
                                 {t("Vaše nabídka:", "Your offer:")} <b>{n.mnozstvi} {t("ks à", "pcs at")} {fmtCZK(n.cena)}</b>
                                 {n.moq ? <> · {t("min. odběr", "MOQ")} {n.moq} {t("ks", "pcs")}</> : null}
                                 {n.sarze ? <> · {t("šarže", "batch")} <span className="mono">{n.sarze}</span></> : null}
@@ -2638,20 +3180,27 @@ export default function PortApp() {
                                   </div>
                                 )}
                                 {n.stav === "protinavrh" && n.proti && (
-                                  <div style={{ marginTop: 8, padding: 12, background: "#FAF9FE", border: "1px solid var(--line)", borderRadius: 10 }}>
-                                    <b>{t("Protinávrh zprostředkovatele:", "Intermediary's counter-offer:")}</b>{" "}
-                                    {n.proti.mnozstvi} {t("ks à", "pcs at")} <b>{fmtCZK(n.proti.cena)}</b>/{t("ks bez DPH", "pc excl. VAT")}
+                                  <div style={{ marginTop: 8, padding: 12, background: "var(--tint)", border: "1px solid var(--line)", borderRadius: 10 }}>
+                                    <b>{t("Návrh zprostředkovatele", "Intermediary's proposal")}</b>
+                                    {n.proti.platnost && <span style={{ color: "var(--muted)" }}> · {t("platí do", "valid until")} {fmtDate(n.proti.platnost)}</span>}
                                     {n.proti.pozn && <div style={{ color: "var(--muted)", marginTop: 4 }}>„{n.proti.pozn}“</div>}
-                                    <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
-                                      <button className="btn mini" onClick={() => prijmiProtinavrh(d, it, n)}>{t("Přijmout protinávrh", "Accept counter-offer")}</button>
-                                      <button className="btn sec mini" onClick={() => odmitniProtinavrh(d, it, n)}>{t("Odmítnout — nabídku stáhnout", "Decline — withdraw offer")}</button>
-                                    </div>
+                                    {navrhPropadl(n.proti) ? (
+                                      <div className="warn" style={{ marginTop: 10 }}>{t("Platnost návrhu vypršela.", "The proposal has expired.")}</div>
+                                    ) : (
+                                      <div style={{ display: "flex", gap: 8, marginTop: 10, flexWrap: "wrap" }}>
+                                        {(n.proti.hladiny || []).map((h, i) => (
+                                          <button key={i} className="btn mini" onClick={() => prijmiProtinavrh(d, it, n, i)}>
+                                            {t(`Beru ${h.ks} ks à ${fmtCZK(h.cena)}`, `Take ${h.ks} pcs at ${fmtCZK(h.cena)}`)}</button>
+                                        ))}
+                                        <button className="btn sec mini" onClick={() => odmitniProtinavrh(d, it, n)}>{t("Odmítnout — nabídku stáhnout", "Decline — withdraw offer")}</button>
+                                      </div>
+                                    )}
                                   </div>
                                 )}
                               </div>
                             ))}
                             {formOtevren && (
-                              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end", marginTop: 12, padding: 12, background: "#FAF9FE", border: "1px solid var(--line)", borderRadius: 10 }}>
+                              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end", marginTop: 12, padding: 12, background: "var(--tint)", border: "1px solid var(--line)", borderRadius: 10 }}>
                                 <label style={lbl}>{t("Cena/ks bez DPH", "Price/pc excl. VAT")}<br />
                                   <input type="number" style={{ width: 110 }} value={nabidkaForm.cena} onChange={(e) => setNabidkaForm({ ...nabidkaForm, cena: e.target.value })} /></label>
                                 <label style={lbl}>{t("Nabízené množství (ks)", "Offered quantity (pcs)")}<br />
@@ -2674,11 +3223,13 @@ export default function PortApp() {
                                 )}
                               </div>
                             )}
+                            </div>
                           </div>
                         );
                       })}
                     </div>
                   ))}
+                  </div>
                   {stran > 1 && (
                     <div className="pager">
                       <button onClick={() => setStrana(Math.max(1, strankaAkt - 1))} disabled={strankaAkt === 1}>‹</button>
@@ -2706,7 +3257,7 @@ export default function PortApp() {
                   <button className="btn mini" onClick={() => setNovyUzivatel({ role: "odberatel", jmeno: "", login: "", email: "", kod: "__novy__", firma: "", zeme: "DE", regC: "", vatId: "", ic: "", dic: "", typ: "lekarna", adresa: "" })}>{t("+ Přidat uživatele", "+ Add user")}</button>
                 </div>
                 {novyUzivatel && (
-                  <div className="pad" style={{ borderBottom: "1px solid var(--line)", background: "#FAF9FE" }}>
+                  <div className="pad" style={{ borderBottom: "1px solid var(--line)", background: "var(--tint)" }}>
                     <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "end" }}>
                       <label style={lbl}>{t("Role", "Role")}<br />
                         <select value={novyUzivatel.role} onChange={(e) => setNovyUzivatel({ ...novyUzivatel, role: e.target.value, kod: "__novy__" })}>
@@ -2855,18 +3406,6 @@ export default function PortApp() {
           )}
         </div>
       </main>
-
-      {/* ============ lišta rozpracované objednávky ============ */}
-      {user.role === "odberatel" && view === "katalog" && cartItems.length > 0 && (
-        <div className="cartbar no-print">
-          <div className="wrap">
-            <div>{t("Rozpracovaná objednávka:", "Order in progress:")} <b>{cartItems.length} {t("položek", "items")}</b> · <b>{fmtCZK(cartTotal)}</b> {t("bez DPH", "excl. VAT")}</div>
-            <div className="spacer" />
-            <button className="btn sec mini" onClick={() => setCart({})}>{t("Vyprázdnit", "Clear")}</button>
-            <button className="btn" onClick={odeslatObjednavku}>{t("Odeslat objednávku", "Submit order")}</button>
-          </div>
-        </div>
-      )}
 
       {/* ============ dodací list ============ */}
       {detail && (() => {
