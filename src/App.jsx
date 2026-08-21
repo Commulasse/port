@@ -481,9 +481,10 @@ const navrhPropadl = (nv) => !!(nv && nv.platnost && nv.platnost < today());
    -------------------------------------------------------------------------- */
 const POHYB = ["objednano", "prijato", "expedovano"];
 const POHYB_LABEL = {
-  objednano: { cs: "objednáno u dodavatele", en: "ordered from supplier", pill: "nova" },
-  prijato: { cs: "převzato od dodavatele", en: "received from supplier", pill: "brzy" },
-  expedovano: { cs: "expedováno odběrateli", en: "dispatched to buyer", pill: "ok" },
+  /* barva = pruh vlevo u řádku; nese informaci o stavu, ne jen střídání odstínů */
+  objednano: { cs: "objednáno u dodavatele", en: "ordered from supplier", pill: "brzy", barva: "var(--amber)" },
+  prijato: { cs: "převzato od dodavatele", en: "received from supplier", pill: "nova", barva: "var(--brand-dk)" },
+  expedovano: { cs: "expedováno odběrateli", en: "dispatched to buyer", pill: "ok", barva: "var(--ok)" },
 };
 const pohybStav = (p) => (POHYB.includes(p.stavPohyb) ? p.stavPohyb : "prijato");
 
@@ -871,6 +872,9 @@ export default function PortApp() {
   const [akceptForm, setAkceptForm] = useState({});
   const [navrhOdbForm, setNavrhOdbForm] = useState({});   /* návrh odběrateli — víc kusů za jeho cenu */
   const [zavaznaPotvrz, setZavaznaPotvrz] = useState(false);
+  const [udrzba, setUdrzba] = useState(null);      /* panel údržby testovacích dat */
+  const [uzFiltr, setUzFiltr] = useState("vse");
+  const [uzHledat, setUzHledat] = useState("");
   const [pohybFiltr, setPohybFiltr] = useState("vse");   /* fronta zboží podle stavu */
   const [protiForm, setProtiForm] = useState({});
   const [vybrane, setVybrane] = useState({});
@@ -954,6 +958,38 @@ export default function PortApp() {
     setDemands(DEMANDS_SEED); setPozadavky(POZADAVKY_SEED); setCart({});
     await pushState(fresh);
     flash(t("Demo data byla obnovena do výchozího stavu.", "Demo data have been reset to their initial state."));
+  };
+
+  /* ---------- údržba testovacích dat ---------- */
+  const denZ = (x) => String(x || "").slice(0, 10);
+  const pocetZaDen = (den) => ({
+    zbozi: products.filter((x) => denZ(x.datumObjednano) === den || denZ(x.datumPrijem) === den || denZ(x.datumExpedice) === den).length,
+    objednavky: orders.filter((x) => denZ(x.datum) === den).length,
+    poptavky: demands.filter((x) => denZ(x.datum) === den).length,
+    pozadavky: pozadavky.filter((x) => denZ(x.datum) === den).length,
+    emaily: emails.filter((x) => denZ(x.datum) === den).length,
+  });
+
+  const smazDen = async (den) => {
+    if (!den) { flash(t("Vyberte datum.", "Pick a date.")); return; }
+    const p2 = products.filter((x) => !(denZ(x.datumObjednano) === den || denZ(x.datumPrijem) === den || denZ(x.datumExpedice) === den));
+    const o2 = orders.filter((x) => denZ(x.datum) !== den);
+    const d2 = demands.filter((x) => denZ(x.datum) !== den);
+    const r2p = pozadavky.filter((x) => denZ(x.datum) !== den);
+    const e2 = emails.filter((x) => denZ(x.datum) !== den);
+    const smazano = (products.length - p2.length) + (orders.length - o2.length) + (demands.length - d2.length)
+      + (pozadavky.length - r2p.length) + (emails.length - e2.length);
+    setProducts(p2); setOrders(o2); setDemands(d2); setPozadavky(r2p); setEmails(e2);
+    await pushState({ schema: SCHEMA, products: p2, orders: o2, emails: e2, users, odberatele, dodavatele, demands: d2, pozadavky: r2p });
+    flash(t(`Smazáno ${smazano} záznamů z ${new Date(den).toLocaleDateString(locale)}.`,
+            `${smazano} records from ${new Date(den).toLocaleDateString(locale)} deleted.`));
+  };
+
+  /* vyprázdní veškerý provoz, účty a firmy zůstanou */
+  const smazVsechnyZaznamy = async () => {
+    setProducts([]); setOrders([]); setDemands([]); setPozadavky([]); setEmails([]); setCart({});
+    await pushState({ schema: SCHEMA, products: [], orders: [], emails: [], users, odberatele, dodavatele, demands: [], pozadavky: [] });
+    flash(t("Veškerá historie obchodů byla smazána. Uživatelé a firmy zůstaly.", "All trading history has been deleted. Users and companies remain."));
   };
 
   /* ---------- přihlášení / aktivace účtu ---------- */
@@ -1737,7 +1773,10 @@ export default function PortApp() {
     td{padding:10px 12px;border-bottom:1px solid var(--td-line);vertical-align:middle}
     tr:last-child td{border-bottom:none}
     td.num,th.num{text-align:right}
-    tr.bl td{background:var(--red-bg)}
+    /* opatření obecné povahy (vývozní omezení SÚKL) — celý řádek červeně, přebíjí střídání */
+    tr.bl td,.pohyb tbody tr.bl td,.pohyb tbody tr.bl.sudy td{background:var(--red-bg)}
+    .pohyb tbody tr.bl td.pruh{border-left-color:var(--red)}
+    tr.bl td .cenyblok{background:var(--red-bg);border-color:#F0C9C9}
     .pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
     .pill.ok{background:var(--ok-bg);color:var(--ok)} .pill.brzy{background:var(--amber-bg);color:var(--amber)}
     .pill.prosla{background:var(--red-bg);color:var(--red)}
@@ -1794,6 +1833,17 @@ export default function PortApp() {
     .stat .n{font-size:26px;font-weight:800;line-height:1.2}
     .stat .c{font-size:13px;color:var(--muted);margin-top:4px}
     .pohyb tbody td{border-bottom:3px solid var(--line)}
+    .pohyb tbody tr.sudy td{background:var(--tint)}
+    .pohyb tbody td.pruh{border-left:4px solid var(--line)}
+    /* ceny nesmí tvořit svislý pruh přes celou tabulku — místo podbarvení mají
+       vlastní orámovaný blok uvnitř buňky, takže se nekříží se střídáním řádků */
+    .pohyb tbody td.ceny{background:transparent}
+    .cenyblok{display:inline-block;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--surface)}
+    /* role uživatele — světlá odběratel, tmavá dodavatel, zlatá zprostředkovatel */
+    .role{display:inline-block;border-radius:20px;padding:3px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+    .role.odberatel{background:#EAE6FB;color:#4E3FC8}
+    .role.dodavatel{background:#241F4E;color:#FFFFFF}
+    .role.admin{background:#F6E8BF;color:#6B540F}
     tbody tr.klik{cursor:pointer}
     tbody tr.klik:hover td{background:var(--brand-lt)}
     .form{padding:16px 20px;border-bottom:1px solid var(--line);background:#FAF9FE;display:flex;gap:10px;flex-wrap:wrap;align-items:end}
@@ -2547,13 +2597,13 @@ export default function PortApp() {
                         <th style={{ width: 220 }}>{t("Stav a akce", "Status and action")}</th>
                       </tr></thead>
                       <tbody>
-                        {mojeProdukty.filter((p) => pohybFiltr === "vse" || pohybStav(p) === pohybFiltr).map((p) => {
+                        {mojeProdukty.filter((p) => pohybFiltr === "vse" || pohybStav(p) === pohybFiltr).map((p, i) => {
                           const bl = jeBlacklist(p.sukl);
                           const st = expState(p.expirace);
                           const ps = pohybStav(p);
                           return (
-                            <tr key={p.id} className={bl ? "bl" : undefined}>
-                              <td>
+                            <tr key={p.id} className={(bl ? "bl " : "") + (i % 2 ? "sudy" : "")}>
+                              <td className="pruh" style={{ borderLeftColor: POHYB_LABEL[ps].barva }}>
                                 <b style={{ fontSize: 14.5 }}>{p.nazev}</b>{bl && <> <span className="pill prosla" title={blacklistDuvod(p.sukl, lang)}>⚑</span></>}
                                 {p.doplnek && <><br /><span style={{ color: "var(--muted)", fontSize: 12.5 }}>{p.doplnek}</span></>}
                                 <div style={{ marginTop: 6, paddingTop: 6, borderTop: "1px solid var(--line)", fontSize: 12, color: "var(--muted)" }}>
@@ -2568,9 +2618,9 @@ export default function PortApp() {
                                 {st === "brzy" && <><br /><span className="pill brzy">{t("< 6 měs.", "< 6 mo.")}</span></>}
                                 {st === "prosla" && <><br /><span className="pill prosla">{t("prošlá", "expired")}</span></>}</td>
                               <td style={{ textAlign: "left", paddingLeft: 6, fontWeight: 700 }}>{p.ks}</td>
-                              <td style={{ background: "var(--tint)", whiteSpace: "nowrap" }}>
+                              <td className="ceny" style={{ whiteSpace: "nowrap" }}>
                                 {/* ceny jsou dané: nákup z akceptované nabídky, prodej = max. cena odběratele */}
-                                <div style={{ display: "grid", gridTemplateColumns: "auto auto", gap: "4px 12px", alignItems: "baseline", fontSize: 12.5, color: "var(--muted)" }}>
+                                <div className="cenyblok" style={{ display: "inline-grid", gridTemplateColumns: "auto auto", gap: "4px 12px", alignItems: "baseline", fontSize: 12.5, color: "var(--muted)" }}>
                                   <span>{t("nákup", "buy")}</span><span style={{ textAlign: "right", color: "var(--ink)" }}>{fmtCZK(p.nakupCena)}</span>
                                   <span>{t("marže", "margin")}</span><span style={{ textAlign: "right", color: "var(--ink)" }}>{fmtPct(marzePct(p))}</span>
                                   <span style={{ color: "var(--ink)", fontWeight: 700 }}>{t("prodej", "sell")}</span>
@@ -2585,10 +2635,10 @@ export default function PortApp() {
                                   {ps === "prijato" && <><button className="btn mini" onClick={() => posunPohyb(p, "expedovano")}>{t("Expedovat", "Dispatch")}</button>{" "}</>}
                                   <button className="btn danger mini" onClick={() => smazProdukt(p.id)}>{t("Smazat", "Delete")}</button>
                                 </div>
-                                <div style={{ marginTop: 8, paddingTop: 6, borderTop: "1px solid var(--line)", fontSize: 12.5, color: "var(--muted)", whiteSpace: "nowrap" }}>
-                                  {t("od", "from")} <span className="pill kod">{p.dodKod}</span>{" "}
-                                  {t("komu", "to")} <span className="pill kod">{p.odbKod}</span>
-                                  {p.pozCislo && <><br /><span className="mono" style={{ fontSize: 11.5 }}>{p.pozCislo}</span></>}
+                                <div style={{ marginTop: 8, paddingTop: 6, borderTop: "1px solid var(--line)", fontSize: 12.5, color: "var(--muted)" }}>
+                                  <div>{t("od", "from")} <span className="pill kod">{p.dodKod}</span></div>
+                                  <div style={{ marginTop: 3 }}>{t("komu", "to")} <span className="pill kod">{p.odbKod}</span></div>
+                                  {p.pozCislo && <div className="mono" style={{ fontSize: 11.5, marginTop: 3 }}>{p.pozCislo}</div>}
                                 </div></td>
                             </tr>
                           );
@@ -2731,8 +2781,8 @@ export default function PortApp() {
                                     </div>
                                   )}
                                 </td>
-                                <td style={{ background: "var(--tint)" }}>
-                                  <div style={{ display: "grid", gridTemplateColumns: "auto 110px", gap: "5px 8px", alignItems: "center", fontSize: 12.5, color: "var(--muted)" }}>
+                                <td>
+                                  <div className="cenyblok" style={{ display: "inline-grid", gridTemplateColumns: "auto 110px", gap: "5px 8px", alignItems: "center", fontSize: 12.5, color: "var(--muted)" }}>
                                     <span>{t("limit odběratele", "buyer's limit")}</span>
                                     <input type="number" className="qty" style={{ width: 110 }} value={p.maxProdejni}
                                       onChange={(e) => { const lim = Number(e.target.value) || 0; setPol(idx, { ...p, maxProdejni: e.target.value, cena: lim ? r2(lim / (1 + (Number(novaPoptavka.provize) || 0) / 100)) : p.cena }); }} />
@@ -2972,7 +3022,7 @@ export default function PortApp() {
                                 const pouzitelne = it.nabidky.filter((n) => ["podana", "castecne"].includes(n.stav) && n.mnozstvi - (n.akceptovano || 0) > 0);
                                 const nejlepsi = pouzitelne.length ? Math.min(...pouzitelne.map((n) => n.cena)) : null;
                                 return (
-                                <div className="table-wrap" style={{ paddingBottom: 8 }}><table>
+                                <div className="table-wrap" style={{ paddingBottom: 8 }}><table className="pohyb">
                                   <thead><tr>
                                     <th>{t("Dodavatel", "Supplier")}</th>
                                     <th className="num">{t("Cena/ks · marže", "Price/pc · margin")}</th>
@@ -2980,7 +3030,7 @@ export default function PortApp() {
                                     <th>{t("Expirace", "Expiry")}</th>
                                     <th>{t("Stav", "Status")}</th>
                                   </tr></thead>
-                                  <tbody>{it.nabidky.map((n) => {
+                                  <tbody>{it.nabidky.map((n, ni) => {
                                     const key = d.cislo + "-" + it.id + "-" + n.id;
                                     const af = akceptForm[key] || {};
                                     const pf = protiForm[key] || {};
@@ -2992,8 +3042,14 @@ export default function PortApp() {
                                     const podProvizi = marze < (Number(d.provize) || 5) - 0.05;
                                     return (
                                       <React.Fragment key={n.id}>
-                                        <tr style={nadLimit ? { opacity: .55 } : undefined}>
-                                          <td><b>{(dodavatele[n.dodKod] || {}).nazev || n.dodKod}</b><br />
+                                        <tr className={ni % 2 ? "sudy" : ""} style={nadLimit ? { opacity: .55 } : undefined}>
+                                          <td className="pruh" style={{ borderLeftColor:
+                                            n.stav === "akceptovana" ? "var(--ok)"
+                                            : n.stav === "castecne" ? "var(--ok)"
+                                            : n.stav === "protinavrh" ? "var(--amber)"
+                                            : n.stav === "odmitnuta" ? "var(--line)"
+                                            : "var(--brand-dk)" }}>
+                                            <b>{(dodavatele[n.dodKod] || {}).nazev || n.dodKod}</b><br />
                                             <span className="mono" style={{ color: "var(--muted)" }}>{n.dodKod}</span>
                                             {n.upravena && <><br /><span className="pill nova">{t("po jednání", "after negotiation")}</span></>}</td>
                                           <td className="num"><b>{fmtCZK(n.cena)}</b>
@@ -3247,12 +3303,18 @@ export default function PortApp() {
           {/* ============ ZPROSTŘEDKOVATEL: uživatelé ============ */}
           {view === "uzivatele" && user.role === "admin" && (
             <>
-              <h1>{t("Uživatelé", "Users")}</h1>
+              <h1>{t("Uživatelé a údržba dat", "Users and data maintenance")}</h1>
               <p className="sub">{t("Účty se zakládají bez hesla — uživatel dostane šestimístný potvrzovací kód a heslo si zvolí sám. Odběratel (zahraniční) se eviduje na zemi a VAT ID, dodavatel (český) na IČO s propisem z ARES.",
                                     "Accounts are created without a password — the user receives a six-digit confirmation code and chooses their own password. Buyers (foreign) are registered by country and VAT ID, suppliers (Czech) by company ID with ARES lookup.")}</p>
               <div className="card">
                 <div className="toolbar">
-                  <span style={{ fontSize: 13, color: "var(--muted)" }}>{users.length} {t("účtů", "accounts")}</span>
+                  <input className="search" type="text" placeholder={t("Hledat jméno, login, e-mail, kód…", "Search name, login, e-mail, code…")}
+                    value={uzHledat} onChange={(e) => setUzHledat(e.target.value)} />
+                  {[["vse", t("Vše", "All")], ["odberatel", t("Odběratelé", "Buyers")], ["dodavatel", t("Dodavatelé", "Suppliers")], ["admin", t("Zprostředkovatel", "Intermediary")]].map(([k, popis]) => (
+                    <button key={k} className={"btn " + (uzFiltr === k ? "" : "sec ") + "mini"} onClick={() => setUzFiltr(k)}>
+                      {popis} <span className="pill kod">{k === "vse" ? users.length : users.filter((u) => u.role === k).length}</span>
+                    </button>
+                  ))}
                   <div className="spacer" />
                   <button className="btn mini" onClick={() => setNovyUzivatel({ role: "odberatel", jmeno: "", login: "", email: "", kod: "__novy__", firma: "", zeme: "DE", regC: "", vatId: "", ic: "", dic: "", typ: "lekarna", adresa: "" })}>{t("+ Přidat uživatele", "+ Add user")}</button>
                 </div>
@@ -3331,12 +3393,21 @@ export default function PortApp() {
                   <table>
                     <thead><tr><th>{t("Uživatel", "User")}</th><th>{t("Role", "Role")}</th><th>{t("Kód", "Code")}</th><th>{t("Subjekt", "Entity")}</th><th>E-mail</th><th>{t("Stav", "Status")}</th><th></th></tr></thead>
                     <tbody>
-                      {users.map((u) => {
+                      {(() => {
+                        const q = uzHledat.trim().toLowerCase();
+                        const vybrani = users.filter((u) => (uzFiltr === "vse" || u.role === uzFiltr) && (!q || [
+                          u.jmeno, u.login, u.email, u.kod,
+                          (u.role === "odberatel" ? (odberatele[u.kod] || {}).nazev : (dodavatele[u.kod] || {}).nazev) || "",
+                        ].join(" ").toLowerCase().includes(q)));
+                        if (!vybrani.length) return <tr><td colSpan={7} className="empty">{t("Žádný uživatel neodpovídá výběru.", "No user matches the selection.")}</td></tr>;
+                        return vybrani.map((u) => {
                         const ent = u.role === "odberatel" ? odberatele[u.kod] : u.role === "dodavatel" ? dodavatele[u.kod] : null;
+                        const barva = u.role === "odberatel" ? "#7C6AE8" : u.role === "dodavatel" ? "#241F4E" : "#C9A227";
                         return (
                           <tr key={u.login} style={u.aktivni === false ? { opacity: .55 } : undefined}>
-                            <td><b>{u.jmeno}</b><br /><span className="mono" style={{ color: "var(--muted)" }}>{u.login}</span></td>
-                            <td>{ROLE_LABEL(u.role)}</td>
+                            <td className="pruh" style={{ borderLeft: `4px solid ${barva}` }}>
+                              <b>{u.jmeno}</b><br /><span className="mono" style={{ color: "var(--muted)" }}>{u.login}</span></td>
+                            <td><span className={"role " + u.role}>{ROLE_LABEL(u.role)}</span></td>
                             <td>{u.kod ? <span className="pill kod">{u.kod}</span> : "—"}</td>
                             <td style={{ fontSize: 13 }}>
                               {u.role === "odberatel" && ent && <>{ent.zeme} · VAT {ent.vatId}</>}
@@ -3358,10 +3429,51 @@ export default function PortApp() {
                             </td>
                           </tr>
                         );
-                      })}
+                        });
+                      })()}
                     </tbody>
                   </table>
                 </div>
+              </div>
+
+              <div className="card" style={{ marginTop: 18 }}>
+                <div className="toolbar">
+                  <b style={{ fontSize: 14 }}>{t("Údržba testovacích dat", "Test data maintenance")}</b>
+                  <div className="spacer" />
+                  <button className="btn sec mini" onClick={() => setUdrzba(udrzba ? null : { den: new Date().toISOString().slice(0, 10), potvrd: "" })}>
+                    {udrzba ? t("Zavřít", "Close") : t("Otevřít", "Open")}</button>
+                </div>
+                {udrzba && (() => {
+                  const p = pocetZaDen(udrzba.den);
+                  const celkem = p.zbozi + p.objednavky + p.poptavky + p.pozadavky + p.emaily;
+                  return (
+                    <div className="pad">
+                      <p className="sub" style={{ marginTop: 0 }}>
+                        {t("Maže se jen provoz — zboží v pohybu, objednávky, poptávky a e-maily. Uživatelské účty a firmy zůstávají vždy zachovány.",
+                           "Only trading records are deleted — goods in transit, orders, RFQs and e-mails. User accounts and companies are always kept.")}</p>
+                      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "end" }}>
+                        <label style={lbl}>{t("Smazat záznamy z data", "Delete records dated")}<br />
+                          <input type="date" value={udrzba.den} onChange={(e) => setUdrzba({ ...udrzba, den: e.target.value })} /></label>
+                        <div style={{ fontSize: 13, color: "var(--muted)" }}>
+                          {t("k smazání", "to delete")}: <b style={{ color: "var(--ink)" }}>{celkem}</b><br />
+                          {p.zbozi} {t("zboží", "goods")} · {p.objednavky} {t("objednávek", "orders")} · {p.poptavky} {t("poptávek", "RFQs")} · {p.pozadavky} {t("objednávek odběratelů", "buyer orders")} · {p.emaily} {t("e-mailů", "e-mails")}
+                        </div>
+                        <button className="btn danger mini" disabled={!celkem} onClick={() => smazDen(udrzba.den)}>
+                          {t("Smazat vybraný den", "Delete selected day")}</button>
+                      </div>
+                      <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--line)", display: "flex", gap: 12, flexWrap: "wrap", alignItems: "end" }}>
+                        <label style={lbl}>{t("Smazat úplně vše — napište SMAZAT", "Delete everything — type DELETE")}<br />
+                          <input type="text" style={{ width: 160 }} value={udrzba.potvrd} onChange={(e) => setUdrzba({ ...udrzba, potvrd: e.target.value })} /></label>
+                        <button className="btn danger mini" disabled={!["SMAZAT", "DELETE"].includes((udrzba.potvrd || "").trim().toUpperCase())}
+                          onClick={() => { smazVsechnyZaznamy(); setUdrzba({ ...udrzba, potvrd: "" }); }}>
+                          {t("Smazat veškerou historii", "Delete all history")}</button>
+                        <button className="btn sec mini" onClick={resetDemo}>{t("Obnovit demo data", "Reset demo data")}</button>
+                        <span style={{ fontSize: 12.5, color: "var(--muted)" }}>
+                          {t("Změna se propíše všem přihlášeným.", "The change propagates to everyone logged in.")}</span>
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             </>
           )}
