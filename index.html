@@ -1,32 +1,73 @@
 <!doctype html>
 <html lang="cs">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#211B4E" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="PORT" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <title>PORT — marketplace · ezdravotnici.cz</title>
-    <!-- SheetJS — čtení a zápis .xlsx pro hromadné poptávky odběratelů.
-         Alternativní oficiální CDN: https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js
-         Bez této knihovny aplikace funguje dál, ale pracuje jen s CSV. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      /* registrace service workeru — díky ní jde PORT přidat na plochu telefonu */
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker.register("/sw.js").catch(function () {});
-        });
-      }
-    </script>
-  </body>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Fatal error</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding:28px 20px;
+    background:#ffffff;
+    color:#1a1a1a;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;
+    font-size:15px;
+    line-height:1.7;
+  }
+  main{width:100%;max-width:520px}
+  h1{
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#a00000;
+    margin-bottom:18px;
+  }
+  hr{border:0;border-top:1px solid #d8d8d8;margin:18px 0}
+  p{margin-bottom:6px}
+
+  .kod{color:#767676;font-size:13.5px}
+
+  /* Vstup do aplikace v levém dolním rohu — vypadá jako zbytková technická
+     poznámka: drobné, světle šedé, bez podtržení, kurzor se nemění. */
+  #vstup{
+    position:fixed;
+    left:14px;
+    bottom:12px;
+    font:inherit;
+    font-size:11.5px;
+    color:#b4b4b4;
+    background:none;
+    border:0;
+    padding:6px;
+    cursor:default;
+    -webkit-tap-highlight-color:transparent;
+  }
+  #vstup:focus{outline:0}
+</style>
+</head>
+<body>
+  <main>
+    <h1>Fatal error</h1>
+    <p>Web byl pozastaven.</p>
+    <hr />
+    <p class="kod">Error 503 &middot; Service unavailable</p>
+  </main>
+
+  <button id="vstup" type="button" tabindex="-1">error</button>
+
+<script>
+(function () {
+  /* Aplikace PORT běží na stejné doméně ve složce /port/ */
+  document.getElementById("vstup").addEventListener("click", function () {
+    window.location.href = "/port/";
+  });
+})();
+</script>
+</body>
 </html>
