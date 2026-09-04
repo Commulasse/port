@@ -6,7 +6,31 @@
 [functions]
   node_bundler = "esbuild"
 
+# Pravidla se vyhodnocují shora dolů, první shoda vyhrává.
+# Pozor: pravidla odsud mají přednost před souborem public/_redirects.
+
+# Aplikace PORT běží pod /port/ — přepis na serveru, adresa se v prohlížeči nemění.
+[[redirects]]
+  from = "/port"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/port/*"
+  to = "/index.html"
+  status = 200
+
+# Kořen domény ukazuje chybovou stránku.
+# force = true je nutné, protože jinak by měl přednost existující soubor index.html.
+[[redirects]]
+  from = "/"
+  to = "/error.html"
+  status = 200
+  force = true
+
+# Neznámé adresy končí také na chybové stránce, ať se neukazuje cizí 404.
+# Bez force, takže skutečné soubory (obrázky, skripty) se servírují normálně.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/error.html"
   status = 200
