@@ -3,15 +3,30 @@
   "short_name": "PORT",
   "description": "B2B portál pro poptávky, nabídky a objednávky léčiv.",
   "lang": "cs",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/port/",
+  "scope": "/port/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#F1EFFA",
   "theme_color": "#211B4E",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

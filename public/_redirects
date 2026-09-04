@@ -1,0 +1,7 @@
+# Kořen domény ukazuje chybovou stránku, aplikace PORT žije pod /port/.
+# Pravidla se vyhodnocují shora dolů, první shoda vyhrává.
+# Kód 200 = přepis na serveru, adresa v prohlížeči se nemění.
+
+/port/*   /index.html   200
+/port     /index.html   200
+/         /error.html   200

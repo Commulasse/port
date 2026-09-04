@@ -19,6 +19,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/.netlify/")) return;   /* sdílená data vždy ze sítě */
+  if (url.pathname === "/" || url.pathname === "/error.html") return;   /* chybovou stránku nekešujeme */
 
   e.respondWith(
     fetch(req)
@@ -29,6 +30,6 @@ self.addEventListener("fetch", (e) => {
         }
         return res;
       })
-      .catch(() => caches.match(req).then((r) => r || caches.match("/")))
+      .catch(() => caches.match(req).then((r) => r || caches.match("/port/")))
   );
 });
