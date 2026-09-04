@@ -1,7 +1,7 @@
 /* PORT — service worker.
    Strategie: síť první, cache jako záloha (offline zobrazí naposledy načtenou verzi).
    Data ze serverless funkce se NIKDY nekešují — poptávky a objednávky musí být vždy aktuální. */
-const CACHE = "port-v1";
+const CACHE = "port-v2";
 
 self.addEventListener("install", () => self.skipWaiting());
 
@@ -19,7 +19,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
   if (url.pathname.startsWith("/.netlify/")) return;   /* sdílená data vždy ze sítě */
-  if (url.pathname === "/" || url.pathname === "/error.html") return;   /* chybovou stránku nekešujeme */
+  if (url.pathname === "/") return;                     /* chybovou stránku nekešujeme */
 
   e.respondWith(
     fetch(req)
